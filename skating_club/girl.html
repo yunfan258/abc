@@ -1,0 +1,317 @@
+<head>
+	<style>
+		/*---左下角盒子---*/
+		.cube {
+			width: 80px;
+			height: 80px;
+			/*			line-height: 40px;*/
+			/*			font-size: 40px;*/
+			/*			font-family: ztxg3;*/
+			position: fixed;
+			/*
+			right: 40%;
+			bottom: 40%;
+*/
+			left: 20%;
+			top: 20%;
+
+
+			transform-style: preserve-3d;
+			transform-origin: 50% 50%;
+			/*			transform: rotateZ(20deg);*/
+			/*			transform: rotateX(-33.5deg) rotateY(45deg);*/
+			animation: xzxz 5s linear infinite;
+			perspective: 50000px;
+
+
+		}
+
+		@keyframes xzxz {
+			from {
+				transform: rotate3d(0, 1, 0, 0deg);
+			}
+
+			to {
+				transform: rotate3d(0, 1, 0, 360deg);
+			}
+		}
+
+		.cube * {
+			width: 80px;
+			height: 80px;
+
+			color: yellow;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+
+
+		.front {
+
+			background-color: rgba(12, 11, 22, 1);
+
+			transform: translateZ(40px);
+		}
+
+		.back {
+			background-color: rgba(12, 11, 21, 1);
+
+			transform: translateZ(-40px);
+		}
+
+		.left {
+			background-color: rgba(122, 114, 21, 1);
+
+			transform: rotateY(-90deg) translateZ(40px);
+		}
+
+		.right {
+			background-color: rgba(122, 11, 22, 1);
+
+			transform: rotateY(90deg) translateZ(40px);
+		}
+
+		.top {
+			background-color: rgba(12, 111, 221, 1);
+
+			transform: rotateX(90deg) translatez(40px);
+		}
+
+		.bottom {
+			background-color: rgba(12, 11, 221, 1);
+
+			transform: rotateX(-90deg) translatez(40px);
+		}
+
+		.cube1 {
+			display: none;
+		}
+
+		.cube:hover+.cube1 {
+			display: block;
+		}
+
+		/*---左下角盒子---*/
+		.cube1,
+		.cube1 * {
+			width: 200px;
+			height: 200px;
+			/*			opacity: 0.9;*/
+		}
+
+		.cube1 {
+
+			/*			line-height: 40px;*/
+			/*			font-size: 40px;*/
+			/*			font-family: ztxg3;*/
+			position: fixed;
+			/*
+			right: 40%;
+			bottom: 40%;
+*/
+			left: 40%;
+			top: 40%;
+			transform-style: preserve-3d;
+			transform-origin: 50% 50%;
+			animation: xzxz1 5s linear infinite;
+			perspective: 50000px;
+
+
+		}
+
+
+		@keyframes xzxz1 {
+			from {
+				transform: rotate3d(0, 0, 0, 0deg);
+			}
+
+			to {
+				transform: rotate3d(1, 1, 1, 360deg);
+			}
+		}
+
+
+		.cube1 * {
+
+
+			color: yellow;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+
+
+		.front1 {
+
+			background-color: rgba(12, 11, 22, 1);
+
+			transform: translateZ(100px);
+		}
+
+		.back1 {
+			background-color: rgba(12, 11, 21, 1);
+
+			transform: translateZ(-100px);
+		}
+
+		.left1 {
+			background-color: rgba(122, 114, 21, 1);
+
+			transform: rotateY(-90deg) translateZ(100px);
+		}
+
+		.right1 {
+			background-color: rgba(122, 11, 22, 1);
+
+			transform: rotateY(90deg) translateZ(100px);
+		}
+
+		.top1 {
+			background-color: rgba(12, 111, 221, 1);
+
+			transform: rotateX(90deg) translatez(100px);
+		}
+
+		.bottom1 {
+			background-color: rgba(12, 11, 221, 1);
+
+			transform: rotateX(-90deg) translatez(100px);
+		}
+
+
+
+
+
+
+		.cube1 {
+			display: none;
+		}
+
+		.cube:hover+.cube1 {
+			display: block;
+		}
+
+		.cube:hover~.cube2 {
+			display: none;
+		}
+
+		/*---左下角盒子---*/
+		.cube2,
+		.cube2 * {
+			width: 200px;
+			height: 200px;
+			/*			opacity: 0.9;*/
+		}
+
+		.cube2 {
+
+			/*			line-height: 40px;*/
+			/*			font-size: 40px;*/
+			/*			font-family: ztxg3;*/
+			position: fixed;
+			/*
+			right: 40%;
+			bottom: 40%;
+*/
+			left: 40%;
+			top: 40%;
+			transform-style: preserve-3d;
+			transform-origin: 50% 50%;
+			animation: xzxz2 5s linear infinite;
+			perspective: 50000px;
+
+
+		}
+
+
+		@keyframes xzxz2 {
+			from {
+				transform: rotate3d(0, 1, 0, 0deg);
+			}
+
+			to {
+				transform: rotate3d(1, -1, -1, 360deg);
+			}
+		}
+
+
+		.cube2 * {
+
+
+			color: yellow;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+
+
+		.front2 {
+
+			background-color: rgba(12, 11, 22, 1);
+
+			transform: translateZ(100px);
+		}
+
+		.back2 {
+			background-color: rgba(12, 11, 21, 1);
+
+			transform: translateZ(-100px);
+		}
+
+		.left2 {
+			background-color: rgba(122, 114, 21, 1);
+
+			transform: rotateY(-90deg) translateZ(100px);
+		}
+
+		.right2 {
+			background-color: rgba(122, 11, 22, 1);
+
+			transform: rotateY(90deg) translateZ(100px);
+		}
+
+		.top2 {
+			background-color: rgba(12, 111, 221, 1);
+
+			transform: rotateX(90deg) translatez(100px);
+		}
+
+		.bottom2 {
+			background-color: rgba(12, 11, 221, 1);
+
+			transform: rotateX(-90deg) translatez(100px);
+		}
+
+	</style>
+</head>
+<div class="cube">
+	<div class="front"><a href=""><img src="img/1.jpg" alt=""></a></div>
+	<div class="back"><a href=""><img src="img/2.jpg" alt=""></a></div>
+	<div class="left"><a href=""><img src="img/3.jpg" alt=""></a></div>
+	<div class="right"><a href=""><img src="img/4.jpg" alt=""></a></div>
+	<div class="top"><a href=""><img src="img/5.jpg" alt=""></a></div>
+	<div class="bottom"><a href=""><img src="img/6.jpg" alt=""></a></div>
+</div>
+<div class="cube1">
+	<div class="front1"><a href=""><img src="img/1.jpg" alt=""></a></div>
+	<div class="back1"><a href=""><img src="img/2.jpg" alt=""></a></div>
+	<div class="left1"><a href=""><img src="img/3.jpg" alt=""></a></div>
+	<div class="right1"><a href=""><img src="img/4.jpg" alt=""></a></div>
+	<div class="top1"><a href=""><img src="img/5.jpg" alt=""></a></div>
+	<div class="bottom1"><a href=""><img src="img/6.jpg" alt=""></a></div>
+</div>
+<div class="cube2">
+	<div class="front2"><img src="img/1.jpg" alt=""></div>
+	<div class="back2"><img src="img/2.jpg" alt=""></div>
+	<div class="left2"><img src="img/3.jpg" alt=""></div>
+	<div class="right2"><img src="img/4.jpg" alt=""></div>
+	<div class="top2"><img src="img/5.jpg" alt=""></div>
+	<div class="bottom2"><img src="img/6.jpg" alt=""></div>
+</div>
