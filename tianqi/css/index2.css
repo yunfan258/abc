@@ -1,0 +1,111 @@
+body,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    border: 0px;
+}
+
+body {
+    font-family: 'Microsoft YaHei';
+}
+
+.wrap {
+    margin-top: 20px;
+}
+
+.search_form {}
+
+.logo {
+    text-align: center;
+}
+
+.logo img {
+    width: 70%;
+}
+
+.form_group {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.input_txt {
+    border: 1px solid #41a1cb;
+}
+
+.input_sub {
+    border: 1px solid #41a1cb;
+    outline: none;
+    background-color: #41a1cb;
+    color: #fff;
+}
+
+.hotkey {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.hotkey a {
+    color: #41a1cb;
+}
+
+.weather_list {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.weather_list li {
+    /* margin: 20px auto; */
+    padding: 20px;
+    border-top: 1px solid #41a1cb;
+    border-bottom: 1px solid #41a1cb;
+}
+
+.weather_list li:last-child {}
+
+.info_date {}
+
+.info_date b {}
+
+.info_type span {
+    color: #fda252;
+    font-size: 30px;
+    line-height: 80px;
+}
+
+.info_temp {
+    font-size: 14px;
+    color: #fda252;
+}
+
+.info_temp b {
+    font-size: 13px;
+}

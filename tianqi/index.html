@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>江西师大气象站</title>
+    <link rel="stylesheet" media="screen and (min-width:700px)" href="css/index.css" />
+    <link rel="stylesheet" media="screen and (max-width:700px)" href="css/index2.css" />
+
+    <script src="js/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="wrap" id="app">
+        <div class="search_form">
+            <div class="logo"><img src="img/logo.png" alt="logo" /></div>
+            <div class="form_group">
+                <input type="text" name="cityName" id="cityName" class="input_txt" placeholder="请输入市区名称" />
+                <button class="input_sub" id="searchName" onclick="javascript:buttonSearch();">
+          搜 索
+        </button>
+            </div>
+            <div class="hotkey">
+                <a href="javascript:clickSearch('南昌');">南昌</a>
+                <a href="javascript:clickSearch('广州');">广州</a>
+                <a href="javascript:clickSearch('吉安');">吉安</a>
+                <a href="javascript:clickSearch('潮州');">潮州</a>
+
+
+
+            </div>
+        </div>
+
+        <ul class="weather_list" id="weather_list">
+
+        </ul>
+    </div>
+
+</body>
+
+<script>
+    queryWeather('南昌');
+
+    var forecastList = [];
+    var wendu;
+
+    function updataWeather() {
+        var weatherList = document.getElementById("weather_list");
+        var content = "";
+        for (var i = 0; i < forecastList.length; i++) {
+            var date = forecastList[i].date;
+            if (i == 0) {
+                date = '<b>(今天)</b>' + '<br>当前温度：' + wendu + '度';
+            } else {
+                date = '';
+            }
+            var content = content + `<li>
+            <span style="font-size:16px;color:orange;">${date}</span>
+            <div class="info_date">
+            <span style="font-size:10px">2020年${forecastList[i].date}</span>
+            </div>
+            <div class="info_type">
+              <span class="iconfont">${forecastList[i].type}</span>
+            </div>
+            <div class="info_temp">
+              <b>${forecastList[i].low}</b>
+              ~
+              <b>${forecastList[i].high}</b>
+
+            </div>
+            
+            <div class="info_fengxiang">
+            <span style="font-size:10px">风向：${forecastList[i].fengxiang}</span>
+            </div>
+
+            
+            </li>`
+        }
+        weatherList.innerHTML = content;
+    }
+
+    function queryWeather(city) {
+        axios.get(`http://wthrcdn.etouch.cn/weather_mini?city=${city}`)
+            .then(res => {
+                console.log(res);
+                forecastList = res.data.data.forecast;
+                wendu = res.data.data.wendu;
+                ganmao = res.data.data.ganmao;
+                updataWeather();
+            })
+            .catch(err => {
+                //console.log(err);
+            })
+            .finally(() => {});
+    }
+
+    function clickSearch(city) {
+        queryWeather(city);
+    }
+
+    function buttonSearch() {
+        var cityName = document.getElementById("cityName");
+        queryWeather(cityName.value);
+    }
+</script>
+
+</html>
