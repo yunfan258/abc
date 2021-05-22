@@ -7,8 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>english_learning</title>
   <script src="https://unpkg.com/vue@next"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> -->
   <style>
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes downAndScale {
+      0% {
+        transform: translateY(-4rem) scale(0.8);
+      }
+      80% {
+        transform: translateY(0) scale(0.8);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
     * {
       margin: 0;
       padding: 0;
@@ -75,6 +94,7 @@
       padding: .2rem .2rem;
       margin: 0 .2rem;
       background-color: #eee;
+      animation: downAndScale 0.6s ease-in;
     }
 
     .loading {
@@ -90,14 +110,14 @@
       animation: spin 5s linear;
     }
 
-    .chinese_replace {
+    /* .chinese_replace {
       letter-spacing: .1rem;
       text-align: center;
       font-size: .2rem;
       padding: .2rem .2rem;
       margin: 0 .2rem;
       background-color: #eee;
-    }
+    } */
 
     .btns {
       position: absolute;
@@ -125,15 +145,7 @@
       background-color: #fcb35f;
     }
 
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
+    
   </style>
 </head>
 
@@ -16909,7 +16921,7 @@
             <template v-for="(item,index) of list">
               <li v-if="showId===index">
                 <div class="english">{{item.english}}</div>
-                <div class="chinese animate__animated animate__backInDown" v-show="showChinese">{{item.wordSex}}{{item.chinese}}</div>
+                <div class="chinese" v-show="showChinese">{{item.wordSex}}{{item.chinese}}</div>
                 <div class="loading" v-show="!showChinese" @click="handleLoading"></div>
               </li>
             </template>
@@ -16923,7 +16935,7 @@
     })
     vm.mount('#root')
   </script>
-  <!-- <div class="chinese_replace" v-show="!showChinese">{{item.english}}</div> -->
+  <!-- <div class="chinese_replace  animate__animated animate__backInDown" v-show="!showChinese">{{item.english}}</div> -->
 </body>
 
 </html>
