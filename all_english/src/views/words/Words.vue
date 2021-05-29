@@ -2,8 +2,10 @@
   <div class="words">
     <div class="header">
       <div class="icons">
-        <img src="../../assets/icons/back.png" class="icons__back" />
-        <img src="../../assets/icons/search.png" class="icons__search" />
+        <span class="iconfont icons__back" @click="()=>handleBackClick()">&#xe677;</span>
+        <router-link :to="{name: 'Search'}">
+        <span class="iconfont icons__search">&#xe650;</span>
+        </router-link>
       </div>
       <div class="imformation">
         <div class="imformation__item">
@@ -40,7 +42,7 @@
 <script>
 import { reactive, toRefs } from 'vue'
 import { useStore } from 'vuex'
-
+import { useCommonRouterEffect } from '../../effects/commonEffect'
 const useHandleClickEffect = () => {
   const store = useStore()
   const wordList = store.state.wordList
@@ -78,8 +80,9 @@ export default {
   name: 'Words.vue',
   props: [],
   setup () {
+    const { handleBackClick } = useCommonRouterEffect()
     const { english, wordSex, chinese, showChinese, changeWord, show } = useHandleClickEffect()
-    return { english, wordSex, chinese, showChinese, changeWord, show }
+    return { english, wordSex, chinese, showChinese, changeWord, show, handleBackClick }
   }
 }
 </script>
