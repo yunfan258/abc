@@ -157,7 +157,12 @@ export default {
         display: inline-block;
         margin-right: .06rem;
       }
+<<<<<<< HEAD
 
+=======
+      .details__time__text{
+      }
+>>>>>>> bc18391845e85519791c2fd13be7b4d51f61fe8b
     }
   }
   .line{
