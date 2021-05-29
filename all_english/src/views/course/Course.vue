@@ -3,48 +3,19 @@
     <el-tabs class="tags" v-model="activeName" :stretch="true">
       <el-tab-pane label="精选" name="first">
         <Page />
+        <Page />
       </el-tab-pane>
       <el-tab-pane label="四六级考研" name="second">
-        <el-space direction="vertical">
-          <el-card class="box-card" v-for="i in 5" :key="i">
-            <template #header>
-              <div class="card-header">
-                <span>Card name</span>
-              </div>
-            </template>
-            <div v-for="o in 4" :key="o" class="text item">
-              {{ 'List item ' + o }}
-            </div>
-          </el-card>
-        </el-space>
+        <Page />
+        <Page />
       </el-tab-pane>
       <el-tab-pane label="阅读" name="third">
-        <el-space direction="vertical">
-          <el-card class="box-card" v-for="i in 5" :key="i">
-            <template #header>
-              <div class="card-header">
-                <span>Card name</span>
-              </div>
-            </template>
-            <div v-for="o in 4" :key="o" class="text item">
-              {{ 'List item ' + o }}
-            </div>
-          </el-card>
-        </el-space>
+        <Page />
+        <Page />
       </el-tab-pane>
       <el-tab-pane label="听力口语" name="fourth">
-        <el-space direction="vertical">
-          <el-card class="box-card" v-for="i in 5" :key="i">
-            <template #header>
-              <div class="card-header">
-                <span>Card name</span>
-              </div>
-            </template>
-            <div v-for="o in 4" :key="o" class="text item">
-              {{ 'List item ' + o }}
-            </div>
-          </el-card>
-        </el-space>
+        <Page />
+        <Page />
       </el-tab-pane>
     </el-tabs>
     <div class="line"></div>

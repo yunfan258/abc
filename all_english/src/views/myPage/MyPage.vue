@@ -84,7 +84,6 @@ export default {
 }
 .info{
   position: relative;
-  width: 3.39rem;
   margin: .6rem .16rem .16rem .16rem;
   background: $bgColor;
   box-shadow: 0 .08rem .16rem 0 rgba(0,0,0,0.08);

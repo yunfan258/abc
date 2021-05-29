@@ -10,15 +10,15 @@
       <div class="imformation">
         <div class="imformation__item">
           <div class="imformation__item__detail">今日复习</div>
-          <div class="imformation__item__old">/150</div>
+          <div class="imformation__item__old">0/150</div>
         </div>
         <div class="imformation__item">
           <div class="imformation__item__detail">今日新词</div>
-          <div class="imformation__item__new">/50</div>
+          <div class="imformation__item__new">0/50</div>
         </div>
         <div class="imformation__item">
           <div class="imformation__item__detail">学习时间</div>
-          <div class="imformation__item__time">/min</div>
+          <div class="imformation__item__time">0/min</div>
         </div>
       </div>
     </div>

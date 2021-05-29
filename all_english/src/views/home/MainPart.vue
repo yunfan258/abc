@@ -165,7 +165,7 @@ export default {
     border-radius: .1rem;
     background-color: rgba( 99,220,244, .2);
     padding: .04rem 0;
-    margin: .1rem auto;
+    margin: .18rem auto;
     font-size: .12rem;
     &__left-icon{
       display: inline-block;
@@ -194,6 +194,7 @@ export default {
   &__title{
     text-align: center;
     color: #ccc;
+    margin: .16rem 0;
   }
   &__data{
     display: flex;
@@ -211,7 +212,7 @@ export default {
     outline: none;
     border: none;
     width: 2rem;
-    margin: .2rem auto;
+    margin: .24rem auto;
     padding: .1rem .2rem;
     border-radius: .2rem;
     background-color: #99ddff;

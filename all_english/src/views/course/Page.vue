@@ -49,13 +49,17 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/variables.scss';
 .page{
+  &__title{
+    font-size: .2rem;
+    margin: .1rem;
+    clear: both;
+  }
   &__item{
     clear: both;
-    margin: .3rem auto;
     font-size: .2rem;
     &__img{
       float: left;
-      margin-right: .2rem;
+      margin: 0 .2rem .2rem 0;
     }
     &__text{
       .item__title{

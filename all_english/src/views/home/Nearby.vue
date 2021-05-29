@@ -50,7 +50,7 @@ export default {
     color: $content-fontcolor;
   }
   &__title {
-    margin: .16rem 0 .06rem 0;
+    margin: .16rem 0 .16rem 0;
     font-size: .14rem;
     text-align: center;
     font-weight: normal;
