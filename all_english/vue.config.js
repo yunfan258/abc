@@ -1,4 +1,4 @@
 module.exports = {
   // publicPath: '/jingdong'
-  publicPath: './'
+  publicPath: '/abc/english2'
 }
