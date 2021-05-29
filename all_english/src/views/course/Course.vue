@@ -48,10 +48,4 @@ export default {
 .box-card{
   width: 3.34rem;
 }
-<<<<<<< HEAD
-
-=======
-.tags{
-}
->>>>>>> bc18391845e85519791c2fd13be7b4d51f61fe8b
 </style>
