@@ -21,8 +21,9 @@ export default {
   left: 0;
   height: .5rem;
   width: 100%;
-  z-index: 2;
-  background-color: #ffffff;
+  z-index: 1;
+  box-shadow: 0 .02rem .2rem .01rem #d2d2d2;
+  background-color: $bgColor;
   &__icon{
     position: absolute;
     right: .18rem;

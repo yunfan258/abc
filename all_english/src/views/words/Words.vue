@@ -2,7 +2,7 @@
   <div class="words">
     <div class="header">
       <div class="icons">
-        <span class="iconfont icons__back" @click="()=>handleBackClick()">&#xe677;</span>
+        <span class="iconfont icons__back" @click="()=>{ handleBackClick(); changeTime(lastTime) }">&#xe677;</span>
         <router-link :to="{name: 'Search'}">
         <span class="iconfont icons__search">&#xe650;</span>
         </router-link>
@@ -10,84 +10,112 @@
       <div class="imformation">
         <div class="imformation__item">
           <div class="imformation__item__detail">今日复习</div>
-          <div class="imformation__item__old">0/150</div>
+          <div class="imformation__item__old">{{150-newAndOld?.old}}/150</div>
         </div>
         <div class="imformation__item">
           <div class="imformation__item__detail">今日新词</div>
-          <div class="imformation__item__new">0/50</div>
+          <div class="imformation__item__new">{{50-newAndOld?.fresh}}/50</div>
         </div>
         <div class="imformation__item">
           <div class="imformation__item__detail">学习时间</div>
-          <div class="imformation__item__time">0/min</div>
+          <div class="imformation__item__time">{{Math.ceil(learnTime/1000/60)}}/min</div>
         </div>
       </div>
     </div>
     <div class="main">
       <div class="main__area">
-        <div class="main__area__english">{{ english }}</div>
+        <div class="main__area__english">{{ totalList[currentId]?.english }}</div>
         <div class="main__area__chinese" v-if="showChinese">
-          {{ wordSex }}{{ chinese }}
+          {{ totalList[currentId]?.wordSex }}{{ totalList[currentId]?.chinese }}
         </div>
         <div class="main__area__loading" v-if="!showChinese"></div>
       </div>
     </div>
     <div class="btns">
-      <button class="btns__pre" @click="changeWord('up')">上一个</button>
+      <button class="btns__pre" @click="changeWord('up',currentId)">上一个</button>
       <button class="btns__show" @click="show" v-if="!showChinese">查看意思</button>
-      <button class="btns__next" @click="changeWord('down')" v-if="showChinese">下一个</button>
+      <button class="btns__next" @click="()=>{changeWord('down',currentId)}" v-if="showChinese">下一个</button>
     </div>
   </div>
+  <WordCart />
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue'
 import { useStore } from 'vuex'
-import { useCommonRouterEffect } from '../../effects/commonEffect'
+import { useCommonRouterEffect, useCommonWordEffect } from '../../effects/commonEffect'
+import { post } from '../../utils/request'
+import WordCart from './WordCart'
+const useGetWordsEffect = () => {
+  const store = useStore()
+  const getWords = async () => {
+    const result = await post('/words')
+    if (result?.data) {
+      store.commit('changeTotalList', { totalList: result?.data.wordList })
+    }
+  }
+  return { getWords }
+}
+const useGetTimeEffect = () => {
+  const store = useStore()
+  const changeTime = (lastTime) => {
+    const learnTime = (new Date()) - (lastTime || 0)
+    store.commit('changeLearnTime', { learnTime })
+  }
+  return { changeTime }
+}
 const useHandleClickEffect = () => {
   const store = useStore()
-  const wordList = store.state.wordList
   const infoList = reactive({
-    english: wordList[0].english,
-    wordSex: wordList[0].wordSex,
-    chinese: wordList[0].chinese,
-    showChinese: false,
-    showId: 0
+    showChinese: false
   })
-  const changeWord = (choice) => {
+  const changeWord = (choice, currentId) => {
     infoList.showChinese = false
-    let { showId } = infoList
     if (choice === 'up') {
-      showId > 0 ? showId-- : showId = 0
+      if (currentId-- > 0) {
+        store.commit('changeCurrentList', { currentId })
+        store.commit('addCurrentItem', { currentId: currentId + 1 })
+      }
     } else {
-      const len = wordList.length
-      showId < len - 1 ? showId++ : showId = len - 1
+      const len = 200
+      if (currentId++ < len - 1) {
+        store.commit('changeCurrentList', { currentId })
+        store.commit('addCurrentItem', { currentId: currentId - 1 })
+      } else {
+        store.commit('addCurrentItem', { currentId: currentId - 1 })
+      }
     }
-    const { english, wordSex, chinese } = wordList[showId]
-    infoList.english = english
-    infoList.wordSex = wordSex
-    infoList.chinese = chinese
-    infoList.showId = showId
-    infoList.showId = showId
   }
   const show = () => {
     infoList.showChinese = true
   }
-  const { english, wordSex, chinese, showChinese } = toRefs(infoList)
-  return { english, wordSex, chinese, showChinese, changeWord, show }
+  const { showChinese } = toRefs(infoList)
+  return { showChinese, changeWord, show }
 }
 
 export default {
   name: 'Words.vue',
   props: [],
+  components: { WordCart },
   setup () {
+    const { getWords } = useGetWordsEffect()
+    if (localStorage.wordList) {
+      if (!JSON.parse(localStorage.wordList)?.totalList?.length) { getWords() }
+    } else {
+      getWords()
+    }
+    const { totalList, currentId, newAndOld, learnTime, lastTime } = useCommonWordEffect()
+    const { changeTime } = useGetTimeEffect()
     const { handleBackClick } = useCommonRouterEffect()
-    const { english, wordSex, chinese, showChinese, changeWord, show } = useHandleClickEffect()
-    return { english, wordSex, chinese, showChinese, changeWord, show, handleBackClick }
+    const { showChinese, changeWord, show } = useHandleClickEffect()
+    return { currentId, totalList, newAndOld, learnTime, lastTime, showChinese, changeWord, show, handleBackClick, changeTime }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../style/variables.scss';
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -136,7 +164,7 @@ export default {
   &__item{
     text-align: center;
     padding: 0.1rem 0.2rem;
-    color: #666;
+    color: $medium-fontColor;
     &__detail{
       font-size: 0.14rem;
       color: #ccc;
@@ -160,7 +188,7 @@ export default {
       padding: 0.2rem 0.2rem;
       margin: 0 0.2rem;
       background-color: #eee;
-      animation: downAndScale 0.6s ease-in;
+      animation: downAndScale 0.4s ease-in;
     }
     &__loading{
       position: relative;
@@ -184,7 +212,7 @@ export default {
   border: none;
   background: none;
   outline: none;
-  color: #ffffff;
+  color: $bgColor;
 }
 
 .btns {

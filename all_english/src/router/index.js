@@ -3,37 +3,62 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/home/Home.vue')
+    component: () => import(/* webpackChunkName: "home" */ '../views/home/Home.vue')
   },
   {
     path: '/words',
     name: 'Words',
-    component: () => import(/* webpackChunkName: "about" */ '../views/words/Words.vue')
+    component: () => import(/* webpackChunkName: "words" */ '../views/words/Words.vue')
   },
   {
     path: '/course',
     name: 'Course',
-    component: () => import(/* webpackChunkName: "about" */ '../views/course/Course.vue')
+    component: () => import(/* webpackChunkName: "course" */ '../views/course/Course.vue')
   },
   {
     path: '/find',
     name: 'Find',
-    component: () => import(/* webpackChunkName: "about" */ '../views/find/Find.vue')
+    component: () => import(/* webpackChunkName: "find" */ '../views/find/Find.vue')
   },
   {
     path: '/myPage',
     name: 'MyPage',
-    component: () => import(/* webpackChunkName: "about" */ '../views/myPage/MyPage.vue')
+    component: () => import(/* webpackChunkName: "myPage" */ '../views/myPage/MyPage.vue')
   },
   {
     path: '/search',
     name: 'Search',
-    component: () => import(/* webpackChunkName: "about" */ '../views/search/Search.vue')
+    component: () => import(/* webpackChunkName: "search" */ '../views/search/Search.vue')
+  },
+  {
+    path: '/notices',
+    name: 'Notices',
+    component: () => import(/* webpackChunkName: "notice" */ '../views/notices/Notices.vue')
   },
   {
     path: '/setting',
     name: 'Setting',
-    component: () => import(/* webpackChunkName: "about" */ '../views/setting/Setting.vue')
+    component: () => import(/* webpackChunkName: "setting" */ '../views/setting/Setting.vue')
+  },
+  {
+    path: '/calender',
+    name: 'Calender',
+    component: () => import(/* webpackChunkName: "calender" */ '../views/calender/Calender.vue')
+  },
+  {
+    path: '/studyData',
+    name: 'StudyData',
+    component: () => import(/* webpackChunkName: "calender" */ '../views/studyData/StudyData.vue')
+  },
+  {
+    path: '/bookDetail',
+    name: 'BookDetail',
+    component: () => import(/* webpackChunkName: "bookDetail" */ '../views/bookDetail/BookDetail.vue')
+  },
+  {
+    path: '/newAndOld',
+    name: 'NewAndOld',
+    component: () => import(/* webpackChunkName: "newAndOld" */ '../views/newAndOld/NewAndOld.vue')
   }
 ]
 

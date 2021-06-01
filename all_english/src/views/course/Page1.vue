@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: 'Page',
+  name: 'Page1',
   setup () {
     return { }
   }
@@ -62,8 +62,8 @@ export default {
     clear: both;
     font-size: .2rem;
     &__img{
-      float: left;
-      margin: 0 .2rem .2rem 0;
+      float: right;
+      margin: 0 0 .2rem 0.2rem;
     }
     &__text{
       .item__title{

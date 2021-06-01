@@ -8,7 +8,7 @@
     <div class="setting__item" v-for="item in setList" :key="item">
       <span class="setting__item__icon iconfont" v-html="item.left" />
       <span class="setting__item__span">{{item.name}}</span>
-      <div class="setting__item__input iconfont">&#xe622;</div>
+      <div class="setting__item__right iconfont">&#xe622;</div>
     </div>
   </div>
 </div>
@@ -44,6 +44,7 @@ export default {
 }
 .title {
   display: flex;
+  box-shadow: 0 .02rem .2rem .01rem #d2d2d2;
   padding: .12rem .18rem;
   line-height: .22rem;
   background: $bgColor;
@@ -64,8 +65,8 @@ export default {
 .setting{
   margin: .12rem .12rem 0 .12rem;
   &__item{
+    position: relative;
     display: flex;
-    flex: 1;
     padding: .12rem .16rem;
     border-bottom: .01rem solid $content-bgColor;
     font-size: .14rem;
@@ -78,11 +79,12 @@ export default {
     &__span{
       color: $medium-fontColor;
       line-height: .2rem;
-      width: 1rem;
       margin: 0 0 0 .1rem;
     }
-    &__input{
-      width: 2rem;
+    &__right{
+      position: absolute;
+      top: .12rem;
+      right: .16rem;
       outline: none;
       background: none;
       border: none;

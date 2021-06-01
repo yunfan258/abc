@@ -4,9 +4,12 @@
     <div class="info">
       <div class="info__top">
         <img class="info__top__img" src="../../assets/myPage/boy.jpg" alt="" >
-        <div class="info__top__username">方方
-          <span class="info__details">个人主页</span>
-          <span class="info__icon iconfont">&#xe622;</span>
+        <div class="info__top__username">
+        <span>方方</span>
+          <span class="info__person">
+          <span class="info__person__details">个人主页</span>
+          <span class="info__person__icon iconfont">&#xe622;</span>
+          </span>
         </div>
         <div class="info__top__id">扇贝ID：zaiwlw</div>
       </div>
@@ -25,9 +28,9 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+// import { reactive, toRefs } from 'vue'
 import Docker from '../../components/Docker'
-import { get } from '../../utils/request'
+// import { get } from '../../utils/request'
 import Notice from './Notice'
 import Set from './Set'
 import Options from './Options'
@@ -52,26 +55,26 @@ const optionList2 = [
   { icon: '&#xe632;', name: '分享学习心得', right: '&#xe622;' },
   { icon: '&#xe617;', name: '给个好评', right: '&#xe622;' }
 ]
-const useGetMyPageInfoEffet = () => {
-  const data = reactive({ info: {} })
-  const getMyPageInfo = async () => {
-    const result = await get('/api/user/info')
-    if (result?.errno === 0 && result?.data) {
-      data.info = result?.data
-    }
-  }
-  getMyPageInfo()
-  const { info } = toRefs(data)
-  return { info }
-}
+// const useGetMyPageInfoEffet = () => {
+//   const data = reactive({ info: {} })
+//   const getMyPageInfo = async () => {
+//     const result = await get('/api/user/info')
+//     if (result?.errno === 0 && result?.data) {
+//       data.info = result?.data
+//     }
+//   }
+//   getMyPageInfo()
+//   const { info } = toRefs(data)
+//   return { info }
+// }
 
 export default {
   name: 'MyPage',
   components: { Docker, Notice, Options, Set },
   setup () {
-    const { info } = useGetMyPageInfoEffet()
+    // const { info } = useGetMyPageInfoEffet()
     const infoBottomItemList = infoBottomItem
-    return { info, infoBottomItemList, optionList, optionList2 }
+    return { infoBottomItemList, optionList, optionList2 }
   }
 }
 </script>
@@ -129,18 +132,22 @@ export default {
         font-family: PingFangSC-Regular;
         font-size: .3rem;
         line-height: .28rem;
-        color: #99ddff;
+        color: $mostColor;
         text-align: center;
       }
     }
   }
-  &__details{
-    margin-left: 1rem;
+  &__person{
+    position: absolute;
+    top: .3rem;
+    right: .18rem;
     font-size: .12rem;
-    color: #aaa;
-  }
-  &__icon{
-    font-size: .12rem;
+    &__details{
+      color: #aaa;
+    }
+    &__icon{
+      font-size: .12rem;
+    }
   }
 }
 

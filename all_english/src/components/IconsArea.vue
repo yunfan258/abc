@@ -1,6 +1,6 @@
 <template>
   <div class="icons">
-    <div class="icons__item" v-for="(item,index) in iconsList" :key="index" @click="()=>showToast('暂未开放，请点击附近店铺')">
+    <div class="icons__item" v-for="(item,index) in iconsList" :key="index" @click="()=>showToast('暂未开放，请使用背单词功能')">
         <div class="iconfont icons__item__icon" v-html="item.icon"></div>
         <p class="icons__item__p">{{item.pText}}</p>
     </div>
@@ -32,7 +32,7 @@ export default {
     margin: .1rem 0 .16rem 0;
     &__icon{
       font-size: .2rem;
-      color: #99ddff;
+      color: $mostColor;
       line-height: .4rem;
       text-align: center;
       margin: 0 auto;

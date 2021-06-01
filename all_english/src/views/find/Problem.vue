@@ -29,6 +29,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '../../style/variables.scss';
 .problem{
   &__item{
     font-size: .16rem;
@@ -44,7 +45,7 @@ export default {
   }
   .icon{
     font-size: .12rem;
-    color: #99ddff;
+    color: $mostColor;
   }
 }
 </style>

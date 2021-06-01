@@ -1,6 +1,6 @@
 <template>
 <div class="imgs">
-    <div class="imgs__item" v-for="(item,index) in imgsList" :key="index" @click="()=>showToast('暂未开放，请点击附近店铺')">
+    <div class="imgs__item" v-for="(item,index) in imgsList" :key="index" @click="()=>showToast('暂未开放，点击附近店铺')">
         <img :src="`http://www.dell-lee.com/imgs/vue3/${item.name}.png`"
             alt="" class="imgs__item__img"
         >

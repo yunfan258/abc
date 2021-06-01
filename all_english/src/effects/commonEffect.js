@@ -1,6 +1,7 @@
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { computed } from 'vue'
+import { get } from '../utils/request'
 
 // 路由相关逻辑
 export const useCommonRouterEffect = () => {
@@ -9,32 +10,52 @@ export const useCommonRouterEffect = () => {
   return { handleBackClick }
 }
 
-// 购物车相关逻辑
-export const useCommonCartEffect = (shopId) => {
+// 获取单词信息相关逻辑
+export const useGetDataEffect = () => {
   const store = useStore()
-  const cartList = store.state.cartList
-  const changeCommonCartInfo = (shopId, productId, productInfo, num, shopName) => {
-    store.commit('changeCartItemInfo', {
-      shopId, productId, productInfo, num
-    })
-    store.commit('changeShopName', { shopId, shopName })
-  }
-  const productList = computed(() => {
-    const productList = cartList[shopId]?.productList || {}
-    const notEmptyProductList = {}
-    for (const i in productList) {
-      if (productList[i].count > 0) {
-        notEmptyProductList[i] = productList[i]
-      }
+  const { newAndOld } = useCommonWordEffect()
+  const getNearbyData = async () => {
+    const result = await get('/newAndOld')
+    if (result?.data) {
+      store.commit('changeNewAndOld', { newAndOld: result?.data })
     }
-    return notEmptyProductList
-  })
-  const shopName = computed(() => {
-    const shopName = cartList[shopId]?.shopName || ''
-    return shopName
-  })
+  }
+  return { newAndOld, getNearbyData }
+}
 
-  return { shopName, cartList, productList, changeCommonCartInfo }
+// 单词数据相关逻辑
+export const useCommonWordEffect = () => {
+  const store = useStore()
+  const wordList = store.state.wordList
+  const totalList = computed(() => {
+    const totalList = wordList.totalList || []
+    return totalList
+  })
+  const oldList = computed(() => {
+    const oldList = wordList.oldList || []
+    return oldList
+  })
+  const newList = computed(() => {
+    const newList = wordList.newList || []
+    return newList
+  })
+  const newAndOld = computed(() => {
+    const newAndOld = wordList.newAndOld || {}
+    return newAndOld
+  })
+  const currentId = computed(() => {
+    const currentId = wordList.currentId || 0
+    return currentId
+  })
+  const learnTime = computed(() => {
+    const learnTime = wordList.learnTime || 0
+    return learnTime
+  })
+  const lastTime = computed(() => {
+    const lastTime = wordList.lastTime || 0
+    return lastTime
+  })
+  return { totalList, oldList, newList, currentId, newAndOld, learnTime, lastTime }
 }
 
 // 处理购物车商品总数和总价相关逻辑

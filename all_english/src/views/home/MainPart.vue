@@ -5,7 +5,10 @@
       <router-link :to="{name: 'Search'}">
         <input type="text" class="search__text" placeholder="search">
       </router-link>
+      <router-link :to="{name: 'Notices'}">
       <span class="iconfont search__notice">&#xe60b;</span>
+      <span class="search__num">9</span>
+      </router-link>
   </div>
 </div>
 <div class="banner">
@@ -16,60 +19,99 @@
     <span class="info__days__num">6 </span><span> 天</span>
   </div>
   <div class="info__details">
+    <router-link :to="{name: 'StudyData'}">
     <div class="info__details__data">
       <span class="details__data__icon iconfont">&#xe608;</span>
       <span class="details__data__text">学习数据</span>
     </div>
+    </router-link>
+
+    <router-link :to="{name: 'Calender'}">
     <div class="info__details__time">
       <span class="details__time__icon iconfont">&#xe621;</span>
       <span class="details__time__text">打卡日历</span>
     </div>
+    </router-link>
   </div>
-  <div class="line">
+  <div class="line" @click="()=>{handleShowMask(true)}">
     <span class="line__left-icon iconfont">&#xe60b;</span>
     <span class="line__texts">
       <span class="line__texts__text"> 距离 </span>
       <span class="line__texts__text">考研考试 </span>
-      <span class="line__texts__text">还有211天 </span>
+      <span class="line__texts__text">还有 {{Math.floor((new Date('2021-12-24')-new Date())/1000/3600/24)}} 天 </span>
     </span>
     <span class="line__right-icon iconfont">&#xe622;</span>
   </div>
   <div class="center">
+  <router-link :to="{name: 'NewAndOld'}">
     <img class="center__img" src="../../assets/home/wordBg.png" alt="">
+  </router-link>
   </div>
 </div>
 <div class="works">
   <div class="works__title">--今日任务--</div>
   <div class="works__data">
     <div class="works__data__item">
-      <div class="data__item__num">50</div>
+      <div class="data__item__num">{{newAndOld?.fresh}}</div>
       <div class="data__item__text">新词数</div>
     </div>
     <div class="works__data__item">
-      <div class="data__item__num">150</div>
+      <div class="data__item__num">{{newAndOld?.old}}</div>
       <div class="data__item__text">复习单词</div>
     </div>
     <div class="works__data__item">
-      <div class="data__item__num">200</div>
+      <div class="data__item__num">{{newAndOld?.notLearn}}</div>
       <div class="data__item__text">未学单词</div>
     </div>
   </div>
   <router-link :to="{name:'Words'}">
-  <button class="works__btn" @click="handle">开始学习</button>
+  <button class="works__btn" @click="()=>changeLastTime()">开始学习</button>
   </router-link>
 </div>
 <Toast v-if="isShowToast" :message="toastMessage"/>
+<Mask :showMask="showMask"  @click="()=>handleShowMask(false)" :showContent1="true"/>
+
 </template>
 
 <script>
+import { useStore } from 'vuex'
+import Mask, { useShowMaskEffect } from '../../components/Mask'
 import Toast, { useToastEffect } from '../../components/Toast'
-
+import { useCommonWordEffect } from '../../effects/commonEffect'
+import { get } from '../../utils/request'
+const useGetTimeEffect = () => {
+  const store = useStore()
+  const changeLastTime = () => {
+    const lastTime = new Date()
+    store.commit('changeLastTime', { lastTime })
+  }
+  return { changeLastTime }
+}
+const useGetDataEffect = () => {
+  const store = useStore()
+  const { newAndOld } = useCommonWordEffect()
+  const getNearbyData = async () => {
+    const result = await get('/newAndOld')
+    if (result?.data) {
+      store.commit('changeNewAndOld', { newAndOld: result?.data })
+    }
+  }
+  return { newAndOld, getNearbyData }
+}
 export default {
-  components: { Toast },
+  components: { Toast, Mask },
   name: 'StaticPart',
   setup () {
     const { isShowToast, toastMessage, showToast } = useToastEffect()
-    return { showToast, isShowToast, toastMessage }
+    const { newAndOld, getNearbyData } = useGetDataEffect()
+    if (localStorage.wordList) {
+      if (!JSON.parse(localStorage.wordList)?.newAndOld?.old) { getNearbyData() }
+    } else {
+      getNearbyData()
+    }
+    const { changeLastTime } = useGetTimeEffect()
+    const { showMask, handleShowMask } = useShowMaskEffect()
+    return { showToast, isShowToast, toastMessage, newAndOld, showMask, handleShowMask, changeLastTime }
   }
 }
 </script>
@@ -82,9 +124,10 @@ export default {
   top: 0;
   left: 0;
   height: .5rem;
+  box-shadow: 0 .02rem .2rem .01rem #d2d2d2;
   width: 100%;
   z-index: 2;
-  background-color: #ffffff;
+  background-color: $bgColor;
 }
 .search{
   @include ellipsis;
@@ -116,6 +159,18 @@ export default {
     font-size: .2rem;
     margin: 0 .02rem 0 0;
   }
+  &__num{
+      position:absolute;
+      right: 0.1rem;
+      top: 0.1rem;
+      font-size: .12rem;
+      width: .16rem;
+      height: .16rem;
+      line-height: .16rem;
+      text-align: center;
+      border-radius: 50%;
+      background-color: #99ddff;
+    }
 }
 .banner{
     height: 0;
@@ -142,7 +197,7 @@ export default {
     display: flex;
     &__data{
       .details__data__icon{
-        color: #99ddff;
+        color: $mostColor;
         display: inline-block;
         margin-right: .06rem;
       }
@@ -153,13 +208,14 @@ export default {
     }
     &__time{
       .details__time__icon{
-        color: #99ddff;
+        color: $mostColor;
         display: inline-block;
         margin-right: .06rem;
       }
     }
   }
   .line{
+    position: relative;
     border-radius: .1rem;
     background-color: rgba( 99,220,244, .2);
     padding: .04rem 0;
@@ -170,9 +226,12 @@ export default {
       margin: 0 .1rem 0 .2rem;
       font-size: .12rem;
       border-radius: 50%;
-      background-color: #99ddff;
+      background-color: $mostColor;
     }
     &__right-icon{
+      position: absolute;
+      top: .05rem;
+      right: .0rem;
       display: inline-block;
       margin: 0 .2rem 0 1.2rem;
       font-size: .12rem;
@@ -213,7 +272,7 @@ export default {
     margin: .24rem auto;
     padding: .1rem .2rem;
     border-radius: .2rem;
-    background-color: #99ddff;
+    background-color: $mostColor;
   }
 }
 </style>

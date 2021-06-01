@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import { reject } from 'core-js/fn/promise'
 const instance = axios.create({
-  baseURL: 'https://www.fastmock.site/mock/ae8e9031947a302fed5f92425995aa19/jd',
+  baseURL: 'http://rap2api.taobao.org/app/mock/284214',
   timeout: '10000'
 })
 export const get = (url, data = {}) => {
