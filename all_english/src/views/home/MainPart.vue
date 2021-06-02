@@ -16,7 +16,9 @@
 </div>
 <div class="info">
   <div class="info__days">
-    <span class="info__days__num">6 </span><span> 天</span>
+    <router-link :to="{name:'DayPlan'}">
+    <span class="info__days__num">{{dayPlan}}</span><span> 天</span>
+    </router-link>
   </div>
   <div class="info__details">
     <router-link :to="{name: 'StudyData'}">
@@ -89,21 +91,21 @@ const useGetTimeEffect = () => {
 }
 const useGetDataEffect = () => {
   const store = useStore()
-  const { newAndOld } = useCommonWordEffect()
+  const { newAndOld, dayPlan } = useCommonWordEffect()
   const getNearbyData = async () => {
     const result = await get('/newAndOld')
     if (result?.data) {
       store.commit('changeNewAndOld', { newAndOld: result?.data })
     }
   }
-  return { newAndOld, getNearbyData }
+  return { newAndOld, dayPlan, getNearbyData }
 }
 export default {
   components: { Toast, Mask },
   name: 'StaticPart',
   setup () {
     const { isShowToast, toastMessage, showToast } = useToastEffect()
-    const { newAndOld, getNearbyData } = useGetDataEffect()
+    const { newAndOld, dayPlan, getNearbyData } = useGetDataEffect()
     if (localStorage.wordList) {
       if (!JSON.parse(localStorage.wordList)?.newAndOld?.old) { getNearbyData() }
     } else {
@@ -111,7 +113,7 @@ export default {
     }
     const { changeLastTime } = useGetTimeEffect()
     const { showMask, handleShowMask } = useShowMaskEffect()
-    return { showToast, isShowToast, toastMessage, newAndOld, showMask, handleShowMask, changeLastTime }
+    return { showToast, isShowToast, toastMessage, newAndOld, dayPlan, showMask, handleShowMask, changeLastTime }
   }
 }
 </script>

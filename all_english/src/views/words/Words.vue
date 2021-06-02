@@ -28,7 +28,7 @@
         <div class="main__area__chinese" v-if="showChinese">
           {{ totalList[currentId]?.wordSex }}{{ totalList[currentId]?.chinese }}
         </div>
-        <div class="main__area__loading" v-if="!showChinese"></div>
+        <div class="main__area__loading" v-if="!showChinese" @click="show"></div>
       </div>
     </div>
     <div class="btns">
@@ -49,8 +49,8 @@ import { post } from '../../utils/request'
 import WordCart from './WordCart'
 const useGetWordsEffect = () => {
   const store = useStore()
-  const getWords = async () => {
-    const result = await post('/words')
+  const getWords = async (dayPlan) => {
+    const result = await post(`/words/${dayPlan}`)
     if (result?.data) {
       store.commit('changeTotalListLen', { totalListLen: result?.data.wordList.length })
       store.commit('changeTotalList', { totalList: result?.data.wordList })
@@ -73,11 +73,10 @@ const useHandleClickEffect = () => {
     showChinese: false
   })
   const changeWord = (choice, currentId, len) => {
-    console.log(len)
     infoList.showChinese = false
     if (choice === 'up') {
       if (currentId-- > 0) {
-        store.commit('changeCurrentList', { currentId })
+        store.commit('changecurrentId', { currentId })
         store.commit('addCurrentItem', { currentId: currentId + 1 })
       }
     } else {
@@ -85,12 +84,12 @@ const useHandleClickEffect = () => {
         router.push({ name: 'NewAndOld' })
         store.commit('addCurrentItem', { currentId })
         currentId++
-        store.commit('changeCurrentList', { currentId })
+        store.commit('changecurrentId', { currentId })
       } else {
         if (currentId < len - 1) {
           store.commit('addCurrentItem', { currentId })
           currentId++
-          store.commit('changeCurrentList', { currentId })
+          store.commit('changecurrentId', { currentId })
         } else if (currentId === len - 1) {
           store.commit('addCurrentItem', { currentId })
           currentId++
@@ -112,17 +111,17 @@ export default {
   props: [],
   components: { WordCart },
   setup () {
+    const { totalList, currentId, newAndOld, learnTime, lastTime, totalListLen, dayPlan } = useCommonWordEffect()
     const { getWords } = useGetWordsEffect()
     if (localStorage.wordList) {
-      if (!JSON.parse(localStorage.wordList)?.totalList?.length) { getWords() }
+      if (!JSON.parse(localStorage.wordList)?.totalList?.length) { getWords(dayPlan.value) }
     } else {
-      getWords()
+      getWords(dayPlan.value)
     }
-    const { totalList, currentId, newAndOld, learnTime, lastTime, totalListLen } = useCommonWordEffect()
     const { changeTime } = useGetTimeEffect()
     const { handleBackClick } = useCommonRouterEffect()
     const { showChinese, changeWord, show } = useHandleClickEffect()
-    return { totalList, currentId, newAndOld, learnTime, lastTime, totalListLen, showChinese, changeWord, show, handleBackClick, changeTime }
+    return { totalList, currentId, newAndOld, learnTime, lastTime, totalListLen, dayPlan, showChinese, changeWord, show, handleBackClick, changeTime }
   }
 }
 </script>

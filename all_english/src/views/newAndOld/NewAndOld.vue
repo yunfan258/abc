@@ -101,12 +101,12 @@ export default {
   }
 }
 .item:nth-of-type(7n+7){
-  margin-bottom: .64rem;
+  margin-bottom: .7rem;
 }
 .line{
   position: absolute;
   box-sizing: border-box;
-  top: .5rem;
+  top: .6rem;
   text-align: center;
   margin: 0 auto;
   width: 100%;

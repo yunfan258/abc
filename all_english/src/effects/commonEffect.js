@@ -59,7 +59,11 @@ export const useCommonWordEffect = () => {
     const totalListLen = wordList.totalListLen || 0
     return totalListLen
   })
-  return { totalListLen, totalList, oldList, newList, currentId, newAndOld, learnTime, lastTime }
+  const dayPlan = computed(() => {
+    const dayPlan = wordList.dayPlan || 1
+    return dayPlan
+  })
+  return { dayPlan, totalListLen, totalList, oldList, newList, currentId, newAndOld, learnTime, lastTime }
 }
 
 // 处理购物车商品总数和总价相关逻辑

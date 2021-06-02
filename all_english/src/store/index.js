@@ -14,7 +14,8 @@ const getLocalWordList = () => {
     currentId: 0,
     learnTime: 0,
     lastTime: 0,
-    totalListLen: 0
+    totalListLen: 0,
+    dayPlan: 1
   })
   return JSON.parse(wordList)
 }
@@ -40,9 +41,19 @@ export default createStore({
       state.wordList.totalList = totalList
       setLocalWordList(state)
     },
-    changeCurrentList (state, payload) {
+    changecurrentId (state, payload) {
       const { currentId } = payload
       state.wordList.currentId = currentId
+      setLocalWordList(state)
+    },
+    changeOldList (state, payload) {
+      const { oldList } = payload
+      state.wordList.oldList = oldList
+      setLocalWordList(state)
+    },
+    changeNewList (state, payload) {
+      const { newList } = payload
+      state.wordList.newList = newList
       setLocalWordList(state)
     },
     changeNewAndOld (state, payload) {
@@ -81,6 +92,11 @@ export default createStore({
     changeTotalListLen (state, payload) {
       const { totalListLen } = payload
       state.wordList.totalListLen = totalListLen
+      setLocalWordList(state)
+    },
+    changeDayPlan (state, payload) {
+      const { dayPlan } = payload
+      state.wordList.dayPlan = dayPlan
       setLocalWordList(state)
     }
   },

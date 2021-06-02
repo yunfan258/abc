@@ -59,6 +59,11 @@ const routes = [
     path: '/newAndOld',
     name: 'NewAndOld',
     component: () => import(/* webpackChunkName: "newAndOld" */ '../views/newAndOld/NewAndOld.vue')
+  },
+  {
+    path: '/dayPlan',
+    name: 'DayPlan',
+    component: () => import(/* webpackChunkName: "dayPlan" */ '../views/home/dayPlan/DayPlan.vue')
   }
 ]
 
