@@ -32,9 +32,9 @@
       </div>
     </div>
     <div class="btns">
-      <button class="btns__pre" @click="changeWord('up',currentId)">上一个</button>
+      <button class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</button>
       <button class="btns__show" @click="show" v-if="!showChinese">查看意思</button>
-      <button class="btns__next" @click="()=>{changeWord('down',currentId)}" v-if="showChinese">下一个</button>
+      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese">下一个</button>
     </div>
   </div>
   <WordCart />
@@ -43,6 +43,7 @@
 <script>
 import { reactive, toRefs } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import { useCommonRouterEffect, useCommonWordEffect } from '../../effects/commonEffect'
 import { post } from '../../utils/request'
 import WordCart from './WordCart'
@@ -51,6 +52,7 @@ const useGetWordsEffect = () => {
   const getWords = async () => {
     const result = await post('/words')
     if (result?.data) {
+      store.commit('changeTotalListLen', { totalListLen: result?.data.wordList.length })
       store.commit('changeTotalList', { totalList: result?.data.wordList })
     }
   }
@@ -65,11 +67,13 @@ const useGetTimeEffect = () => {
   return { changeTime }
 }
 const useHandleClickEffect = () => {
+  const router = useRouter()
   const store = useStore()
   const infoList = reactive({
     showChinese: false
   })
-  const changeWord = (choice, currentId) => {
+  const changeWord = (choice, currentId, len) => {
+    console.log(len)
     infoList.showChinese = false
     if (choice === 'up') {
       if (currentId-- > 0) {
@@ -77,12 +81,23 @@ const useHandleClickEffect = () => {
         store.commit('addCurrentItem', { currentId: currentId + 1 })
       }
     } else {
-      const len = 200
-      if (currentId++ < len - 1) {
+      // const len = 200
+      if ((currentId + 1) % 7 === 0) {
+        router.push({ name: 'NewAndOld' })
+        store.commit('addCurrentItem', { currentId })
+        currentId++
         store.commit('changeCurrentList', { currentId })
-        store.commit('addCurrentItem', { currentId: currentId - 1 })
       } else {
-        store.commit('addCurrentItem', { currentId: currentId - 1 })
+        if (currentId < len - 1) {
+          store.commit('addCurrentItem', { currentId })
+          currentId++
+          store.commit('changeCurrentList', { currentId })
+        } else if (currentId === len - 1) {
+          store.commit('addCurrentItem', { currentId })
+          currentId++
+          router.push({ name: 'NewAndOld' })
+        } else {
+        }
       }
     }
   }
@@ -104,11 +119,11 @@ export default {
     } else {
       getWords()
     }
-    const { totalList, currentId, newAndOld, learnTime, lastTime } = useCommonWordEffect()
+    const { totalList, currentId, newAndOld, learnTime, lastTime, totalListLen } = useCommonWordEffect()
     const { changeTime } = useGetTimeEffect()
     const { handleBackClick } = useCommonRouterEffect()
     const { showChinese, changeWord, show } = useHandleClickEffect()
-    return { currentId, totalList, newAndOld, learnTime, lastTime, showChinese, changeWord, show, handleBackClick, changeTime }
+    return { totalList, currentId, newAndOld, learnTime, lastTime, totalListLen, showChinese, changeWord, show, handleBackClick, changeTime }
   }
 }
 </script>

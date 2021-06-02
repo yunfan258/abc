@@ -13,7 +13,8 @@ const getLocalWordList = () => {
     newAndOld: {},
     currentId: 0,
     learnTime: 0,
-    lastTime: 0
+    lastTime: 0,
+    totalListLen: 0
   })
   return JSON.parse(wordList)
 }
@@ -54,13 +55,13 @@ export default createStore({
       const { oldList, newList } = state.wordList
       if (currentId < 150) {
         if (oldList.indexOf(currentId) === -1) {
-          state.wordList.oldList.push(currentId)
+          state.wordList.oldList.unshift(currentId)
           state.wordList.newAndOld.old--
           state.wordList.newAndOld.notLearn--
         }
       } else {
         if (newList.indexOf(currentId) === -1) {
-          state.wordList.oldList.push(currentId)
+          state.wordList.oldList.unshift(currentId)
           state.wordList.newAndOld.fresh--
           state.wordList.newAndOld.notLearn--
         }
@@ -75,6 +76,11 @@ export default createStore({
     changeLastTime (state, payload) {
       const { lastTime } = payload
       state.wordList.lastTime = lastTime
+      setLocalWordList(state)
+    },
+    changeTotalListLen (state, payload) {
+      const { totalListLen } = payload
+      state.wordList.totalListLen = totalListLen
       setLocalWordList(state)
     }
   },

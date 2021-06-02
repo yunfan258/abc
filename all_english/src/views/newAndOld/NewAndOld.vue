@@ -4,6 +4,7 @@
   <div class="title1">复习单词
   <el-switch class="title1__switch" v-model="showAllMask" loading @click="()=>{hideAllMask();hideMask(false)}"> </el-switch>
   </div>
+  <div class="itemList">
   <div class="item"  v-for="(item, index) in oldList" :key="index">
     <div class="item__english">
     {{totalList[item].english}}
@@ -11,9 +12,15 @@
     <div class="item__chinese">{{totalList[item].wordSex}}
     {{totalList[item].chinese}}
     <div class="item__chinese__mask" @click="hideMask(index)" v-show="((showAllMask==true)&&(showMask!==index))"></div>
+    <div class="line" v-show="(index+1)%7===0">------------------ {{Math.floor((index+1)/7)}} ------------------</div>
+
     </div>
+
+  </div>
   </div>
   <div class="title1" v-show="newList.length">新单词</div>
+  <div class="itemList">
+
   <div class="item"  v-for="(item, index) in newList" :key="index">
     <div class="item__english">
     {{totalList[item].english}}
@@ -23,10 +30,15 @@
     <div class="item__chinese__mask"></div>
     </div>
   </div>
+  </div>
+<BottomArea whichName="返回" />
+<Bottom />
 </template>
 
 <script>
 import TopArea from '../../components/TopArea'
+import BottomArea from './BottomArea'
+import Bottom from '../../components/Bottom'
 import { useCommonWordEffect } from '../../effects/commonEffect'
 import { ref } from 'vue'
 const useHandleMaskEffect = () => {
@@ -42,7 +54,7 @@ const useHandleMaskEffect = () => {
 }
 export default {
   name: 'NewAndOld',
-  components: { TopArea },
+  components: { TopArea, BottomArea, Bottom },
   setup () {
     const { showMask, hideMask, showAllMask, hideAllMask } = useHandleMaskEffect()
     const { oldList, newList, totalList } = useCommonWordEffect()
@@ -67,6 +79,7 @@ export default {
   }
 }
 .item{
+  position: relative;
   background-color: #f1f1f1;
   padding: .1rem;
   margin: .2rem .2rem;
@@ -86,5 +99,19 @@ export default {
       height: 100%;
     }
   }
+}
+.item:nth-of-type(7n+7){
+  margin-bottom: .64rem;
+}
+.line{
+  position: absolute;
+  box-sizing: border-box;
+  top: .5rem;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  color: #99ddff;
+  font-weight: bolder;
 }
 </style>
