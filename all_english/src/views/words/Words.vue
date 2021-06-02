@@ -81,7 +81,6 @@ const useHandleClickEffect = () => {
         store.commit('addCurrentItem', { currentId: currentId + 1 })
       }
     } else {
-      // const len = 200
       if ((currentId + 1) % 7 === 0) {
         router.push({ name: 'NewAndOld' })
         store.commit('addCurrentItem', { currentId })
@@ -141,10 +140,11 @@ export default {
 }
 @keyframes downAndScale {
   0% {
-    transform: translateY(-4rem) scale(0.8);
+    /*transform: translateY(-3rem) scale(0.8);*/
+    transform: translateY(0) scale(0.5);
   }
   80% {
-    transform: translateY(0) scale(0.8);
+    /*transform: translateY(0) scale(0.8);*/
   }
   100% {
     transform: scale(1);
@@ -203,7 +203,7 @@ export default {
       padding: 0.2rem 0.2rem;
       margin: 0 0.2rem;
       background-color: #eee;
-      animation: downAndScale 0.4s ease-in;
+      animation: downAndScale 0.1s ease-in;
     }
     &__loading{
       position: relative;

@@ -48,7 +48,7 @@ export default {
       flex: 1;
       text-align: center;
       a {
-        color: $content-fontcolor;
+        color: #aaa;
         text-decoration: none;
       }
       .iconfont{
@@ -56,9 +56,12 @@ export default {
         font-size: .2rem;
       }
       &--active{
+        transform: scale(1.2,1.2);
+
         a{
           color: #1FA4FC;
         }
+
       }
     }
     &__title{

@@ -31,13 +31,13 @@
     </div>
   </div>
   </div>
-<BottomArea whichName="返回" />
+<!-- <BottomArea whichName="返回" /> -->
 <Bottom />
 </template>
 
 <script>
 import TopArea from '../../components/TopArea'
-import BottomArea from './BottomArea'
+// import BottomArea from './BottomArea'
 import Bottom from '../../components/Bottom'
 import { useCommonWordEffect } from '../../effects/commonEffect'
 import { ref } from 'vue'
@@ -54,7 +54,7 @@ const useHandleMaskEffect = () => {
 }
 export default {
   name: 'NewAndOld',
-  components: { TopArea, BottomArea, Bottom },
+  components: { TopArea, Bottom },
   setup () {
     const { showMask, hideMask, showAllMask, hideAllMask } = useHandleMaskEffect()
     const { oldList, newList, totalList } = useCommonWordEffect()
