@@ -21,21 +21,21 @@ export default {
 @import '../../style/variables.scss';
 .title{
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: .4rem;
+  right: .4rem;
+  bottom: .2rem;
   border-radius: .3rem;
   box-sizing: border-box;
   z-index: 10;
   box-shadow: 0 .02rem .2rem .01rem #d2d2d2;
   display: flex;
-  padding: .06rem .18rem;
-  margin: .06rem .18rem;
+  padding: .08rem .18rem;
   line-height: .22rem;
-  background: $mostColor;
+  background-image: linear-gradient(90deg, rgba(0,145,255,0.00) 0%, $btn-bgColor 50%, rgba(0,145,255,0.00) 100%);
   font-size: .16rem;
-  color: $content-fontcolor;
+  color: #fff;
   text-align: center;
+  opacity: .8;
   &__content{
     display: inline-block;
     width: 100%;

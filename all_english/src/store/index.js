@@ -72,7 +72,7 @@ export default createStore({
         }
       } else {
         if (newList.indexOf(currentId) === -1) {
-          state.wordList.oldList.unshift(currentId)
+          state.wordList.newList.unshift(currentId)
           state.wordList.newAndOld.fresh--
           state.wordList.newAndOld.notLearn--
         }

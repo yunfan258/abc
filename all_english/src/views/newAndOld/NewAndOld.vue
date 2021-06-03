@@ -5,16 +5,14 @@
   <el-switch class="title1__switch" v-model="showAllMask" loading @click="()=>{hideAllMask();hideMask(false)}"> </el-switch>
   </div>
   <div class="itemList">
-  <div class="item"  v-for="(item, index) in oldList" :key="index">
+  <div class="item"  v-for="(item, index) in oldList" :key="index"  @click="hideMask(index)">
     <div class="item__english">
     {{totalList[item].english}}
     </div>
-    <div class="item__chinese">{{totalList[item].wordSex}}
-    {{totalList[item].chinese}}
-    <div class="item__chinese__mask" @click="hideMask(index)" v-show="((showAllMask==true)&&(showMask!==index))"></div>
-    <div class="line" v-show="(index+1)%7===0">------------------ {{Math.floor((index+1)/7)}} ------------------</div>
-
+    <div class="item__chinese" v-show="!((showAllMask==true)&&(showMask!==index))">{{totalList[item].wordSex}} {{totalList[item].chinese}}
     </div>
+    <div class="item__chinese__mask" v-show="((showAllMask==true)&&(showMask!==index))"></div>
+    <div class="line" v-show="(index+1)%7===0">------------------ {{Math.floor((index+1)/7)}} ------------------</div>
 
   </div>
   </div>
@@ -31,13 +29,13 @@
     </div>
   </div>
   </div>
-<!-- <BottomArea whichName="返回" /> -->
+<BottomArea whichName="返回" />
 <Bottom />
 </template>
 
 <script>
 import TopArea from '../../components/TopArea'
-// import BottomArea from './BottomArea'
+import BottomArea from './BottomArea'
 import Bottom from '../../components/Bottom'
 import { useCommonWordEffect } from '../../effects/commonEffect'
 import { ref } from 'vue'
@@ -54,7 +52,7 @@ const useHandleMaskEffect = () => {
 }
 export default {
   name: 'NewAndOld',
-  components: { TopArea, Bottom },
+  components: { TopArea, Bottom, BottomArea },
   setup () {
     const { showMask, hideMask, showAllMask, hideAllMask } = useHandleMaskEffect()
     const { oldList, newList, totalList } = useCommonWordEffect()
@@ -88,15 +86,13 @@ export default {
     padding-bottom: .1rem;
   }
   &__chinese{
-    position: relative;
     &__mask{
-      position: absolute;
       box-sizing: border-box;
       top: 0;
       left: 0;
       background-color: #ccc;
       width: 100%;
-      height: 100%;
+      padding-bottom: .18rem;
     }
   }
 }
@@ -106,7 +102,7 @@ export default {
 .line{
   position: absolute;
   box-sizing: border-box;
-  top: .6rem;
+  top: 1rem;
   text-align: center;
   margin: 0 auto;
   width: 100%;
