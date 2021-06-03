@@ -1,7 +1,7 @@
 <template>
 <div class="header">
   <div class="icons">
-    <span class="iconfont icons__back" @click="()=>{ handleBackClick(); changeTime(lastTime) }">&#xe677;</span>
+    <span class="iconfont icons__back" @click="()=>{ goHome(); changeTime(lastTime) }">&#xe677;</span>
     <router-link :to="{name: 'Search'}">
     <span class="iconfont icons__search">&#xe650;</span>
     </router-link>
@@ -26,8 +26,9 @@
 
 <script>
 import { useStore } from 'vuex'
-import { useCommonRouterEffect, useCommonWordEffect } from '../../effects/commonEffect'
+import { useCommonWordEffect } from '../../effects/commonEffect'
 import { post } from '../../utils/request'
+import { useRouter } from 'vue-router'
 const useGetWordsEffect = () => {
   const store = useStore()
   const getWords = async (dayPlan) => {
@@ -47,6 +48,14 @@ const useGetTimeEffect = () => {
   }
   return { changeTime }
 }
+const useGoHomeEffect = () => {
+  const router = useRouter()
+  const goHome = (lastTime) => {
+    router.push({ name: 'Home' })
+  }
+  return { goHome }
+}
+
 export default {
   name: 'WordTopArea',
   setup () {
@@ -57,9 +66,9 @@ export default {
     } else {
       getWords(dayPlan.value)
     }
-    const { handleBackClick } = useCommonRouterEffect()
+    const { goHome } = useGoHomeEffect()
     const { changeTime } = useGetTimeEffect()
-    return { newAndOld, learnTime, lastTime, totalListLen, changeTime, handleBackClick }
+    return { newAndOld, learnTime, lastTime, totalListLen, changeTime, goHome }
   }
 }
 </script>
