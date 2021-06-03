@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, ref } from 'vue'
+import { reactive, toRefs, ref, watchEffect } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useCommonWordEffect } from '../../effects/commonEffect'
@@ -90,7 +90,20 @@ export default {
   name: 'Words_2.vue',
   props: [],
   components: { WordCart, WordTopArea, Alinks },
+  directives: {
+    Focus: {
+      update: function (el, { value }) {
+        if (value) {
+          el.focus()
+        }
+      }
+    }
+  },
   setup () {
+    const spellInput = ref(null)
+    watchEffect(() => {
+      console.log(spellInput.value)
+    })
     const { totalList, currentId, totalListLen, dayPlan } = useCommonWordEffect()
     const { showChinese, changeWord, showChineseFn } = useHandleClickEffect()
     const { cue, spellValue, checkIsRightFn, changeCueFn } = useCheckEffect()
@@ -138,7 +151,7 @@ export default {
       border: none;
       outline: none;
       width: 2.6rem;
-      margin: .5rem auto .74rem auto;
+      margin: .5rem auto .72rem auto;
       border-bottom: .01rem solid #bbb;
     }
     &__loading::placeholder{
@@ -168,33 +181,37 @@ export default {
 }
 %button-basic{
   display: block;
-  width: 84%;
   padding: 0.1rem;
-  margin: 0.1rem auto;
   border-radius: 0.14rem;
   border: none;
   background: none;
   outline: none;
-  color: $bgColor;
+  color: #999;
+  width: .8rem;
+  background-color: #eee;
 }
 
 .btns {
   position: absolute;
-  bottom: 0.14rem;
-  left: 50%;
-  transform: translate(-50%,0);
-  width: 95%;
+  width: 100%;
+  height: .3rem;
+  bottom: .28rem;
+  /*left: 50%;
+  transform: translate(-50%,0);*/
   &__pre{
     @extend %button-basic;
-    background-color: #41e4c9;
+    position: absolute;
+    left:.3rem;
   }
   &__show{
+    position: absolute;
+    right:.3rem;
     @extend %button-basic;
-    background-color: #fcb35f;
   }
   &__next{
+    position: absolute;
     @extend %button-basic;
-    background-color: #fcb35f;
+    right:.3rem;
   }
 }
 

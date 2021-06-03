@@ -28,18 +28,18 @@ export default {
   display: flex;
   position: absolute;
   left: 50%;
-  bottom: 1.4rem;
+  top: 1.3rem;
   transform: translate(-50%,0);
   text-align: center;
   color: #fff;
-  width: 3rem;
+  width: 100%;
   & a{
     flex: 1;
-    color: #fff;
+    color: #999;
     border-radius: .2rem;
     padding: .06rem;
-    background-color: #ccc;
-    margin: 0 .1rem;
+    background-color: #f9f9f9;
+    margin: 0 .2rem;
 
   }
 }
