@@ -3,31 +3,34 @@
     <WordTopArea />
     <div class="main">
       <div class="main__area">
-        <div class="main__area__english">{{ totalList[currentId]?.english }}</div>
-        <div class="main__area__chinese" v-if="showChinese">
+        <div class="main__area__english"  v-if="showChinese">{{ totalList[currentId]?.english }}</div>
+        <input class="main__area__loading" :class="{'red': cue===-1,'green':cue===1}" v-model="spellValue" placeholder="请拼写单词"/>
+        <div class="line"></div>
+
+        <div class="main__area__chinese">
           {{ totalList[currentId]?.wordSex }}{{ totalList[currentId]?.chinese }}
         </div>
-        <div class="main__area__loading" v-if="!showChinese" @click="showChineseFn()"></div>
       </div>
     </div>
     <Alinks />
     <div class="btns">
-      <button class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</button>
-      <button class="btns__show" @click="showChineseFn()" v-if="!showChinese">查看意思</button>
-      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese">下一个</button>
+      <button class="btns__pre" @click="()=>{changeWord('up',currentId,totalListLen);changeCueFn()}">上一个</button>
+      <button class="btns__show" @click="()=>{showChineseFn();checkIsRightFn(totalList[currentId]?.english)}" v-if="!showChinese">确定</button>
+      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen);changeCueFn()}" v-if="showChinese">下一个</button>
     </div>
   </div>
   <WordCart />
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useCommonWordEffect } from '../../effects/commonEffect'
 import WordCart from './WordCart'
 import WordTopArea from './WordTopArea'
 import Alinks from './Alinks.vue'
+
 const useHandleClickEffect = () => {
   const router = useRouter()
   const store = useStore()
@@ -67,15 +70,31 @@ const useHandleClickEffect = () => {
   const { showChinese } = toRefs(infoList)
   return { showChinese, changeWord, showChineseFn }
 }
-
+const useCheckEffect = () => {
+  const cue = ref(0)
+  const spellValue = ref('')
+  const checkIsRightFn = (val) => {
+    if (spellValue.value === val) {
+      cue.value = 1
+    } else {
+      cue.value = -1
+    }
+  }
+  const changeCueFn = () => {
+    spellValue.value = ''
+    cue.value = 0
+  }
+  return { cue, spellValue, checkIsRightFn, changeCueFn }
+}
 export default {
-  name: 'Words.vue',
+  name: 'Words_2.vue',
   props: [],
   components: { WordCart, WordTopArea, Alinks },
   setup () {
     const { totalList, currentId, totalListLen, dayPlan } = useCommonWordEffect()
     const { showChinese, changeWord, showChineseFn } = useHandleClickEffect()
-    return { totalList, currentId, totalListLen, dayPlan, showChinese, changeWord, showChineseFn }
+    const { cue, spellValue, checkIsRightFn, changeCueFn } = useCheckEffect()
+    return { cue, spellValue, checkIsRightFn, changeCueFn, totalList, currentId, totalListLen, dayPlan, showChinese, changeWord, showChineseFn }
   }
 }
 </script>
@@ -104,10 +123,37 @@ export default {
   font-size: 0.16rem;
   &__area{
     &__english{
+      position: absolute;
+      left:50%;
+      transform: translate(-50%,0);
       text-align: center;
       font-size: 0.3rem;
+      padding: 0.5rem 0 0rem 0;
+      z-index: -1;
+    }
+    &__loading{
+      display: block;
+      font-size: .3rem;
+      text-align: center;
+      border: none;
+      outline: none;
+      width: 2.6rem;
+      margin: .5rem auto .74rem auto;
+      border-bottom: .01rem solid #bbb;
+    }
+    &__loading::placeholder{
+      font-size: .2rem;
+      letter-spacing: .04rem;
+      color: #ccc;
+    }
+    .red{
+      color: #ff0000;
+    }
+    .green{
+      color: #99ddff;
+    }
+    .line{
       margin: 0.2rem;
-      padding: 0.2rem 0 0.5rem 0;
       border-bottom: 1px solid #41e4c9;
     }
     &__chinese{
@@ -117,17 +163,6 @@ export default {
       margin: 0 0.2rem;
       background-color: #eee;
       animation: downAndScale 0.1s ease-in;
-    }
-    &__loading{
-      position: relative;
-      width: 0.16rem;
-      height: 0.16rem;
-      margin: 0 auto;
-      border: 0.06rem solid #ccc;
-      border-radius: 50%;
-      border-top: 0.06rem solid #41e4c9;
-      margin: 0.4rem auto;
-      animation: spin 5s linear infinite;
     }
   }
 }
@@ -162,16 +197,5 @@ export default {
     background-color: #fcb35f;
   }
 }
-.choiceFn{
-  position: absolute;
-  left: 50%;
-  bottom: 1.4rem;
-  transform: translate(-50%,0);
-  text-align: center;
-  padding: .06rem;
-  color: #fff;
-  background-color: #ccc;
-  width: 1rem;
-  border-radius: .2rem;
-}
+
 </style>

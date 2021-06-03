@@ -1,6 +1,11 @@
 <template>
   <TopArea  whichName="日历" />
   <el-calendar v-model="value" class="myCalender">
+   <template #dateCell="{data}" >
+    <p :class="data.isSelected ? 'is-selected' : ''" class="dateItem">
+      {{ data.day.split('-').slice(2).join('-').replace(/\b(0+)/gi,"") }} {{ data.isSelected ? '✔️' : '' }}
+    </p>
+  </template>
   </el-calendar>
 </template>
 
@@ -20,5 +25,11 @@ export default {
 <style scoped>
 .myCalender{
   padding-top: .5rem;
+}
+.dateItem{
+  text-align: center;
+  vertical-align: center;
+  font-size: .2rem;
+  height: .3rem;
 }
 </style>

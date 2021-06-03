@@ -3,17 +3,19 @@
     <WordTopArea />
     <div class="main">
       <div class="main__area">
-        <div class="main__area__english">{{ totalList[currentId]?.english }}</div>
-        <div class="main__area__chinese" v-if="showChinese">
+        <div class="main__area__english"  v-if="showChinese">{{ totalList[currentId]?.english }}</div>
+        <div class="main__area__loading" v-if="!showChinese" @click="showChineseFn()"></div>
+        <div class="line"></div>
+
+        <div class="main__area__chinese">
           {{ totalList[currentId]?.wordSex }}{{ totalList[currentId]?.chinese }}
         </div>
-        <div class="main__area__loading" v-if="!showChinese" @click="showChineseFn()"></div>
       </div>
     </div>
     <Alinks />
     <div class="btns">
       <button class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</button>
-      <button class="btns__show" @click="showChineseFn()" v-if="!showChinese">查看意思</button>
+      <button class="btns__show" @click="showChineseFn()" v-if="!showChinese">查看英文</button>
       <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese">下一个</button>
     </div>
   </div>
@@ -28,6 +30,7 @@ import { useCommonWordEffect } from '../../effects/commonEffect'
 import WordCart from './WordCart'
 import WordTopArea from './WordTopArea'
 import Alinks from './Alinks.vue'
+
 const useHandleClickEffect = () => {
   const router = useRouter()
   const store = useStore()
@@ -69,7 +72,7 @@ const useHandleClickEffect = () => {
 }
 
 export default {
-  name: 'Words.vue',
+  name: 'Words_2.vue',
   props: [],
   components: { WordCart, WordTopArea, Alinks },
   setup () {
@@ -107,7 +110,10 @@ export default {
       text-align: center;
       font-size: 0.3rem;
       margin: 0.2rem;
-      padding: 0.2rem 0 0.5rem 0;
+      padding: 0 0 0.5rem 0;
+    }
+    .line{
+      margin: 0.2rem;
       border-bottom: 1px solid #41e4c9;
     }
     &__chinese{
@@ -122,11 +128,10 @@ export default {
       position: relative;
       width: 0.16rem;
       height: 0.16rem;
-      margin: 0 auto;
       border: 0.06rem solid #ccc;
       border-radius: 50%;
       border-top: 0.06rem solid #41e4c9;
-      margin: 0.4rem auto;
+      margin: 0.71rem auto;
       animation: spin 5s linear infinite;
     }
   }
@@ -162,16 +167,5 @@ export default {
     background-color: #fcb35f;
   }
 }
-.choiceFn{
-  position: absolute;
-  left: 50%;
-  bottom: 1.4rem;
-  transform: translate(-50%,0);
-  text-align: center;
-  padding: .06rem;
-  color: #fff;
-  background-color: #ccc;
-  width: 1rem;
-  border-radius: .2rem;
-}
+
 </style>
