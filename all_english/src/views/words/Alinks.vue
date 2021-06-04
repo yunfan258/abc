@@ -37,9 +37,9 @@ export default {
     flex: 1;
     color: #999;
     border-radius: .2rem;
-    padding: .06rem;
+    padding: .04rem;
     background-color: #f9f9f9;
-    margin: 0 .2rem;
+    margin: 0 .22rem;
 
   }
 }

@@ -104,6 +104,7 @@ export default {
   &__item{
     text-align: center;
     padding: 0.1rem 0.2rem;
+    margin: 0 .1rem;
     color: $medium-fontColor;
     &__detail{
       font-size: 0.14rem;

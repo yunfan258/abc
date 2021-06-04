@@ -163,7 +163,7 @@ export default {
       color: #ff0000;
     }
     .green{
-      color: #99ddff;
+      color: #41e4c9;
     }
     .line{
       margin: 0.2rem;
@@ -181,14 +181,15 @@ export default {
 }
 %button-basic{
   display: block;
-  padding: 0.1rem;
+  padding: 0.06rem;
   border-radius: 0.14rem;
   border: none;
   background: none;
   outline: none;
-  color: #999;
-  width: .8rem;
-  background-color: #eee;
+  color: #666;
+  width: .76rem;
+  border: .01rem solid #333;
+  opacity: .8;
 }
 
 .btns {
@@ -201,17 +202,17 @@ export default {
   &__pre{
     @extend %button-basic;
     position: absolute;
-    left:.3rem;
+    left:.22rem;
   }
   &__show{
     position: absolute;
-    right:.3rem;
+    right:.22rem;
     @extend %button-basic;
   }
   &__next{
     position: absolute;
     @extend %button-basic;
-    right:.3rem;
+    right:.22rem;
   }
 }
 
