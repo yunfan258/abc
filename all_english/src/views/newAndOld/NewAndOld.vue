@@ -1,33 +1,35 @@
 <template>
   <TopArea  whichName="单词详情" />
   <div class="padding"></div>
+  <div class="title1" v-show="newList.length">新单词</div>
+  <div class="itemList">
+    <div class="item"  v-for="(item, index) in newList" :key="index" @click="hideMask(index)">
+      <div class="item__english">
+        {{totalList[item].english}}
+      </div>
+      <div class="item__chinese" v-show="!((showAllMask==true)&&(showMask!==index))">{{totalList[item].wordSex}}
+      {{totalList[item].chinese}}
+      </div>
+      <div class="item__chinese__mask" v-show="((showAllMask==true)&&(showMask!==index))">
+      </div>
+      <div class="line" v-show="(index+1)%7===0">------------------ {{Math.floor((index+1)/7)}} ------------------
+      </div>
+    </div>
+  </div>
   <div class="title1">复习单词
   <el-switch class="title1__switch" v-model="showAllMask" loading @click="()=>{hideAllMask();hideMask(false)}"> </el-switch>
   </div>
   <div class="itemList">
-  <div class="item"  v-for="(item, index) in oldList" :key="index"  @click="hideMask(index)">
-    <div class="item__english">
-    {{totalList[item].english}}
-    </div>
-    <div class="item__chinese" v-show="!((showAllMask==true)&&(showMask!==index))">{{totalList[item].wordSex}} {{totalList[item].chinese}}
-    </div>
-    <div class="item__chinese__mask" v-show="((showAllMask==true)&&(showMask!==index))"></div>
-    <div class="line" v-show="(index+1)%7===0">------------------ {{Math.floor((index+1)/7)}} ------------------</div>
+    <div class="item"  v-for="(item, index) in oldList" :key="index"  @click="hideMask(index)">
+      <div class="item__english">
+      {{totalList[item].english}}
+      </div>
+      <div class="item__chinese" v-show="!((showAllMask==true)&&(showMask!==index))">{{totalList[item].wordSex}} {{totalList[item].chinese}}
+      </div>
+      <div class="item__chinese__mask" v-show="((showAllMask==true)&&(showMask!==index))"></div>
+      <div class="line" v-show="(index+1)%7===0">------------------ {{Math.floor((index+1)/7)}} ------------------</div>
 
-  </div>
-  </div>
-  <div class="title1" v-show="newList.length">新单词</div>
-  <div class="itemList">
-
-  <div class="item"  v-for="(item, index) in newList" :key="index">
-    <div class="item__english">
-    {{totalList[item].english}}
     </div>
-    <div class="item__chinese">{{totalList[item].wordSex}}
-    {{totalList[item].chinese}}
-    <div class="item__chinese__mask"></div>
-    </div>
-  </div>
   </div>
 <BottomArea whichName="返回" />
 <Bottom />
