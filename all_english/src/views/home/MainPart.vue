@@ -107,7 +107,7 @@ export default {
     const { isShowToast, toastMessage, showToast } = useToastEffect()
     const { newAndOld, dayPlan, getNearbyData } = useGetDataEffect()
     if (localStorage.wordList) {
-      if (!JSON.parse(localStorage.wordList)?.newAndOld?.old) { getNearbyData() }
+      if (JSON.stringify(JSON.parse(localStorage.wordList)?.newAndOld) === '{}') { getNearbyData() }
     } else {
       getNearbyData()
     }
