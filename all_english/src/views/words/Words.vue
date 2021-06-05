@@ -61,6 +61,7 @@ const useHandleClickEffect = () => {
       }
     }
   }
+
   const showChineseFn = () => {
     infoList.showChinese = true
   }
@@ -74,8 +75,8 @@ export default {
   components: { WordCart, WordTopArea, Alinks },
   setup () {
     const { totalList, currentId, totalListLen, dayPlan } = useCommonWordEffect()
-    const { showChinese, changeWord, showChineseFn } = useHandleClickEffect()
-    return { totalList, currentId, totalListLen, dayPlan, showChinese, changeWord, showChineseFn }
+    const { showChinese, changeWord, changePamphletFn, showChineseFn } = useHandleClickEffect()
+    return { totalList, currentId, totalListLen, dayPlan, showChinese, changeWord, changePamphletFn, showChineseFn }
   }
 }
 </script>

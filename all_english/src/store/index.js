@@ -11,6 +11,7 @@ const getLocalWordList = () => {
     oldList: [],
     newList: [],
     newAndOld: {},
+    pamphlet: [],
     currentId: 0,
     learnTime: 0,
     lastTime: 0,
@@ -54,6 +55,13 @@ export default createStore({
     changeNewList (state, payload) {
       const { newList } = payload
       state.wordList.newList = newList
+      setLocalWordList(state)
+    },
+    changePamphlet (state, payload) {
+      const { currentId } = payload
+      if (state.wordList.pamphlet.indexOf(currentId) === -1) {
+        state.wordList.pamphlet.unshift(currentId)
+      }
       setLocalWordList(state)
     },
     changeNewAndOld (state, payload) {

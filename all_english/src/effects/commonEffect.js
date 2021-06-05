@@ -43,6 +43,10 @@ export const useCommonWordEffect = () => {
     const newAndOld = wordList.newAndOld || {}
     return newAndOld
   })
+  const pamphlet = computed(() => {
+    const pamphlet = wordList.pamphlet || []
+    return pamphlet
+  })
   const currentId = computed(() => {
     const currentId = wordList.currentId || 0
     return currentId
@@ -63,35 +67,5 @@ export const useCommonWordEffect = () => {
     const dayPlan = wordList.dayPlan || 1
     return dayPlan
   })
-  return { dayPlan, totalListLen, totalList, oldList, newList, currentId, newAndOld, learnTime, lastTime }
-}
-
-// 处理购物车商品总数和总价相关逻辑
-export const useCartTotalEffect = (shopId) => {
-  const store = useStore()
-  const cartList = store.state.cartList
-  const caculations = computed(() => {
-    const result = { total: 0, price: 0, allCheck: true, allNull: true }
-    const productList = cartList?.[shopId]?.productList
-    if (productList) {
-      for (const i in productList) {
-        const product = productList[i]
-        result.total += product.count
-        if (product.check === true) {
-          result.price += (product.count * product.price)
-        }
-
-        if (product.check === false) {
-          result.allCheck = false
-        }
-        if (product.count > 0) {
-          result.allNull = false
-        }
-      }
-    }
-    result.price = result.price.toFixed(2)
-
-    return result
-  })
-  return { caculations }
+  return { dayPlan, totalListLen, totalList, pamphlet, oldList, newList, currentId, newAndOld, learnTime, lastTime }
 }

@@ -52,7 +52,7 @@ export default {
         text-decoration: none;
       }
       .iconfont{
-        margin: .07rem 0 .02rem 0;
+        margin: .07rem 0 0 0;
         font-size: .2rem;
       }
       &--active{
