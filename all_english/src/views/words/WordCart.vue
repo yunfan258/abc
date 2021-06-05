@@ -78,8 +78,8 @@ export default {
 }
 .openPamphlet{
   position: absolute;
-  top: 1.6rem;
-  left: .2rem;
+  top: 1.58rem;
+  right: .14rem;
   @extend %pamphlet;
 }
 .addPamphlet{

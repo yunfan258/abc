@@ -1,4 +1,6 @@
 <template>
+<span class="iconfont hideCTL" v-html="isHideMask?'&#xe657;':'&#xe624;'" @click="hideMaskFn()"/>
+<div class="hideMask" v-show="isHideMask"></div>
 <div class="header">
   <div class="icons">
     <span class="iconfont icons__back" @click="()=>{ goHome(); changeTime(lastTime) }">&#xe677;</span>
@@ -25,6 +27,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useCommonWordEffect } from '../../effects/commonEffect'
 import { post } from '../../utils/request'
@@ -55,6 +58,13 @@ const useGoHomeEffect = () => {
   }
   return { goHome }
 }
+const useHideMaskEffect = () => {
+  const isHideMask = ref(true)
+  const hideMaskFn = () => {
+    isHideMask.value = !isHideMask.value
+  }
+  return { isHideMask, hideMaskFn }
+}
 
 export default {
   name: 'WordTopArea',
@@ -68,13 +78,34 @@ export default {
     }
     const { goHome } = useGoHomeEffect()
     const { changeTime } = useGetTimeEffect()
-    return { newAndOld, learnTime, lastTime, totalListLen, changeTime, goHome }
+    const { isHideMask, hideMaskFn } = useHideMaskEffect()
+    return { isHideMask, hideMaskFn, newAndOld, learnTime, lastTime, totalListLen, changeTime, goHome }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../style/variables.scss';
+.hideMask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.86rem;
+  background-color: #fff;
+  z-index: 11;
+  text-align: center;
+}
+.hideCTL{
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%,0);
+  padding: .18rem;
+  font-size: .2rem;
+  z-index: 12;
+}
 .icons{
   &__back{
     width: 0.2rem;

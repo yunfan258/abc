@@ -13,10 +13,13 @@
       </div>
     </div>
     <Alinks />
+    <div class="playCardSuccess" v-show="currentId===totalList.length">打卡成功
+    <div class="playCardSuccess__detail">可截图分享哦</div>
+    </div>
     <div class="btns">
       <button class="btns__pre" @click="()=>{changeWord('up',currentId,totalListLen);changeCueFn()}">上一个</button>
-      <button class="btns__show" @click="()=>{showChineseFn();checkIsRightFn(totalList[currentId]?.english)}" v-if="!showChinese">确定</button>
-      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen);changeCueFn()}" v-if="showChinese">下一个</button>
+      <button class="btns__show" @click="()=>{showChineseFn();checkIsRightFn(totalList[currentId]?.english)}" v-if="!showChinese" v-show="currentId!==totalList.length">确定</button>
+      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen);changeCueFn()}" v-if="showChinese" v-show="currentId!==totalList.length">下一个</button>
     </div>
   </div>
   <WordCart />
@@ -58,8 +61,9 @@ const useHandleClickEffect = () => {
         } else if (currentId === len - 1) {
           store.commit('addCurrentItem', { currentId })
           currentId++
-          router.push({ name: 'NewAndOld' })
+          store.commit('changecurrentId', { currentId })
         } else {
+          router.push({ name: 'NewAndOld' })
         }
       }
     }
@@ -90,15 +94,6 @@ export default {
   name: 'Words_2.vue',
   props: [],
   components: { WordCart, WordTopArea, Alinks },
-  directives: {
-    Focus: {
-      update: function (el, { value }) {
-        if (value) {
-          el.focus()
-        }
-      }
-    }
-  },
   setup () {
     const spellInput = ref(null)
     watchEffect(() => {
@@ -179,6 +174,26 @@ export default {
     }
   }
 }
+.playCardSuccess{
+  position: absolute;
+  top: .4rem;
+  left: 0rem;
+  right: 0rem;
+  height: 4rem;
+  background-color: #fff;
+  z-index: 3;
+  text-align: center;
+  font-size: .3rem;
+  color: #41e4c9;
+  padding-top: 1.6rem;
+  z-index: 13;
+  &__detail{
+    font-size: .14rem;
+    margin-top: .1rem;
+    color: #999;
+  }
+}
+
 %button-basic{
   display: block;
   padding: 0.06rem;

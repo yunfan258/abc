@@ -12,7 +12,7 @@ const getLocalWordList = () => {
     newList: [],
     newAndOld: {},
     pamphlet: [],
-    currentId: 0,
+    currentId: 198,
     learnTime: 0,
     lastTime: 0,
     totalListLen: 0,
@@ -78,7 +78,7 @@ export default createStore({
           state.wordList.newAndOld.old--
           state.wordList.newAndOld.notLearn--
         }
-      } else {
+      } else if (currentId < state.wordList.totalListLen) {
         if (newList.indexOf(currentId) === -1) {
           state.wordList.newList.unshift(currentId)
           state.wordList.newAndOld.fresh--

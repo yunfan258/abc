@@ -13,10 +13,13 @@
       </div>
     </div>
     <Alinks />
+    <div class="playCardSuccess" v-show="currentId===totalList.length">打卡成功
+    <div class="playCardSuccess__detail">可截图分享哦</div>
+    </div>
     <div class="btns">
       <button class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</button>
-      <button class="btns__show" @click="showChineseFn()" v-if="!showChinese">查看英文</button>
-      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese">下一个</button>
+      <button class="btns__show" @click="showChineseFn()" v-if="!showChinese" v-show="currentId!==totalList.length">查看英文</button>
+      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese" v-show="currentId!==totalList.length">下一个</button>
     </div>
   </div>
   <WordCart />
@@ -58,8 +61,9 @@ const useHandleClickEffect = () => {
         } else if (currentId === len - 1) {
           store.commit('addCurrentItem', { currentId })
           currentId++
-          router.push({ name: 'NewAndOld' })
+          store.commit('changecurrentId', { currentId })
         } else {
+          router.push({ name: 'NewAndOld' })
         }
       }
     }
@@ -134,6 +138,25 @@ export default {
       margin: 0.71rem auto;
       animation: spin 5s linear infinite;
     }
+  }
+}
+.playCardSuccess{
+  position: absolute;
+  top: .4rem;
+  left: 0rem;
+  right: 0rem;
+  height: 4rem;
+  background-color: #fff;
+  z-index: 3;
+  text-align: center;
+  font-size: .3rem;
+  color: #41e4c9;
+  padding-top: 1.6rem;
+  z-index: 13;
+  &__detail{
+    font-size: .14rem;
+    margin-top: .1rem;
+    color: #999;
   }
 }
 %button-basic{
