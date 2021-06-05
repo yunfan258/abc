@@ -12,7 +12,7 @@ const getLocalWordList = () => {
     newList: [],
     newAndOld: {},
     pamphlet: [],
-    currentId: 198,
+    currentId: 0,
     learnTime: 0,
     lastTime: 0,
     totalListLen: 0,

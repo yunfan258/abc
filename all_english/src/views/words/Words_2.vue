@@ -145,7 +145,7 @@ export default {
   top: .4rem;
   left: 0rem;
   right: 0rem;
-  height: 4rem;
+  bottom: 1rem;
   background-color: #fff;
   z-index: 3;
   text-align: center;
