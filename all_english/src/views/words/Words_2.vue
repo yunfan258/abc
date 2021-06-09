@@ -13,9 +13,6 @@
       </div>
     </div>
     <Alinks />
-    <div class="playCardSuccess" v-show="currentId===totalList.length">打卡成功
-    <div class="playCardSuccess__detail">可截图分享哦</div>
-    </div>
     <div class="btns">
       <button class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</button>
       <button class="btns__show" @click="showChineseFn()" v-if="!showChinese" v-show="currentId!==totalList.length">查看英文</button>
@@ -140,25 +137,7 @@ export default {
     }
   }
 }
-.playCardSuccess{
-  position: absolute;
-  top: .4rem;
-  left: 0rem;
-  right: 0rem;
-  bottom: 1rem;
-  background-color: #fff;
-  z-index: 3;
-  text-align: center;
-  font-size: .3rem;
-  color: #41e4c9;
-  padding-top: 1.6rem;
-  z-index: 13;
-  &__detail{
-    font-size: .14rem;
-    margin-top: .1rem;
-    color: #999;
-  }
-}
+
 %button-basic{
   display: block;
   width: 84%;

@@ -1,4 +1,9 @@
 <template>
+  <div class="playCardSuccess" v-show="currentId===totalList.length">打卡成功
+    <div class="time">{{(new Date).getFullYear()}}年{{(new Date).getMonth()}}月{{(new Date).getDay()}}日</div>
+    <!--<div class="playCardSuccess__detail">可截图分享哦</div>-->
+
+  </div>
   <div class="openPamphlet" @click="handleCheck">打开生词本</div>
   <div class="addPamphlet" @click="()=>{changePamphletFn(currentId);showToast('加入成功')}">加入生词本</div>
   <div class="opacity__mask" v-if="showCart" @click="handleCheck"></div>
@@ -139,4 +144,28 @@ export default {
   }
 }
 
+.playCardSuccess{
+  position: absolute;
+  top: .4rem;
+  left: 0rem;
+  right: 0rem;
+  bottom: 1rem;
+  background-color: #fff;
+  z-index: 3;
+  text-align: center;
+  font-size: .3rem;
+  color: #41e4c9;
+  padding-top: 1.6rem;
+  z-index: 13;
+  &__detail{
+    font-size: .14rem;
+    margin: 1rem 0;
+    color: #999;
+  }
+  .time{
+    font-size: .14rem;
+    margin: .1rem 0;
+    color: #999;
+  }
+}
 </style>
