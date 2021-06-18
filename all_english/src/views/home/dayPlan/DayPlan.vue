@@ -25,12 +25,12 @@
 import { useRouter } from 'vue-router'
 import TopArea from '../../../components/TopArea'
 import Toast, { useToastEffect } from '../../../components/Toast'
-
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-const value = ref('1')
+// import { useCommonWordEffect } from '../../../effects/commonEffect'
 const useChangePlanEffect = () => {
   const store = useStore()
+  const value = ref('1')
   const changeDayPlan = (value) => {
     store.commit('changeDayPlan', { dayPlan: value })
     store.commit('changeTotalList', { totalList: [] })
@@ -39,14 +39,14 @@ const useChangePlanEffect = () => {
     store.commit('changeNewAndOld', { newAndOld: {} })
     store.commit('changecurrentId', { currentId: 0 })
   }
-  return { changeDayPlan }
+  return { value, changeDayPlan }
 }
 const useGoAheadEffect = () => {
   const router = useRouter()
   const goAhead = () => {
     setTimeout(() => {
       router.push({ name: 'Home' })
-    }, 2000)
+    }, 1000)
   }
   return { goAhead }
 }
@@ -55,7 +55,7 @@ export default {
   components: { TopArea, Toast },
   setup () {
     const { isShowToast, toastMessage, showToast } = useToastEffect()
-    const { changeDayPlan } = useChangePlanEffect()
+    const { value, changeDayPlan } = useChangePlanEffect()
     const { goAhead } = useGoAheadEffect()
     return { isShowToast, toastMessage, showToast, value, changeDayPlan, goAhead }
   }

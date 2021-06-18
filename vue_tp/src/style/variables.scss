@@ -1,0 +1,15 @@
+$content-fontcolor: #333;
+$medium-fontColor: #666;
+$light-fontColor: #999;
+$content-notice-fontcolor: #777;
+$content-bgColor: #F1F1F1;
+$content-shodowColor: #d2d2d2;
+$search-bgColor: #F5F5F5;
+$search-fontColor: #B7B7B7;
+$hightlight-fontColor: #E93B3B;
+$btn-bgColor: #00ff62;
+$bgColor: #FFF;
+$mostColor: #66bba8;
+/* 改变主题色变量 */ $--color-primary: teal; /* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-plus/lib/theme-chalk/fonts'; @import
+"~element-plus/packages/theme-chalk/src/index";

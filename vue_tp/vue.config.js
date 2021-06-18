@@ -11,5 +11,17 @@ module.exports = {
         maxAssetSize: 30000000
       }
     }
+  },
+  devServer: {
+    proxy: {
+      '/term6_vue_tp/': {
+        target: 'http://localhost:8080/',
+        changeOrigin: true
+      }
+      // '/Person/': {
+      //   target: 'http://localhost:8080/term6_vue_tp/public/index.php/api/',
+      //   changeOrigin: true
+      // }
+    }
   }
 }

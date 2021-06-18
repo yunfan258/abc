@@ -1,6 +1,8 @@
 <template>
   <div class="playCardSuccess" v-show="currentId===totalList.length">打卡成功
-    <div class="time">{{(new Date).getFullYear()}}年{{(new Date).getMonth()}}月{{(new Date).getDay()}}日</div>
+    <div class="time">完成第{{dayPlan}}天计划</div>
+
+    <div class="time">{{time}}</div>
     <!--<div class="playCardSuccess__detail">可截图分享哦</div>-->
 
   </div>
@@ -28,11 +30,13 @@ import { reactive, toRefs, ref } from 'vue'
 import { useCommonWordEffect } from '../../effects/commonEffect'
 import Toast, { useToastEffect } from '../../components/Toast'
 import { useStore } from 'vuex'
-
 const useClickEffect = () => {
   const store = useStore()
   const shows = reactive({ showCart: false })
   const page = ref(1)
+  const myDate = new Date()
+  const timeData = myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myDate.getDate()
+  const time = ref(timeData)
   const handleCheck = () => {
     shows.showCart = !shows.showCart
   }
@@ -43,7 +47,7 @@ const useClickEffect = () => {
     store.commit('changePamphlet', { currentId })
   }
   const { showCart } = toRefs(shows)
-  return { page, showCart, handleCheck, handleChangePage, changePamphletFn }
+  return { time, page, showCart, handleCheck, handleChangePage, changePamphletFn }
 }
 export default {
   name: 'WordCart',
@@ -51,9 +55,9 @@ export default {
   components: { Toast },
   setup () {
     const { toastMessage, isShowToast, showToast } = useToastEffect()
-    const { page, showCart, handleCheck, handleChangePage, changePamphletFn } = useClickEffect()
-    const { currentId, pamphlet, totalList } = useCommonWordEffect()
-    return { toastMessage, isShowToast, showToast, currentId, page, pamphlet, totalList, showCart, handleCheck, handleChangePage, changePamphletFn }
+    const { time, page, showCart, handleCheck, handleChangePage, changePamphletFn } = useClickEffect()
+    const { currentId, pamphlet, totalList, dayPlan } = useCommonWordEffect()
+    return { toastMessage, isShowToast, showToast, dayPlan, currentId, time, page, pamphlet, totalList, showCart, handleCheck, handleChangePage, changePamphletFn }
   }
 }
 </script>

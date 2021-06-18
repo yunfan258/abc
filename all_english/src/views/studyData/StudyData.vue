@@ -62,6 +62,7 @@ export default {
     &__text{
       /*overflow: auto;*/
       width: 100%;
+      white-space: pre-wrap;
     }
   }
 }
