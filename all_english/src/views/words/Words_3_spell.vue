@@ -4,7 +4,16 @@
     <div class="main">
       <div class="main__area">
         <div class="main__area__english"  v-if="showChinese">{{ totalList[currentId]?.english }}</div>
-        <input class="main__area__loading" :class="{'red': cue===-1,'green':cue===1}" v-model="spellValue" placeholder="请拼写单词"/>
+        <input class="main__area__loading" :class="{'red': cue===-1,'green':cue===1}" v-model="spellValue" placeholder="请拼写单词"
+        @keyup.enter="
+        if(!showChinese){
+          showChineseFn();
+          checkIsRightFn(totalList[currentId]?.english)
+        }else{
+          changeWord('down',currentId,totalListLen);
+          changeCueFn()
+        }"
+        />
         <div class="line"></div>
 
         <div class="main__area__chinese">
@@ -23,7 +32,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, ref, watchEffect } from 'vue'
+import { reactive, toRefs, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useCommonWordEffect } from '../../effects/commonEffect'
@@ -92,10 +101,10 @@ export default {
   props: [],
   components: { WordCart, WordTopArea, Alinks },
   setup () {
-    const spellInput = ref(null)
-    watchEffect(() => {
-      console.log(spellInput.value)
-    })
+    // const spellInput = ref(null)
+    // watchEffect(() => {
+    //   console.log(spellInput.value)
+    // })
     const { totalList, currentId, totalListLen, dayPlan } = useCommonWordEffect()
     const { showChinese, changeWord, showChineseFn } = useHandleClickEffect()
     const { cue, spellValue, checkIsRightFn, changeCueFn } = useCheckEffect()

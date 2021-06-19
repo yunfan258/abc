@@ -2,32 +2,41 @@
 <div class="wrapper">
   <div class="search">
     <span class="iconfont search__icon">&#xe650;</span>
-    <input type="text" class="search__text" placeholder="improve">
+    <input type="text"
+      class="search__text"
+      placeholder="improve"
+      v-model="inputVal"
+      @input="showSearchInfo(totalList,inputVal)"
+    >
     <span class="search__cancle" @click="()=>{handleBackClick()}" >取消</span>
   </div>
-  <div class="history">
+  <div class="history" v-show="!isShowSearch">
     <div class="history__title">
       <span class="history__title__content">搜索历史</span>
       <span class="history__title__clear" @click="()=>handleClearClick()">清除搜索历史</span>
     </div>
     <div class="history__content">
-      <span class="history__content__item" v-for="item in historyList" :key="item">{{item.name}}</span>
+      <span class="history__content__item" v-for="item in historyList" :key="item">{{item?.name}}</span>
     </div>
   </div>
-  <div class="hot">
+  <div class="hot" v-show="!isShowSearch">
     <div class="hot__title">
       <span class="hot__title__content">热门搜索</span>
     </div>
     <div class="hot__content">
-      <span class="hot__content__item" v-for="item in hotItemList" :key="item">{{item.name}}</span>
+      <span class="hot__content__item" v-for="item in hotItemList" :key="item">{{item?.name}}</span>
     </div>
   </div>
+  <SearchInfo v-show="isShowSearch" :searchInfoList="searchInfoList"/>
 </div>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
-import { useCommonRouterEffect } from '../../effects/commonEffect'
+import { reactive, ref, toRefs } from 'vue'
+import { useCommonRouterEffect, useCommonWordEffect } from '../../effects/commonEffect'
+import SearchInfo from './SearchInfo'
+
+const inputVal = ref('')
 const useInfoListEffect = () => {
   const historyItemList = reactive({
     historyList: {
@@ -51,21 +60,40 @@ const useInfoListEffect = () => {
     item7: { name: 'impression' },
     item8: { name: 'nor' }
   }
+
   const handleClearClick = () => {
     historyItemList.historyList = {}
   }
   const { historyList } = toRefs(historyItemList)
   return { hotItemList, historyList, handleClearClick }
 }
-
+const useSerchInfoEffect = () => {
+  const isShowSearch = ref(false)
+  const itemList = reactive({ searchInfoList: [] })
+  const showSearchInfo = (totalList, inputVal) => {
+    isShowSearch.value = true
+    itemList.searchInfoList = []
+    for (const i in totalList) {
+      if (totalList[i]?.english.startsWith(inputVal) ||
+        totalList[i]?.chinese.match(inputVal) !== null
+      ) {
+        itemList.searchInfoList.push(totalList[i])
+      }
+    }
+  }
+  const { searchInfoList } = toRefs(itemList)
+  return { isShowSearch, searchInfoList, showSearchInfo }
+}
 export default {
   name: 'Search',
-  components: { },
-  props: ['isShowSearch'],
+  components: { SearchInfo },
+  props: [''],
   setup (props, context) {
     const { handleBackClick } = useCommonRouterEffect()
+    const { totalList } = useCommonWordEffect()
     const { hotItemList, historyList, handleClearClick } = useInfoListEffect()
-    return { handleBackClick, hotItemList, historyList, handleClearClick }
+    const { isShowSearch, searchInfoList, showSearchInfo } = useSerchInfoEffect()
+    return { inputVal, handleBackClick, totalList, hotItemList, historyList, handleClearClick, isShowSearch, searchInfoList, showSearchInfo }
   }
 }
 </script>

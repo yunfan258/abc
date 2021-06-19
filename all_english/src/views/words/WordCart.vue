@@ -94,7 +94,7 @@ export default {
 .addPamphlet{
   @extend %pamphlet;
   @extend %center;
-  bottom: 1.2rem;
+  bottom: 1.3rem;
 }
 .wordList {
   position: absolute;
