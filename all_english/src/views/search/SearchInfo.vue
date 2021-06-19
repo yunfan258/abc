@@ -7,7 +7,7 @@
       <div class="searchInfo__item__english">{{item?.english}}</div>
       <div class="searchInfo__item__chinese">{{item.wordSex}} {{item.chinese}}</div>
     </div>
-    <div v-if="searchInfoList.length===0">第 {{dayPlan}} 计划中无相关单词</div>
+    <div v-if="searchInfoList.length===0">第 {{dayPlan}} 天计划中无相关单词</div>
 
 </div>
 </template>

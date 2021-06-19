@@ -7,6 +7,7 @@
       placeholder="improve"
       v-model="inputVal"
       @input="showSearchInfo(totalList,inputVal)"
+      @keyup.enter="showSearchInfo(totalList,inputVal)"
     >
     <span class="search__cancle" @click="()=>{handleBackClick()}" >取消</span>
   </div>
