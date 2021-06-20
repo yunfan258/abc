@@ -4,11 +4,20 @@
       v-for="item in searchInfoList"
       :key="item"
     >
-      <div class="searchInfo__item__english">{{item?.english}}</div>
-      <div class="searchInfo__item__chinese">{{item.wordSex}} {{item.chinese}}</div>
+      <div class="searchInfo__item__english" v-html="item.english" />
+      <div class="searchInfo__item__chinese">
+      <span v-html="item.wordSex" />
+      <span v-html="item.chinese" />
+      </div>
+      <!--
+      <div class="searchInfo__item__english">{{item.english}}</div>
+      <div class="searchInfo__item__chinese">
+      {{item.wordSex}}
+      {{item.chinese}}
+      </div>
+      -->
     </div>
     <div v-if="searchInfoList.length===0">第 {{dayPlan}} 天计划中无相关单词</div>
-
 </div>
 </template>
 
@@ -64,12 +73,15 @@ export default {
   &__item{
     display: flex;
     padding: .1rem .1rem;
-    border-bottom: .01rem solid $mostColor;
+    border-bottom: .01rem solid #ccc;
     &__english{
       width: 35%;
     }
     &__chinese{
       flex:1;
+    }
+    ::v-deep .otherColor{
+      color: $mostColor;
     }
   }
   &__item:last-of-type{

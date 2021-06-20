@@ -84,7 +84,13 @@ const useSerchInfoEffect = () => {
       if (totalList[i]?.english.startsWith(inputVal) ||
         totalList[i]?.chinese.match(inputVal) !== null
       ) {
-        itemList.searchInfoList.push(totalList[i])
+        const item = {}
+        item.english = totalList[i].english
+          .replace(inputVal, `<span class="otherColor">${inputVal}</span>`)
+        item.wordSex = totalList[i].wordSex
+        item.chinese = totalList[i].chinese
+          .replace(inputVal, `<span class="otherColor">${inputVal}</span>`)
+        itemList.searchInfoList.push(item)
       }
     }
   }
