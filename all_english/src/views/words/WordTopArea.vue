@@ -29,20 +29,22 @@
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-import { useCommonWordEffect } from '../../effects/commonEffect'
-import { post } from '../../utils/request'
+import { useCommonWordEffect, useGetWordsEffect } from '../../effects/commonEffect'
+// import { post } from '../../utils/request'
 import { useRouter } from 'vue-router'
-const useGetWordsEffect = () => {
-  const store = useStore()
-  const getWords = async (dayPlan) => {
-    const result = await post(`/words/${dayPlan}`)
-    if (result?.data) {
-      store.commit('changeTotalListLen', { totalListLen: result?.data.wordList.length })
-      store.commit('changeTotalList', { totalList: result?.data.wordList })
-    }
-  }
-  return { getWords }
-}
+// const useGetWordsEffect = () => {
+//   const store = useStore()
+//   const getWords = async (dayPlan) => {
+//     if (!localStorage.wordList || !JSON.parse(localStorage.wordList)?.totalList?.length) {
+//       const result = await post(`/words/${dayPlan}`)
+//       if (result?.data) {
+//         store.commit('changeTotalListLen', { totalListLen: result?.data.wordList.length })
+//         store.commit('changeTotalList', { totalList: result?.data.wordList })
+//       }
+//     }
+//   }
+//   return { getWords }
+// }
 const useGetTimeEffect = () => {
   const store = useStore()
   const changeTime = (lastTime) => {
@@ -71,11 +73,7 @@ export default {
   setup () {
     const { newAndOld, learnTime, lastTime, totalListLen, dayPlan } = useCommonWordEffect()
     const { getWords } = useGetWordsEffect()
-    if (localStorage.wordList) {
-      if (!JSON.parse(localStorage.wordList)?.totalList?.length) { getWords(dayPlan.value) }
-    } else {
-      getWords(dayPlan.value)
-    }
+    getWords(dayPlan.value)
     const { goHome } = useGoHomeEffect()
     const { changeTime } = useGetTimeEffect()
     const { isHideMask, hideMaskFn } = useHideMaskEffect()

@@ -198,7 +198,7 @@ export default {
   position: absolute;
   width: 100%;
   height: .3rem;
-  bottom: .28rem;
+  bottom: .2rem;
   /*left: 50%;
   transform: translate(-50%,0);*/
   &__pre{

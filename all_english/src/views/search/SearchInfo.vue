@@ -14,7 +14,7 @@
 
 <script>
 // import { reactive, toRefs } from 'vue'
-import { useCommonWordEffect } from '../../effects/commonEffect'
+import { useCommonWordEffect, useGetWordsEffect } from '../../effects/commonEffect'
 // const useInfoListEffect = () => {
 //   const itemList = reactive({
 //     searchInfoList: [
@@ -43,6 +43,8 @@ export default {
   setup (props, context) {
     // const { handleBackClick } = useCommonRouterEffect()
     const { dayPlan } = useCommonWordEffect()
+    const { getWords } = useGetWordsEffect()
+    getWords(dayPlan.value)
     // const { searchInfoList } = useInfoListEffect()
     // return { totalList, searchInfoList, handleBackClick }
     return { dayPlan }

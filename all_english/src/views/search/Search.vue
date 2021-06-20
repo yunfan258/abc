@@ -17,7 +17,10 @@
       <span class="history__title__clear" @click="()=>handleClearClick()">清除搜索历史</span>
     </div>
     <div class="history__content">
-      <span class="history__content__item" v-for="item in historyList" :key="item">{{item?.name}}</span>
+      <span class="history__content__item"
+        v-for="item in historyList"
+        :key="item"
+        @click="showSearchInfo(totalList,item?.name)">{{item?.name}}</span>
     </div>
   </div>
   <div class="hot" v-show="!isShowSearch">
@@ -25,7 +28,10 @@
       <span class="hot__title__content">热门搜索</span>
     </div>
     <div class="hot__content">
-      <span class="hot__content__item" v-for="item in hotItemList" :key="item">{{item?.name}}</span>
+      <span class="hot__content__item"
+        v-for="item in hotItemList"
+        :key="item"
+        @click="showSearchInfo(totalList,item?.name)">{{item?.name}}</span>
     </div>
   </div>
   <SearchInfo v-show="isShowSearch" :searchInfoList="searchInfoList"/>
@@ -74,7 +80,7 @@ const useSerchInfoEffect = () => {
   const showSearchInfo = (totalList, inputVal) => {
     isShowSearch.value = true
     itemList.searchInfoList = []
-    for (const i in totalList) {
+    for (let i = 0; i < totalList.length; i++) {
       if (totalList[i]?.english.startsWith(inputVal) ||
         totalList[i]?.chinese.match(inputVal) !== null
       ) {

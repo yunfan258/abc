@@ -1,7 +1,7 @@
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { computed } from 'vue'
-import { get } from '../utils/request'
+import { get, post } from '../utils/request'
 
 // 路由相关逻辑
 export const useCommonRouterEffect = () => {
@@ -21,6 +21,20 @@ export const useGetDataEffect = () => {
     }
   }
   return { newAndOld, getNearbyData }
+}
+// 获取单词数据相关逻辑
+export const useGetWordsEffect = () => {
+  const store = useStore()
+  const getWords = async (dayPlan) => {
+    if (!localStorage.wordList || !JSON.parse(localStorage.wordList)?.totalList?.length) {
+      const result = await post(`/words/${dayPlan}`)
+      if (result?.data) {
+        store.commit('changeTotalListLen', { totalListLen: result?.data.wordList.length })
+        store.commit('changeTotalList', { totalList: result?.data.wordList })
+      }
+    }
+  }
+  return { getWords }
 }
 
 // 单词数据相关逻辑
