@@ -81,7 +81,7 @@ export default {
       flex:1;
     }
     ::v-deep .otherColor{
-      color: $mostColor;
+      color: #ff0000;
     }
   }
   &__item:last-of-type{
