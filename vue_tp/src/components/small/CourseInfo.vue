@@ -5,9 +5,11 @@
       <ul class="left__main__content">
         <li
           class="left__main__item"
-          v-for="item in itemList1"
+          v-for="item in list1"
           :key="item"
-        >{{item?.name}}</li>
+        >
+          <a :href="item?.url">{{item?.text}}</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -16,7 +18,7 @@
 <script>
 export default {
   name: 'CourseInfo',
-  props: ['myName', 'itemList1', 'itemList2'],
+  props: ['myName', 'list1'],
   components: { },
   setup () {
     return { }
@@ -34,11 +36,15 @@ export default {
       @include titleStyle;
     }
     &__item{
-      width: 40%;
+      width: 80%;
+      margin-left: .2rem;
       list-style: circle;
       font-size: .14rem;
       padding: .1rem 0;
       border-bottom: .01rem solid $mostColor;
+      &>a:hover{
+        color: #5599dd;
+      }
     }
   }
 }

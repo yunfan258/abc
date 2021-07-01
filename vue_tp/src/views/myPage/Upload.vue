@@ -31,6 +31,7 @@ export default {
   name: 'Upload',
   props: [''],
   components: {},
+  emit: ['addPersonBlogs'],
   setup (props, { emit }) {
     const { username } = useCommonStoreEffect()
     return { emit, username, title1, textarea1 }

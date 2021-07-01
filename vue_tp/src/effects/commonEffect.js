@@ -13,10 +13,9 @@ export const useCommonRouterEffect = () => {
 export const useCommonStoreEffect = () => {
   const store = useStore()
   const vueTp = store.state.vueTp
-  const calculations = computed(() => {
-    const result = { username: '' }
-    result.username = vueTp.username
-    return result
+  const username = computed(() => {
+    const username = vueTp.username
+    return username
   })
-  return { calculations }
+  return { username }
 }

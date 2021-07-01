@@ -1,5 +1,6 @@
 <template>
   <div class="aside">
+    <!--
     <div class="aside__exams">
       <div class="aside__exams__title">{{asideTitle}}</div>
       <table class="aside__exams__table">
@@ -15,10 +16,13 @@
         </tr>
       </table>
     </div>
+    -->
     <div class="aside__platform">
-        <div class="aside__platform__title">英语学习网站</div>
+        <div class="aside__platform__title">学习网站</div>
         <div class="aside__platform__item" v-for="item in platformList" :key="item">
-          <div class="aside__item__title">{{item.title}}</div>
+          <div class="aside__item__title">
+            <a :href="item.content">{{item.title}}</a>
+          </div>
           <div class="aside__item__content">{{item.content}}</div>
         </div>
       </div>
@@ -35,19 +39,13 @@ const asideList = [
   { title: '2020年', content1: '真题试卷', content2: '真题试卷' }
 
 ]
-const platformList = [
-  { title: '中国教育在线', content: 'www.baidu.com' },
-  { title: '中国研究生信息招生网', content: 'www.baidu.com' },
-  { title: '中国教育在线', content: 'www.baidu.com' },
-  { title: '中国教育在线', content: 'www.baidu.com' },
-  { title: '中国教育在线', content: 'www.baidu.com' },
-  { title: '中国教育在线', content: 'www.baidu.com' }
-]
+
 export default {
   name: 'Aside',
+  props: ['platformList'],
   components: {},
   setup () {
-    return { asideTitle, asideList, platformList }
+    return { asideTitle, asideList }
   }
 }
 </script>
@@ -100,9 +98,13 @@ export default {
     &__item{
       .aside__item__title{
         padding: .1rem 0;
+        &:hover a{
+        color: #5599dd;
+      }
       }
       .aside__item__content{
         padding: 0 .1rem;
+        @include ellipsis;
       }
     }
   }

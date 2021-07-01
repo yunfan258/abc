@@ -1,33 +1,36 @@
 <template>
   <el-tabs class="tags" v-model="activeName">
-    <el-tab-pane class="itemList1" :label="name0?name0:'经验贴'" name="first">
-        <div class="item" v-for="item in itemList" :key="item">
-        <router-link :to="`/article/${item?.id}`">
-          <div class="item__title">#{{item.title}}#</div>
-          <div class="item__content">{{item.content}}</div>
-          <div class="item__bottom">
-            <span class="item__bottom__username">作者：{{item.username}}</span>
-            <span class="item__bottom__time">发表时间：{{item.time}}</span>
-          </div>
-        </router-link>
-
+    <template v-for="(items,index) in itemList" :key="index">
+      <el-tab-pane :label="labelList[index]" :name="index.toString()">
+        <div class="item" v-for="item in items" :key="item">
+          <router-link :to="`/article/${item?.id}`">
+            <div class="item__title">#{{item.title}}#</div>
+            <div class="item__content">{{item.content}}</div>
+            <div class="item__bottom">
+              <span class="item__bottom__username">作者：{{item.username}}</span>
+              <span class="item__bottom__time">发表时间：{{item.time}}</span>
+            </div>
+          </router-link>
         </div>
-    </el-tab-pane>
-    <el-tab-pane :label="name1?name1:'未开发'" name="second">未开发</el-tab-pane>
-    <el-tab-pane :label="name2?name2:'未开发'" name="third">未开发</el-tab-pane>
-    <el-tab-pane :label="name3?name3:'未开发'" name="fourth">未开发</el-tab-pane>
+        <div v-show="!items.length">现在还没有相关贴子哦！</div>
+      </el-tab-pane>
+    </template>
+
   </el-tabs>
 </template>
 
 <script>
 import { ref } from 'vue'
-const activeName = ref('first')
-
+const activeName = ref('0')
+// const labelList = ['经验贴', '点赞贴', '评论贴', '收藏贴']
 export default {
   name: 'Tags',
-  props: ['itemList', 'name0', 'name1', 'name2', 'name3'],
-  components: {},
-  setup () {
+  props: ['itemList', 'labelList'],
+  components: { },
+  setup (props) {
+    if (props.itemList.length <= activeName.value) {
+      activeName.value = (props.itemList.length - 1).toString()
+    }
     return { activeName }
   }
 }
@@ -36,33 +39,40 @@ export default {
 <style lang="scss" scoped>
 @import '../style/mixins.scss';
 @import '../style/variables.scss';
-.itemList1{
-  .item{
-    @include boxShadow;
-    padding: .1rem;
-    cursor: pointer;
-    &__title,&__content,&__time{
-      margin: .1rem 0;
-    }
-    &__title{
-      color: $mostColor;
-    }
-    &__content{
-      @include ellipsis;
-    }
-    &__bottom{
-      display: flex;
-      align-content: space-around;
-      &__username,&__time{
-        color: #999;
-        font-size: .14rem;
-        flex:1;
-      }
+.tags{
+  @include boxShadow;
+  padding: .2rem;
+  min-height: 5.4rem;
+}
+.item{
+  @include boxShadow;
+  padding: .1rem;
+  cursor: pointer;
+  &__title,&__content,&__time{
+    margin: .1rem 0;
+  }
+  &__title{
+    color: $mostColor;
+  }
+  &__content{
+    @include ellipsis;
+  }
+  &__bottom{
+    display: flex;
+    align-content: space-around;
+    &__username,&__time{
+      color: #999;
+      font-size: .14rem;
+      flex:1;
     }
   }
-  .item:hover{
-    padding: .1rem;
-    border: 0.01rem solid $mostColor;
-  }
+}
+.item:hover{
+  padding: .1rem;
+  background-color: #fff;
+  border-left: .01rem solid $mostColor;
+  border-right: .01rem solid $mostColor;
+  position: relative;
+
 }
 </style>

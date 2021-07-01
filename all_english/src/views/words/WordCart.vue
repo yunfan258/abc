@@ -1,10 +1,8 @@
 <template>
   <div class="playCardSuccess" v-show="currentId===totalList.length">打卡成功
     <div class="time">完成第{{dayPlan}}天计划</div>
-
     <div class="time">{{time}}</div>
     <!--<div class="playCardSuccess__detail">可截图分享哦</div>-->
-
   </div>
   <div class="openPamphlet" @click="handleCheck">打开生词本</div>
   <div class="addPamphlet" @click="()=>{changePamphletFn(currentId);showToast('加入成功')}">加入生词本</div>

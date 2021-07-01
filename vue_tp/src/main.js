@@ -9,5 +9,8 @@ import 'element-plus/lib/theme-chalk/index.css'
 
 // createApp(App).use(router).mount('#app')
 // createApp(App).use(router).use(ElementPlus).mount('#app')
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0)
+})
 
 createApp(App).use(store).use(router).use(ElementPlus).mount('#app')

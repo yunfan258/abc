@@ -1,7 +1,7 @@
 <template>
   <div class="personInfo">
       <div class="personInfo__info">
-        <div class="personInfo__info__title">个人信息</div>
+        <div class="personInfo__info__title">博主信息</div>
         <div class="personInfo__info__detail">
           <img class="personInfo__detail__img" src="../../assets/logo.png" alt="">
           <span class="personInfo__detail__username">{{infoObj.username}}</span>
@@ -34,16 +34,19 @@
         <div class="personInfo__interest__item">
         </div>
         <div class="personInfo__interest__item">
-          <span>英语{{infoObj.interest}}</span>
+          <span>英语：{{infoObj.english}}</span>
         </div>
         <div class="personInfo__interest__item">
-          <span>数学</span>
+          <span>数学：{{infoObj.math}}</span>
         </div>
         <div class="personInfo__interest__item">
-          <span>政治</span>
+          <span>政治：{{infoObj.politics}}</span>
         </div>
         <div class="personInfo__interest__item">
-          <span>专业课408</span>
+          <span>专业：{{infoObj.major}}</span>
+        </div>
+        <div class="personInfo__interest__item">
+          <span>其他：{{infoObj.interest}}</span>
         </div>
       </div>
   </div>
@@ -59,7 +62,7 @@ const usePersonEffect = () => {
   const getPersonInfo = async (articleId) => {
     const result = await post('/Article/personInfo',
       { id: articleId })
-    console.log(result?.data)
+    // console.log(result?.data)
 
     if (result?.data?.data && result?.data?.erron === '0') {
       data.infoObj = result?.data?.data[0]
@@ -68,23 +71,14 @@ const usePersonEffect = () => {
   const getBlogInfo = async (articleId) => {
     const result = await post('/Article/blogInfo',
       { id: articleId })
-    console.log(result?.data)
+    // console.log(result?.data)
 
     if (result?.data?.data && result?.data?.erron === '0') {
       data.blogInfo = result?.data?.data[0]
     }
   }
-  const addComment = async (articleId) => {
-    const result = await post('/Article/addComment',
-      { article_id: articleId })
-    console.log(result?.data)
-
-    if (result?.data?.data && result?.data?.erron === '0') {
-      data.infoObj = result?.data?.data[0]
-    }
-  }
   const { infoObj, blogInfo } = toRefs(data)
-  return { infoObj, blogInfo, getPersonInfo, getBlogInfo, addComment }
+  return { infoObj, blogInfo, getPersonInfo, getBlogInfo }
 }
 export default {
   name: 'PersonInfo',

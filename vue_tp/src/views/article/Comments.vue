@@ -1,6 +1,6 @@
 <template>
   <div class="comments">
-      <div class="upload">
+    <div class="upload">
       <div class="upload__input">
         <el-input
           type="textarea"
@@ -12,7 +12,7 @@
       <div class="upload__btn">
         <el-button type="info" plain
           @click="()=>{
-            addComment(calculations.username,articleId);
+            addComment(username,articleId,textarea1);
           }"
         >发表评论</el-button>
       </div>
@@ -26,6 +26,9 @@
             <span class="item__bottom__time">发表时间：{{item.time}}</span>
           </div>
       </div>
+      <div class="commentList__item" v-if="commentList.length===0">
+        没有评论信息哦！
+      </div>
 
     </div>
   </div>
@@ -34,33 +37,35 @@
 <script>
 import { post } from '../../utils/request'
 import { ref, reactive, toRefs } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useCommonStoreEffect } from '../../effects/commonEffect'
-// import Upload from './common/Upload.vue'
-// const commentList = [
-//   { content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur perferendis doloribus debitis pariatur adipisci nam, commodi, excepturi natus velit nulla inventore, voluptas similique alias mollitia ab optio omnis blanditiis animi?' },
-//   { content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur perferendis doloribus debitis pariatur adipisci nam, commodi, excepturi natus velit nulla inventore, voluptas similique alias mollitia ab optio omnis blanditiis animi?' },
-//   { content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur perferendis doloribus debitis pariatur adipisci nam, commodi, excepturi natus velit nulla inventore, voluptas similique alias mollitia ab optio omnis blanditiis animi?' },
-//   { content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur perferendis doloribus debitis pariatur adipisci nam, commodi, excepturi natus velit nulla inventore, voluptas similique alias mollitia ab optio omnis blanditiis animi?' }
-// ]
-
+import { ElMessage } from 'element-plus'
 const useCommentEffect = () => {
   const textarea1 = ref('')
-
   const data = reactive({ commentList: [], blogInfo: {} })
+  const router = useRouter()
   const getComment = async (articleId) => {
     const result = await post('/Article/getComment',
       { article_id: articleId })
-    console.log(result?.data)
+    // console.log(result?.data)
 
     if (result?.data?.data && result?.data?.erron === '0') {
       data.commentList = result?.data?.data
     }
   }
-  const addComment = async (username, articleId) => {
+  const addComment = async (username, articleId, content) => {
+    if (!username) {
+      ElMessage('抱歉，请先登录')
+      router.push({ name: 'Login' })
+      return null
+    }
     const result = await post('/Article/addComment',
-      { username, article_id: articleId, content: textarea1.value })
-    console.log(result?.data)
+      {
+        username,
+        article_id: articleId,
+        content: content || '这是一条空评论,没有表达任何看法'
+      })
+    ElMessage(result?.data?.msg)
     if (result?.data?.data && result?.data?.erron === '0') {
       getComment(articleId)
     }
@@ -73,12 +78,11 @@ export default {
   components: { },
   setup () {
     const route = useRoute()
-    const articleId = route.params.id
-    const { calculations } = useCommonStoreEffect()
+    const articleId = route.params?.id
+    const { username } = useCommonStoreEffect()
     const { textarea1, commentList, getComment, addComment } = useCommentEffect()
     getComment(articleId)
-    // addComment(calculations.value.username, articleId)
-    return { articleId, calculations, textarea1, commentList, getComment, addComment }
+    return { articleId, username, textarea1, commentList, getComment, addComment }
   }
 }
 </script>

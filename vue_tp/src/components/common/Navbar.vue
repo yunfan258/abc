@@ -1,19 +1,24 @@
 <template>
 <ul class="navbar">
+    <router-link to="/">
+      <li class="navbar__item iconfont">
+        &#xe60d;
+      </li>
+    </router-link>
     <router-link v-for="(item,index) in navbarList" :key="index" :to="item?.to">
       <li class="navbar__item">
         {{item?.name}}
       </li>
     </router-link>
     <div class="navbar__login">
-      <router-link to="/login" v-show="!calculations.username">
+      <router-link to="/login" v-if="!username">
         <li class="navbar__item">
           登录
         </li>
       </router-link>
-      <router-link to="/myPage" v-show="calculations.username">
+      <router-link to="/myPage" v-else>
         <li class="navbar__item">
-          {{calculations.username}}个人中心
+          <span>{{username}} 个人中心</span>
           <ul class="navbar__item__inner">
             <li @click="logout()">退出登录</li>
           </ul>
@@ -31,15 +36,15 @@ import { useRouter } from 'vue-router'
 
 // import { getUsername } from '../../utils/common'
 const navbarList = [
-  { to: '/', name: '首页' }
-  // { to: 'English', name: '英语' },
-  // { to: 'Math', name: '数学' },
-  // { to: 'Politics', name: '政治' },
-  // { to: 'Major', name: '专业课' }
+  // { to: '/', name: '首页' },
+  { to: '/English', name: '英语' },
+  { to: '/Math', name: '数学' },
+  { to: '/Politics', name: '政治' },
+  { to: '/Major', name: '专业课' }
 ]
 const navbarList2 = [
   { to: 'Login', name: '登录' },
-  { to: 'MyPage', name: '个人中心' }
+  { to: 'MyPage', name: '中心' }
 ]
 // const useNavbarEffect = () => {
 //   const activeIndex = ref('1')
@@ -61,9 +66,9 @@ export default {
   name: 'Navbar',
   components: {},
   setup () {
-    const { calculations } = useCommonStoreEffect()
+    const { username } = useCommonStoreEffect()
     const { logout } = useLogoutEffect()
-    return { navbarList, navbarList2, calculations, logout }
+    return { navbarList, navbarList2, username, logout }
   }
 }
 </script>

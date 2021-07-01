@@ -19,26 +19,26 @@ const routes = [
       }
     }
   },
-  // {
-  //   path: '/english',
-  //   name: 'English',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/english/English.vue')
-  // },
-  // {
-  //   path: '/math',
-  //   name: 'Math',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/math/Math.vue')
-  // },
-  // {
-  //   path: '/politics',
-  //   name: 'Politics',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/politics/Politics.vue')
-  // },
-  // {
-  //   path: '/major',
-  //   name: 'Major',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/major/Major.vue')
-  // },
+  {
+    path: '/english',
+    name: 'English',
+    component: () => import(/* webpackChunkName: "about" */ '../views/english/English.vue')
+  },
+  {
+    path: '/math',
+    name: 'Math',
+    component: () => import(/* webpackChunkName: "about" */ '../views/math/Math.vue')
+  },
+  {
+    path: '/politics',
+    name: 'Politics',
+    component: () => import(/* webpackChunkName: "about" */ '../views/politics/Politics.vue')
+  },
+  {
+    path: '/major',
+    name: 'Major',
+    component: () => import(/* webpackChunkName: "about" */ '../views/major/Major.vue')
+  },
   {
     path: '/myPage',
     name: 'MyPage',
@@ -57,6 +57,16 @@ const routes = [
     path: '/article/:id',
     name: 'Article',
     component: () => import(/* webpackChunkName: "about" */ '../views/article/Article.vue')
+  },
+  {
+    path: '/school',
+    name: 'School',
+    component: () => import(/* webpackChunkName: "school" */ '../views/school/School.vue')
+  },
+  {
+    path: '/personInfoDB',
+    name: 'PersonInfoDB',
+    component: () => import(/* webpackChunkName: "about" */ '../views/admin/PersonInfoDB.vue')
   }
 ]
 
