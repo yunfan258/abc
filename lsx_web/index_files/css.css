@@ -1,4 +1,45 @@
 @charset "utf-8";
+.top{
+	/* background:url(http://tiantong.ecnu.edu.cn/CN/images/top_bj.jpg) no-repeat;  */
+	/* background-color: rgba(58, 104, 231, 0.2); */
+height:101px;}
+.top .title{
+	display: flex;
+	position: absolute;
+}
+.top .title .chinese{
+	font-size: 28px;
+	letter-spacing: 4px;
+	font-weight: bold;
+	color: #013fb3;
+	padding-top: 20px;
+
+}
+.top .title .english{
+	font-size: 16px;
+}
+.top .title .logo{
+	padding-top: 10px;
+	width: 90px;
+	height: 92px;
+}
+.news tr td:nth-of-type(2) a{
+	/* display: inline-block; */
+	/* overflow: hidden;
+	 white-space: nowrap;
+  	text-overflow: ellipsis;  */
+}
+.yuanhui{
+	width: 64px;
+	height: 64px;
+}
+.tzgg_nr table tr td p:nth-of-type(1){
+	background-color: #013fb3;
+	opacity: 0.8;
+}
+.tzgg_nr table tr td p:nth-of-type(2){
+	background-color: #eee;
+}
 /* CSS Document */
 body{ margin:0px auto; padding:0px; font-size:13px; color:#666; font-family: "微软雅黑",'microsoft yahei'; }
 *{ margin:0px auto; padding:0px;}
@@ -10,17 +51,18 @@ a:hover{color:#ff3300; text-decoration: none;}
 .bt{ height:29px; line-height:29px; background:url(http://tiantong.ecnu.edu.cn/CN/images/bt_bj.jpg) repeat-x; }
 .bt2{ height:33px; border-bottom:1px solid #d8d8d8;}
 .zi1{ float:left; font-size:14px; font-weight:bold; color:#fff; padding-left:13px; }
-.zi2{ float:left; font-size:14px; font-weight:bold; color:#0076c2; padding-left:13px;}
+.zi2{ float:left; font-size:14px; font-weight:bold; color:#013fb3; padding-left:13px;}
 
-.GG1{ float:left; font-size:14px; font-weight:bold; color:#fff; padding-left:13px; background-color: #00a5e7; margin-left: 10px; padding-right: 10px;}
-.GG2{ float:left; font-size:14px; font-weight:bold; color:#0076c2; padding-left:13px;}
+.GG1{ float:left; font-size:14px; font-weight:bold; color:#fff; padding-left:13px; background-color: #013fb3; margin-left: 10px; padding-right: 10px;}
+.GG2{ float:left; font-size:14px; font-weight:bold; color:#013fb3; padding-left:13px;}
 
-.gd{ float:right; color:#03598a; padding-right:10px; }
-.gd a{font-size:12px; color:#03598a;}
+.gd{ float:right; color:#013fb3; padding-right:10px; }
+.gd a{font-size:12px; color:#013fb3;}
 .gd a:hover{color:#ff6600;}
 
 #wary{ width:1002px; margin:0px auto;background-color:#fff; padding:0px;}
-.top{ background:url(http://tiantong.ecnu.edu.cn/CN/images/top_bj.jpg) no-repeat; height:101px;}
+
+
 .xlm{ padding-left:850px; padding-top:25px;}
 .xlm a{ margin:0px 8px;}
 .ss{ height:20px; margin-top:15px; background:url(http://tiantong.ecnu.edu.cn/CN/images/ss_kuang.jpg)no-repeat; margin-left:820px;}
@@ -45,16 +87,14 @@ a:hover{color:#ff3300; text-decoration: none;}
 
 
 /*友情链接主要样式*/
-.subNavBox{width:200px;background-color:#00a5e7;}
+.subNavBox{width:200px;background-color:#013fb3;}
 .subNav{ position:relative; cursor:pointer;font-weight:bold;font-size:14px;color:#fff;line-height:28px;padding-left:10px;
-	/* background:url(http://tiantong.ecnu.edu.cn/CN/images/jiantou1.jpg) no-repeat;background-position:95% 50%*/
 }
 .subNav:hover{color:#fff000;}
 .currentDd{color:#fff;}
-/* .currentDt{background-image:url(http://tiantong.ecnu.edu.cn/CN/images/jiantou.jpg);} */
-.navContent{position: absolute; margin-top:-168px; display: block;background-color:#00a5e7;}
+.navContent{position: absolute; margin-top:-168px; display: block;background-color:#013fb3;}
 .navContent li a{display:block;width:200px;height:28px;text-align:center;font-size:12px;line-height:28px;color:#fff;}
-.navContent li a:hover{color:#fff;background-color:#277fc2}
+.navContent li a:hover{color:#fff;background-color:#013fb3}
 
 
 /*---------------------------课题组简介-------------------------------*/

@@ -12,7 +12,7 @@ a:hover{color:#ff3300; text-decoration: none;}
 .zi1{ float:left; font-size:14px; font-weight:bold; color:#fff; padding-left:13px; }
 .zi2{ float:left; font-size:14px; font-weight:bold; color:#0076c2; padding-left:13px;}
 
-.GG1{ float:left; font-size:14px; font-weight:bold; color:#fff; padding-left:13px; background-color: #00a5e7; margin-left: 10px; padding-right: 10px;}
+.GG1{ float:left; font-size:14px; font-weight:bold; color:#fff; padding-left:13px; background-color: #013fb3; margin-left: 10px; padding-right: 10px;}
 .GG2{ float:left; font-size:14px; font-weight:bold; color:#0076c2; padding-left:13px;}
 
 .gd{ float:right; color:#03598a; padding-right:10px; }
@@ -20,7 +20,9 @@ a:hover{color:#ff3300; text-decoration: none;}
 .gd a:hover{color:#ff6600;}
 
 #wary{ width:1002px; margin:0px auto;background-color:#fff; padding:0px;}
-.top{ background:url(http://tiantong.ecnu.edu.cn/CN/images/top_bj.jpg) no-repeat; height:101px;}
+.top{
+	/* background:url(http://tiantong.ecnu.edu.cn/CN/images/top_bj.jpg) no-repeat; */
+	 height:101px;}
 .xlm{ padding-left:850px; padding-top:25px;}
 .xlm a{ margin:0px 8px;}
 .ss{ height:20px; margin-top:15px; background:url(http://tiantong.ecnu.edu.cn/CN/images/ss_kuang.jpg)no-repeat; margin-left:820px;}
@@ -45,24 +47,24 @@ a:hover{color:#ff3300; text-decoration: none;}
 
 
 /*友情链接主要样式*/
-.subNavBox{width:200px;background-color:#00a5e7;}
+.subNavBox{width:200px;background-color:#013fb3;}
 .subNav{ position:relative; cursor:pointer;font-weight:bold;font-size:14px;color:#fff;line-height:28px;padding-left:10px;
 	/* background:url(http://tiantong.ecnu.edu.cn/CN/images/jiantou1.jpg) no-repeat;background-position:95% 50% */
 }
 .subNav:hover{color:#fff000;}
 .currentDd{color:#fff;}
 /* .currentDt{background-image:url(http://tiantong.ecnu.edu.cn/CN/images/jiantou.jpg);} */
-.navContent{position: absolute; margin-top:-168px; display: block;background-color:#00a5e7;}
+.navContent{position: absolute; margin-top:-168px; display: block;background-color:#013fb3;}
 .navContent li a{display:block;width:200px;height:28px;text-align:center;font-size:12px;line-height:28px;color:#fff;}
 .navContent li a:hover{color:#fff;background-color:#277fc2}
 
 
 /*---------------------------课题组简介-------------------------------*/
-.jj_nr a{border-bottom: 1px dashed #00a5e7; text-decoration: none; color: #00a5e7; font-size:14px;}
+.jj_nr a{border-bottom: 1px dashed #013fb3; text-decoration: none; color: #013fb3; font-size:14px;}
 .jj_nr a:link {
-border-bottom: 1px dashed #00a5e7;
+border-bottom: 1px dashed #013fb3;
 text-decoration: none;
-color: #00a5e7;
+color: #013fb3;
 font-size: 14px;}
 
 
@@ -72,11 +74,11 @@ font-size: 14px;}
 .ny_right{ width:730px;}
 
 .menu{ background-color:#f3f3f3;}
-.menu_bt{ background-color:#00a5e7; height:30px; text-align:center; line-height:30px; font-size:14px; font-weight:bold; color:#FFFFFF;}
+.menu_bt{ background-color:#013fb3; height:30px; text-align:center; line-height:30px; font-size:14px; font-weight:bold; color:#FFFFFF;}
 .menu_nr{ padding:10px 0px 50% 0px;}
 
 .menu_nr ul li { width:180px; min-height:30px; padding:0px;  background: url(http://tiantong.ecnu.edu.cn/CN/images/tb2.jpg) 5px 9px no-repeat;}
-.menu_nr ul li a{ font-size:14px; font-weight:bold; display:block; border-bottom:1px solid #e7e7e7; padding:8px 0px; padding-left:30px; line-height:16px;  color:#00a5e7;}
+.menu_nr ul li a{ font-size:14px; font-weight:bold; display:block; border-bottom:1px solid #e7e7e7; padding:8px 0px; padding-left:30px; line-height:16px;  color:#013fb3;}
 /* .menu_nr ul li a:hover{background: url(http://tiantong.ecnu.edu.cn/CN/images/menu_a.jpg) no-repeat; color:#ff6600;} */
 .menu_nr ul li ul{ margin:0px 10px 10px 0px; padding:3px;}
 .menu_nr ul li ul li{display:block; min-height:30px; padding:0px;}
@@ -92,7 +94,7 @@ font-size: 14px;}
 }
 .menu_nr ul li ul li a:hover{ background: url(http://tiantong.ecnu.edu.cn/CN/images/sjcd_hover.jpg) no-repeat; color:#FFffff;}
 .dqwz{ background-color:#f5f5f5; border:1px dashed #cccccc; text-align:right; padding:5px 10px; margin-bottom:15px;}
-.ny_bt{ border-bottom:1px solid #dbdada; font-weight:bold; font-size:14px; color:#00a5e7;  padding-bottom:10px;}
+.ny_bt{ border-bottom:1px solid #dbdada; font-weight:bold; font-size:14px; color:#013fb3;  padding-bottom:10px;}
 .jj_nr{ padding:15px; line-height:24px;}
 .p{border-bottom:1px dashed #dbdada; padding-bottom:10px; margin-bottom:10px; font-weight:bold; text-align:center;}
 
