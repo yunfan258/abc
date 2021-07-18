@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-shadow: 2px 2px 2px #ccc;
+            color: pink;
+            font-size: 40px;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <script src="./main.js"></script> -->
+    <div id="app"></div>
+    <script>
+        // 模拟实现vue的响应式，数据改变，视图就更新
+        // 模拟new操作符，这个只是补充，用原版的new也可以
+        const New = (Fn, ...args) => {
+            if (typeof Fn !== 'function') { throw 'error' }
+            const newObj = Object.create(Fn.prototype)
+            const result = Fn.apply(newObj, args)
+            if (result instanceof Object) { return result }
+            return newObj
+        }
+        // 模拟Vue构造函数
+        function Vue(t) {
+            this.data = t
+        }
+        // 模拟Vue的挂载方法
+        Vue.prototype.mount = function (str) {
+            document.querySelector(str).innerHTML = this.data
+        }
+        const getTime = () => {
+            const addZero = num => num < 10 ? `0${num}` : `${num}`
+            const now = new Date()
+            return `${addZero(now.getHours())} :
+                    ${addZero(now.getMinutes())} :
+                    ${addZero(now.getSeconds())}`
+        }
+        // 创建一个vue实例
+        const vm = New(Vue, getTime())
+        // 模拟订阅者
+        const subscriber = () => {
+            vm.mount('#app') // 兼解析器
+        }
+        // 模拟观察者
+        const observer = (obj, key) => {
+            if (!obj || obj[key] === undefined) { return }
+            let value = obj[key]
+            // 设置成访问器属性
+            Object.defineProperty(obj, key, {
+                get: () => value,
+                set: newVal => {
+                    if (value !== newVal) {
+                        value = newVal
+                        subscriber()
+                    }
+                }
+            })
+        }
+        // 运行观察者
+        observer(vm, 'data')
+        // 运行订阅者
+        subscriber()
+        setInterval(() => { vm.data = getTime() }, 1000)
+    </script>
+</body>
+
+</html>
