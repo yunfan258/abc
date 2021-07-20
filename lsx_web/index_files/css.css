@@ -23,11 +23,8 @@ height:101px;}
 	width: 90px;
 	height: 92px;
 }
-.news tr td:nth-of-type(2) a{
-	/* display: inline-block; */
-	/* overflow: hidden;
-	 white-space: nowrap;
-  	text-overflow: ellipsis;  */
+#Top1_txtKey{
+	border: 1px solid #333;
 }
 .yuanhui{
 	width: 64px;
@@ -70,8 +67,12 @@ a:hover{color:#ff3300; text-decoration: none;}
 .content{ margin:10px auto; }
 .left{ width:788px; float:left;}
 .right{ width:204px; float:right;}
-.xwdt{}
-.xwdt_bt{height:34px; line-height:34px; background:url(http://tiantong.ecnu.edu.cn/CN/images/xwdt_bt.jpg) no-repeat;}
+.xwdt_bt{
+	height:34px; line-height:34px;
+	border-bottom: 2px solid #3366cc;
+	background: linear-gradient(90deg,#3366cc,30%,transparent);
+	/* background:url(http://tiantong.ecnu.edu.cn/CN/images/xwdt_bt.jpg) no-repeat; */
+}
 .xwdt_nr{ border:1px solid #c3e2f4; padding:18px 18px 15px 18px;}
 .xwdt_tu{ width:229px; float:left;}
 .xwdt_zi{ width:500px; float:right; line-height:31px;}
@@ -130,7 +131,9 @@ font-size: 14px;}
 	border-bottom:0px;
 	padding:0px; padding-left:30px;
 }
-.menu_nr ul li ul li a:hover{ background: url(http://tiantong.ecnu.edu.cn/CN/images/sjcd_hover.jpg) no-repeat; color:#FFffff;}
+.menu_nr ul li ul li a:hover{ 
+	/* background: url(http://tiantong.ecnu.edu.cn/CN/images/sjcd_hover.jpg) no-repeat;  */
+	color:#FFffff;}
 .dqwz{ background-color:#f5f5f5; border:1px dashed #cccccc; text-align:right; padding:5px 10px; margin-bottom:15px;}
 .ny_bt{ border-bottom:1px solid #dbdada; font-weight:bold; font-size:14px; color:#00a5e7;  padding-bottom:10px;}
 .jj_nr{ padding:15px; line-height:24px;}
@@ -151,79 +154,4 @@ font-size: 14px;}
 #focus .btn span.on {background:#ffffff;}
 
 
-/*************************************导航菜单***************************************
-.nav{ width:1002px; margin:0px auto; height:35px;line-height:35px; padding:0px 15px; background:url(http://tiantong.ecnu.edu.cn/CN/images/nav_bj.jpg) no-repeat;}
-.nav ul li{ width:98px; float:left;color:#ffffff;height:35px; }
-.nav ul li img{ width:2px; float:left;}
-.nav ul li a{color:#666; width:96px; float:left; font-size:14px; text-align:center; display:block; font-weight:bold; }
-.nav ul li a:hover{color:#fff; background:url(http://tiantong.ecnu.edu.cn/CN/images/nav_hover.jpg) 8px 0px no-repeat;}
-*/
 
-
-.nav{ width:1002px; margin:0px auto; height:35px;line-height:35px; padding:0px 15px; background:url(http://tiantong.ecnu.edu.cn/CN/images/nav_bj.jpg) no-repeat;}
-.nav ul li 
-{
-	float:left;
-	width:98px;
-	height:35px;
-	position:relative;
-	text-align:center; color:#ffffff;
-	
-}
-.nav ul li img{ width:2px; float:left;}
-.nav ul li a 
-{
-	display:block;
-	float:left;
-	text-align:center;
-    font-weight: bold;
-	width:96px; color:#666; font-size:14px;
-}
-
-.nav ul li a:hover 
-{
-	color:#fff; background:url(http://tiantong.ecnu.edu.cn/CN/images/nav_hover.jpg) 8px 0px no-repeat;
-}
-.nav ul li dl 
-{
-	position:absolute;
-	left:0;
-	top:35px;
-	width:120px;
-	display:none;
-	z-index:20000;
-}
-.nav ul li dl dd 
-{
-	height:35px;z-index:20000;
-}
-.nav ul li dl dd a 
-{
-	display:block;
-	height:35px;
-	line-height:35px;
-	text-align:center;
-	color:#000;
-	font-size:12px;
-	font-family:"宋体";
-	background:#cfe0ef;
-	width:120px;
-    
-	z-index:20000;
-    font-weight: bold;
-	filter:alpha(opacity=70); /*IE滤镜，透明度50%*/
-    moz-opacity:0.7; /*Firefox私有，透明度50%*/
-    opacity:0.7;/*其他，透明度50%*/
-    border-bottom: 1px solid #bdd3e7;
-    
-}
-.nav ul li dl dd a:hover
-{
- color:#ffffff;
- background:#96bee2;
-
-}
-.click 
-{
-	margin-top:200px;
-}
