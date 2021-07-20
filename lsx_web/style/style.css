@@ -55,7 +55,7 @@ height:101px;}
 .nav ul li:hover{
 	background-color: #3366cc;
 }
-.nav{ width:1002px; margin:0px auto; height:35px;line-height:35px; padding:0px 15px; background:url(http://tiantong.ecnu.edu.cn/CN/images/nav_bj.jpg) no-repeat;}
+.nav{ width:1002px; margin:0px auto; height:35px;line-height:35px;background:url(http://tiantong.ecnu.edu.cn/CN/images/nav_bj.jpg) no-repeat;}
 .nav ul li 
 {
 	float:left;
@@ -63,7 +63,12 @@ height:101px;}
 	height:35px;
 	position:relative;
 	text-align:center; color:#ffffff;
+	border-right: 1px solid #ccc;
+
 	
+}
+.nav ul li:last-of-type{
+	border: none;
 }
 .nav ul li img{ width:2px; float:left;}
 .nav ul li a 
@@ -119,6 +124,14 @@ height:101px;}
  background:#96bee2;
 
 }
+.nav ul li:nth-last-of-type(3){
+	width: 200px;
+
+}
+.nav ul li:nth-last-of-type(3)>a{
+	width: 200px;
+}
+
 .click 
 {
 	margin-top:200px;
