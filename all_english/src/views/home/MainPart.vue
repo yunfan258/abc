@@ -121,6 +121,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/mixins.scss';
 @import '../../style/variables.scss';
+  a,a:visited{
+    color: #666;
+  }
 .top{
   position: fixed;
   top: 0;
@@ -186,6 +189,7 @@ export default {
 .info{
   position: relative;
   margin: .2rem auto;
+
   &__days{
     &__num{
       font-size: .4rem;

@@ -100,12 +100,16 @@ export default {
   }
   &__content{
     display: inline-block;
-    width: 2.8rem;
+    // width: 2.8rem;
+    margin: 0 auto;
     text-align: center;
   }
   &__event{
     position: relative;
     top: -.04rem;
+    right: .18rem;
+    width: .3rem;
+
     &__item{
       display: inline-block;
       width: .06rem;

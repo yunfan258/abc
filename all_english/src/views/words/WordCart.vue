@@ -99,14 +99,17 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  max-height: 4.2rem;
+  max-height: 4.4rem;
   overflow-y: scroll;
   z-index: 2;
   background-color: $bgColor;
   &__header{
-    padding: .1rem .18rem 0 .18rem;
+    padding: .1rem .18rem 0.1rem .18rem;
     text-align: center;
     display: flex;
+    background-color: #f1f1f1;
+    line-height: .2rem;
+
     &>span{
       flex: 1;
     }
@@ -115,10 +118,12 @@ export default {
     }
     &__item{
       font-size: .2rem;
-      color: $mostColor;
+      // color: $mostColor;
+      color: #aaa;
 
       & span{
         font-size: .2rem;
+        line-height: .2rem;
         padding: 0 .16rem 0 0;
       }
     }

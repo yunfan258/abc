@@ -2,6 +2,8 @@
 <div class="title">
     <span class="title__icon iconfont" @click="()=>handleBackClick()">&#xe677;</span>
     <span class="title__content">{{whichName}}</span>
+    <span class="title__right"></span>
+
 </div>
 </template>
 
@@ -42,8 +44,13 @@ export default {
   }
   &__content{
     display: inline-block;
-    width: 2.8rem;
+    // width: 2.8rem;
+    margin: 0 auto;
     text-align: center;
+  }
+  &__right{
+    width: .2rem;
+
   }
 }
 
