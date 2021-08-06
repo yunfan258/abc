@@ -12,9 +12,9 @@
     </div>
     <Alinks />
     <div class="btns">
-      <button class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</button>
-      <button class="btns__show" @click="showChineseFn()" v-if="!showChinese" v-show="currentId!=totalList.length">查看意思</button>
-      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese">下一个</button>
+      <div class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</div>
+      <div class="btns__show" @click="showChineseFn()" v-if="!showChinese" v-show="currentId!=totalList.length">查看意思</div>
+      <div class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese">下一个</div>
     </div>
   </div>
   <WordCart />
@@ -140,6 +140,7 @@ export default {
   padding: 0.1rem;
   margin: 0.1rem auto;
   border-radius: 0.14rem;
+  text-align: center;
   border: none;
   background: none;
   outline: none;

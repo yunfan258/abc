@@ -9,9 +9,16 @@
   <div class="opacity__mask" v-if="showCart" @click="handleCheck"></div>
   <div class="wordList" v-if="showCart">
     <div class="wordList__header" v-show="pamphlet.length!==0">
-      <span class="wordList__header__item"><span class="iconfont" @click="handleChangePage(-1)" v-show="!(page==1)">&#xe615;</span><span class="iconfont" @click="handleChangePage(1)" v-show="!(page*7>=pamphlet.length)">&#xe636;</span></span>
+      <span class="wordList__header__item">
+        <span class="iconfont" @click="handleChangePage(-1)" v-show="!(page==1)">&#xe615;</span>
+        <!-- <span class="iconfont" @click="handleChangePage(1)" v-show="!(page*7>=pamphlet.length)">&#xe636;</span> -->
+      </span>
       <span class="wordList__header__item">生词本</span>
-      <span class="iconfont wordList__header__item" @click="handleCheck">&#xe60f;</span>
+      <!-- <span class="iconfont wordList__header__item" @click="handleCheck">&#xe60f;</span> -->
+      <span class="wordList__header__item">
+        <!-- <span class="iconfont" @click="handleChangePage(-1)" v-show="!(page==1)">&#xe615;</span> -->
+        <span class="iconfont" @click="handleChangePage(1)" v-show="!(page*7>=pamphlet.length)">&#xe636;</span>
+      </span>
     </div>
     <div class="wordList__itemList">
       <div class="wordList__itemList__item" v-for="item in pamphlet.slice((page-1)*7,page*7)" :key="item">
@@ -124,7 +131,7 @@ export default {
       & span{
         font-size: .2rem;
         line-height: .2rem;
-        padding: 0 .16rem 0 0;
+        // padding: 0 .16rem 0 0;
       }
     }
     &__item:last-of-type{

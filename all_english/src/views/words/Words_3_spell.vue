@@ -23,9 +23,9 @@
     </div>
     <Alinks />
     <div class="btns">
-      <button class="btns__pre" @click="()=>{changeWord('up',currentId,totalListLen);changeCueFn()}">上一个</button>
-      <button class="btns__show" @click="()=>{showChineseFn();checkIsRightFn(totalList[currentId]?.english)}" v-if="!showChinese" v-show="currentId!==totalList.length">确定</button>
-      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen);changeCueFn()}" v-if="showChinese" v-show="currentId!==totalList.length">下一个</button>
+      <div class="btns__pre" @click="()=>{changeWord('up',currentId,totalListLen);changeCueFn()}">上一个</div>
+      <div class="btns__show" @click="()=>{showChineseFn();checkIsRightFn(totalList[currentId]?.english)}" v-if="!showChinese" v-show="currentId!==totalList.length">确定</div>
+      <div class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen);changeCueFn()}" v-if="showChinese" v-show="currentId!==totalList.length">下一个</div>
     </div>
   </div>
   <WordCart />
@@ -192,6 +192,8 @@ export default {
   width: .76rem;
   border: .01rem solid #333;
   opacity: .8;
+  text-align: center;
+
 }
 
 .btns {

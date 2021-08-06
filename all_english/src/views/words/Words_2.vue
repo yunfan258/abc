@@ -3,8 +3,10 @@
     <WordTopArea />
     <div class="main">
       <div class="main__area">
-        <div class="main__area__english"  v-if="showChinese">{{ totalList[currentId]?.english }}</div>
-        <div class="main__area__loading" v-if="!showChinese" @click="showChineseFn()"></div>
+        <div class="main__random">
+          <div class="main__area__english"  v-if="showChinese">{{ totalList[currentId]?.english }}</div>
+          <div class="main__area__loading" v-if="!showChinese" @click="showChineseFn()"></div>
+        </div>
         <div class="line"></div>
 
         <div class="main__area__chinese">
@@ -14,9 +16,9 @@
     </div>
     <Alinks />
     <div class="btns">
-      <button class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</button>
-      <button class="btns__show" @click="showChineseFn()" v-if="!showChinese" v-show="currentId!==totalList.length">查看英文</button>
-      <button class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese" v-show="currentId!==totalList.length">下一个</button>
+      <div class="btns__pre" @click="changeWord('up',currentId,totalListLen)">上一个</div>
+      <div class="btns__show" @click="showChineseFn()" v-if="!showChinese" v-show="currentId!==totalList.length">查看英文</div>
+      <div class="btns__next" @click="()=>{changeWord('down',currentId,totalListLen)}" v-if="showChinese" v-show="currentId!==totalList.length">下一个</div>
     </div>
   </div>
   <WordCart />
@@ -107,12 +109,12 @@ export default {
 .main {
   font-size: 0.16rem;
   &__area{
-    &__english{
-      text-align: center;
-      font-size: 0.3rem;
-      margin: 0.2rem;
-      padding: 0 0 0.5rem 0;
-    }
+    // &__english{
+    //   text-align: center;
+    //   font-size: 0.3rem;
+    //   margin: 0.2rem;
+    //   padding: 0 0 0.5rem 0;
+    // }
     .line{
       margin: 0.2rem;
       border-bottom: 1px solid #41e4c9;
@@ -125,14 +127,38 @@ export default {
       background-color: #eee;
       animation: downAndScale 0.1s ease-in;
     }
-    &__loading{
-      position: relative;
+    // &__loading{
+    //   // position: relative;
+    //   width: 0.16rem;
+    //   height: 0.16rem;
+    //   border: 0.06rem solid #ccc;
+    //   border-radius: 50%;
+    //   border-top: 0.06rem solid #41e4c9;
+    //   margin: 0.71rem auto;
+    //   animation: spin 5s linear infinite;
+    // }
+  }
+  &__random{
+    height: .5rem;
+    margin: .4rem auto;
+    padding: .2rem 0 0 0;
+
+    .main__area__english{
+      text-align: center;
+      font-size: 0.3rem;
+      // margin: 0.2rem;
+      // padding: 0 0 0.5rem 0;
+    }
+    .main__area__loading{
+      // position: relative;
       width: 0.16rem;
       height: 0.16rem;
       border: 0.06rem solid #ccc;
       border-radius: 50%;
       border-top: 0.06rem solid #41e4c9;
-      margin: 0.71rem auto;
+      margin: 0.1rem auto;
+
+      // margin: 0.71rem auto;
       animation: spin 5s linear infinite;
     }
   }
@@ -147,6 +173,8 @@ export default {
   border: none;
   background: none;
   outline: none;
+  text-align: center;
+
   color: $bgColor;
 }
 
