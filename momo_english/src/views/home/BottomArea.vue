@@ -7,7 +7,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'BottomArea'
 }
@@ -23,6 +22,7 @@ export default {
     margin: 0 .1rem;
     padding: .1rem 0;
     border-radius: .06rem;
+    font-size: .16rem;
 }
 .bottom{
     width: 100%;
@@ -30,6 +30,7 @@ export default {
     // justify-content: space-around;
     position: absolute;
     bottom: .6rem;
+    height: .4rem;
     &__btn1{
         @extend %btn-basic;
         background-color: #76a8a2;

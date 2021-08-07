@@ -2,20 +2,20 @@
 <div class="title">
     <span class="title__icon iconfont" @click="()=>handleBackClick()">&#xe677;</span>
     <span class="title__content">{{whichName}}</span>
-    <span class="title__right"></span>
+    <span class="title__right">{{text||''}}</span>
 
 </div>
 </template>
 
 <script>
-import { useCommonRouterEffect } from '../effects/commonEffect'
+// import { useCommonRouterEffect } from '../effects/commonEffect'
 export default {
   name: 'Course',
-  props: ['whichName'],
+  props: ['whichName', 'text'],
   components: { },
   setup () {
-    const { handleBackClick } = useCommonRouterEffect()
-    return { handleBackClick }
+    // const { handleBackClick } = useCommonRouterEffect()
+    // return { handleBackClick }
   }
 }
 </script>
@@ -33,12 +33,12 @@ export default {
   display: flex;
   padding: .12rem .18rem;
   line-height: .22rem;
-  background: $bgColor;
+  background: $content-bgColor;
   font-size: .16rem;
   color: $content-fontcolor;
   text-align: center;
   &__icon{
-    width: .2rem;
+    width: .4rem;
     font-size: .16rem;
     color: #B6B6B6;
   }
@@ -49,7 +49,8 @@ export default {
     text-align: center;
   }
   &__right{
-    width: .2rem;
+    width: .4rem;
+    font-size: .12rem;
 
   }
 }

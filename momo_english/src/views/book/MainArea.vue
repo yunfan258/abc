@@ -3,14 +3,14 @@
     <div class="content">
       <div class="content__item">
         <div class="content__item__icon ">
-          <span class="iconfont">&#xe602;</span>
+          <span class="iconfont">&#xe6e9;</span>
         </div>
         <span class="content__item__text">全部单词</span>
         <span class="content__item__text"></span>
       </div>
       <div class="content__item">
         <div class="content__item__icon ">
-          <span class="iconfont">&#xe602;</span>
+          <span class="iconfont">&#xe61d;</span>
         </div>
         <span class="content__item__text">2021硕士研究生英语（2）大纲</span>
         <span class="content__item__text"></span>
@@ -21,17 +21,21 @@
     </div>
     <div class="item" v-for="i in 20" :key="i">
       <div class="item__icon">
-        <span class="iconfont">&#xe602;</span>
+        <span class="">K</span>
       </div>
       <span class="item__text">大学英语考研词汇</span>
       <span class="item__text"></span>
     </div>
+    <Bottom />
   </div>
 </template>
 
 <script>
+import Bottom from '../../components/Bottom.vue'
+
 export default {
-  name: 'MainArea'
+  name: 'MainArea',
+  components: { Bottom }
 }
 </script>
 
@@ -91,7 +95,7 @@ export default {
     display: flex;
     background-color: #fff;
     padding: 0.1rem;
-    border-bottom: .01rem solid #ccc;
+    border-bottom: .01rem solid #f1f1f1;
     &__icon {
       width: 0.3rem;
       height: 0.3rem;

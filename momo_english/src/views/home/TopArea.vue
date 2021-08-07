@@ -35,6 +35,7 @@ export default {
 @import '../../style/mixins.scss';
 @import '../../style/variables.scss';
 .top{
+    // height: .8rem;
     &__english{
         display: flex;
         background:linear-gradient($linearColor1 10%,$linearColor2);

@@ -66,7 +66,7 @@ export default {
         font-size: .2rem;
       }
       &--active{
-        transform: scale(1.2,1.2);
+        // transform: scale(1.2,1.2);
 
         a{
           color: $mostColor;
