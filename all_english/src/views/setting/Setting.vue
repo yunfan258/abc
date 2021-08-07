@@ -6,9 +6,11 @@
   </div>
   <div class="setting">
     <div class="setting__item" v-for="item in setList" :key="item">
+      <a href="http://luofan18.gitee.io/abc/momo_english2">
       <span class="setting__item__icon iconfont" v-html="item.left" />
       <span class="setting__item__span">{{item.name}}</span>
       <div class="setting__item__right iconfont">&#xe622;</div>
+      </a>
     </div>
   </div>
 </div>
@@ -38,6 +40,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/variables.scss';
 @import '../../style/mixins.scss';
+a,a:visited{
+  color: #333;
+}
 .wrapper{
   @include wrapperStyle;
   bottom: 0;

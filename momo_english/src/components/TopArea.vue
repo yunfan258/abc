@@ -2,8 +2,9 @@
 <div class="title">
     <span class="title__icon iconfont" @click="()=>handleBackClick()">&#xe677;</span>
     <span class="title__content">{{whichName}}</span>
+    <a href="http://luofan18.gitee.io/abc/english2">
     <span class="title__right">{{text||''}}</span>
-
+    </a>
 </div>
 </template>
 
