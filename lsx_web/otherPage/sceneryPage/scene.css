@@ -1,0 +1,137 @@
+/* 台站风光，相关样式 */
+/* *{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+a{
+	text-decoration: none;
+} */
+nav {
+    width: 80%;
+    margin: 10px auto;
+    text-align: right;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    color: #666;
+}
+header {
+    margin-bottom: 10px;
+}
+
+header h3 {
+    color: rgb(233, 125, 23);
+    text-align: center;
+    margin: 10px 0;
+}
+
+header div {
+    text-align: center;
+    color: #999;
+}
+
+.img-list {
+    width: 70%;
+    padding-bottom: 30px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    flex-flow: row wrap;
+    border-bottom: 1px solid gray;
+}
+
+.img-item {
+    width: 33%;
+    height: 280px;
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.img-item .img-box {
+    display: block;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    text-align: center;
+}
+.img-item img:hover{
+    transform: scale(1.2);
+    transition: all 1s;
+}
+.img-item img {
+    /* width: 100%; */
+    height: 240px;
+}
+.img-item .item-name{
+    text-align: center;
+    line-height: 20px;
+}
+.photoDetail{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+}
+.photoDetail .img-title{
+    width: 100%;
+    text-align: center;
+    color: rgb(87, 107, 219);
+    /* margin-top: 20px; */
+}
+.photoDetail .item-name{
+    height: 30px;
+    line-height: 30px;
+}
+.photoDetail .img-title{
+    clear: both;
+}
+.photoDetail .img-detail{
+    border-bottom: 1px solid gray;
+    padding: 10px 0;
+    width: 100%;
+}
+.photoDetail .content{
+    /* float: right; */
+
+    /* width: 300px; */
+}
+.photoDetail .img-box{
+    float: left;
+    width: 340px;
+
+}
+.photoDetail .img-detail img{
+    /* float: left; */
+/* margin-right: ; */
+    width: 300px;
+}
+.download{
+    /* text-align: center; */
+    width: 80%;
+    margin: 30px auto;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+}
+.download a{
+    font-size: 14px;
+    color: #999;
+}
+body,html{
+    scroll-behavior: smooth;
+
+}
+#up{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    /* width: 20px;
+    height: 20px; */
+}
+#up img{
+    width: 80px;
+}
+@media screen and (max-width : 800px){
+    .img-list {
+        width: 100%;
+    }
+}

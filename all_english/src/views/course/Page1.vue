@@ -1,8 +1,10 @@
 <template>
   <div class="page">
     <div class="page__title">热销TOP</div>
+    <router-link class="nearby__item" :to="{name: 'BookDetail'}"
+      v-for="i in imgList" :key="i">
     <div class="page__item">
-      <img src="../../assets/home/saleBook1.png" class="page__item__img">
+      <img :src="i" class="page__item__img">
       <div class="page__item__text">
         <div class="item__title">22考研英语训练</div>
         <div class="item__detail">智能定制每日学习计划，还有七斤精美大礼包相送。Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad est nobis mollitia error dolorum, odit accusamus cum ratione inventore dolore!</div>
@@ -12,36 +14,20 @@
         </div>
       </div>
     </div>
-    <div class="page__item">
-      <img src="../../assets/home/saleBook2.png" class="page__item__img">
-      <div class="page__item__text">
-        <div class="item__title">22考研英语训练</div>
-        <div class="item__detail">智能定制每日学习计划，还有七斤精美大礼包相送。Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, deleniti?</div>
-        <div class="item__price">
-          <span class="item__price__new">&yen;599 </span>
-          <span class="item__price__old">&yen;1299</span>
-        </div>
-      </div>
-    </div>
-    <div class="page__item">
-      <img src="../../assets/home/saleBook3.png" class="page__item__img">
-      <div class="page__item__text">
-        <div class="item__title">22考研英语训练</div>
-        <div class="item__detail">智能定制每日学习计划，还有七斤精美大礼包相送。Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quod.</div>
-        <div class="item__price">
-          <span class="item__price__new">&yen;599 </span>
-          <span class="item__price__old">&yen;1299</span>
-        </div>
-      </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script>
+import img1 from '../../assets/home/saleBook1.png'
+import img2 from '../../assets/home/saleBook2.png'
+import img3 from '../../assets/home/saleBook3.png'
+
+const imgList = [img1, img2, img3]
 export default {
-  name: 'Page1',
+  name: 'Page',
   setup () {
-    return { }
+    return { imgList }
   }
 }
 </script>

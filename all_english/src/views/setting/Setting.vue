@@ -9,7 +9,7 @@
       <a href="http://luofan18.gitee.io/abc/momo_english2">
       <span class="setting__item__icon iconfont" v-html="item.left" />
       <span class="setting__item__span">{{item.name}}</span>
-      <div class="setting__item__right iconfont">&#xe622;</div>
+      <span class="setting__item__right iconfont">&#xe622;</span>
       </a>
     </div>
   </div>
@@ -69,6 +69,10 @@ a,a:visited{
 }
 .setting{
   margin: .12rem .12rem 0 .12rem;
+  a{
+    width: 100%;
+    display: flex;
+  }
   &__item{
     position: relative;
     display: flex;
@@ -84,15 +88,20 @@ a,a:visited{
     &__span{
       color: $medium-fontColor;
       line-height: .2rem;
-      margin: 0 0 0 .1rem;
+      // margin: 0 0 0 .1rem;
+      flex: 1;
     }
     &__right{
-      position: absolute;
-      top: .12rem;
-      right: .16rem;
-      outline: none;
-      background: none;
-      border: none;
+      // position: absolute;
+      // top: .12rem;
+      // right: .16rem;
+      // display: inline-block;
+      // margin-left: auto;
+      // margin-right: 0;
+      flex: 1;
+      // outline: none;
+      // background: none;
+      // border: none;
       text-align: right;
       &::placeholder{
         color: #ccc;

@@ -64,4 +64,7 @@ export default {
     }
   }
 }
+::v-deep .bottom{
+    height: 1rem;
+}
 </style>
