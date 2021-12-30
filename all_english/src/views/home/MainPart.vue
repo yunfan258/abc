@@ -40,7 +40,7 @@
     <span class="line__texts">
       <span class="line__texts__text"> 距离 </span>
       <span class="line__texts__text">考研考试 </span>
-      <span class="line__texts__text">还有 {{Math.floor((new Date('2021-12-24')-new Date())/1000/3600/24)}} 天 </span>
+      <span class="line__texts__text">还有 {{Math.floor((new Date('2022-12-25')-new Date())/1000/3600/24)}} 天 </span>
     </span>
     <span class="line__right-icon iconfont">&#xe622;</span>
   </div>

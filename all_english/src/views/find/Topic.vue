@@ -5,9 +5,9 @@
     class="submit__input"
     placeholder="请输入你想发布的话题"
     v-model="inputVal"
-    @keyup.enter="addItem('方方',inputVal)"
+    @keyup.enter="addItem(myList, '方方',inputVal)"
     >
-    <span class="submit__btn" @click="addItem('方方',inputVal)">发布</span>
+    <span class="submit__btn" @click="addItem(myList, '方方',inputVal)">发布</span>
   </div>
   <Toast :message="toastMessage" v-show="isShowToast"/>
   <div class="topic">
@@ -24,8 +24,8 @@
   <div class="message" v-show="isShow">
     <div class="message__content">是否确定要删除？</div>
     <div class="message__btns">
-      <span @click="confirm(true)">确定</span>
-      <span @click="confirm(false)">取消</span>
+      <span @click="confirm(myList, true)">确定</span>
+      <span @click="confirm(myList, false)">取消</span>
     </div>
   </div>
   <Gap />
@@ -63,8 +63,8 @@ const useConfirmEffect = (showMask, delItem) => {
     isShow.value = true
     index.value = val
   }
-  const confirm = (bool) => {
-    if (bool === true) delItem(index.value)
+  const confirm = (myList, bool) => {
+    if (bool === true) delItem(myList, index.value)
     isShow.value = false
     showMask.value = false
   }
@@ -73,21 +73,23 @@ const useConfirmEffect = (showMask, delItem) => {
 const useSubmitEffect = (showToast) => {
   const store = useStore()
   const inputVal = ref('')
-  const myList = reactive([])
-  const addItem = (nameVal, textVal) => {
+  // const myList = reactive([])
+  // const { myList } = useMyListEffect()
+  // const myList = myList.value
+  const addItem = (myList, nameVal, textVal) => {
     if (textVal !== '') {
       myList.unshift({ userName: nameVal, text: textVal })
       store.commit('changeMyList', { myList })
       showToast('发表成功')
     } else showToast('内容不能为空，发表失败！')
   }
-  const delItem = (index) => {
+  const delItem = (myList, index) => {
     myList.splice(index, 1)
     store.commit('changeMyList', { myList })
     showToast('删除成功')
   }
 
-  return { inputVal, myList, addItem, delItem }
+  return { inputVal, addItem, delItem }
 }
 const useGetTopicEffect = () => {
   const list = reactive({ topicList: [] })

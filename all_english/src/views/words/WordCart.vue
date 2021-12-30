@@ -1,5 +1,6 @@
 <template>
-  <div class="playCardSuccess" v-show="currentId===totalList.length">打卡成功
+  <div class="playCardSuccess"
+    v-show="currentId!==0 && currentId===totalList.length">打卡成功
     <div class="time">完成第{{dayPlan}}天计划</div>
     <div class="time">{{time}}</div>
     <!--<div class="playCardSuccess__detail">可截图分享哦</div>-->

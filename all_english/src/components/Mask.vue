@@ -21,7 +21,7 @@ export const useShowMaskEffect = () => {
 }
 
 const useTimeEffect = () => {
-  const endTime = ref(new Date('2021-12-24')) // 开始时间
+  const endTime = ref(new Date('2022-12-25')) // 开始时间
   const startTime = ref(new Date()) // 结束时间
   const time = ref(startTime.value - endTime.value)
   const showTime = () => {
