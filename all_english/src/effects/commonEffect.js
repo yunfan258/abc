@@ -83,3 +83,12 @@ export const useCommonWordEffect = () => {
   })
   return { dayPlan, totalListLen, totalList, pamphlet, oldList, newList, currentId, newAndOld, learnTime, lastTime }
 }
+export const useMyListEffect = () => {
+  const store = useStore()
+  const wordList = store.state.wordList
+  const myList = computed(() => {
+    const myList = wordList.myList || []
+    return myList
+  })
+  return { myList }
+}

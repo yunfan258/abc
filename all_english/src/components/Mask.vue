@@ -26,17 +26,11 @@ const useTimeEffect = () => {
   const time = ref(startTime.value - endTime.value)
   const showTime = () => {
     startTime.value = new Date() // 结束时间
-
-    // const ms = (endTime.value - startTime.value) % 1000 // 毫秒数
-    // const second = Math.floor((endTime.value - startTime.value) / 1000) % 60 // 秒数
     const min = Math.floor((endTime.value - startTime.value) / 1000 / 60) % 60 // 分钟
     const hour = Math.floor((endTime.value - startTime.value) / 1000 / 60 / 60) % 24 // 小时
     const day = Math.floor((endTime.value - startTime.value) / 1000 / 60 / 60 / 24) // 天数
     time.value = day + '天 ' + hour + '时 ' + min + '分 '
   }
-  // setInterval(() => {
-  //   showTime()
-  // }, 1000)
   showTime()
   return { time, showTime }
 }

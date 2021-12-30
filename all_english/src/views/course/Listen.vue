@@ -1,12 +1,12 @@
 /* eslint-disable vue/no-parsing-error */
 <template>
-  <div class="comprehension">
-    <div class="comprehension__title">Listen to Yourself</div>
+  <div class="listen">
+    <div class="listen__title">Listen to Yourself</div>
     <router-link class="nearby__item" :to="{name: 'BookDetail'}"
       v-for="i in imgList" :key="i">
-    <div class="comprehension__item">
-      <img :src="i" class="comprehension__item__img">
-      <div class="comprehension__item__text">
+    <div class="listen__item">
+      <img :src="i" class="listen__item__img">
+      <div class="listen__item__text">
         <div class="item__title">22考研英语训练</div>
         <div class="item__detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad est nobis mollitia error dolorum, odit accusamus cum ratione inventore dolore!</div>
         <div class="item__price">
@@ -38,7 +38,7 @@ export default {
 @import '../../style/variables.scss';
 @import '../../style/mixins.scss';
 
-.comprehension{
+.listen{
   &__title{
     font-size: .2rem;
     color: #e9603d;
@@ -49,7 +49,7 @@ export default {
   &__item{
     clear: both;
     font-size: .2rem;
-    margin: .1rem 0;
+    margin: .16rem 0;
     &__img{
       width: 100%;
     }
@@ -57,15 +57,16 @@ export default {
       .item__title{
         font-weight: bold;
         line-height: .2rem;
+        margin: .06rem;
 
       }
       .item__detail{
         position: relative;
-        height: .8rem;
+        // height: .8rem;
         overflow: hidden;
         color: #aaa;
         font-size: .16rem;
-        margin: .1rem 0;
+        // margin: .06rem 0;
       }
       .item__price{
         text-align: right;

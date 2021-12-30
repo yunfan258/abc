@@ -11,12 +11,10 @@
     <div class="wordList__header" v-show="pamphlet.length!==0">
       <span class="wordList__header__item">
         <span class="iconfont" @click="handleChangePage(-1)" v-show="!(page==1)">&#xe615;</span>
-        <!-- <span class="iconfont" @click="handleChangePage(1)" v-show="!(page*7>=pamphlet.length)">&#xe636;</span> -->
       </span>
       <span class="wordList__header__item">生词本</span>
-      <!-- <span class="iconfont wordList__header__item" @click="handleCheck">&#xe60f;</span> -->
+
       <span class="wordList__header__item">
-        <!-- <span class="iconfont" @click="handleChangePage(-1)" v-show="!(page==1)">&#xe615;</span> -->
         <span class="iconfont" @click="handleChangePage(1)" v-show="!(page*7>=pamphlet.length)">&#xe636;</span>
       </span>
     </div>

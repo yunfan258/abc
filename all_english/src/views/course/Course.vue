@@ -10,8 +10,8 @@
         <Page />
       </el-tab-pane>
       <el-tab-pane label="阅读" name="third">
-        <Comprehension />
-        <Comprehension />
+        <Read />
+        <Read />
 
       </el-tab-pane>
       <el-tab-pane label="听力口语" name="fourth">
@@ -30,13 +30,13 @@ import Docker from '../../components/Docker'
 import Bottom from '../../components/Bottom'
 import Page from './Page.vue'
 import Page1 from './Page1.vue'
-import Comprehension from './Comprehension.vue'
+import Read from './Read.vue'
 import Listen from './Listen.vue'
 
 const activeName = ref('first')
 export default {
   name: 'Course',
-  components: { Docker, Bottom, Page, Page1, Comprehension, Listen },
+  components: { Docker, Bottom, Page, Page1, Read, Listen },
   setup () {
     return { activeName }
   }

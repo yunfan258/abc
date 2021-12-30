@@ -16,7 +16,8 @@ const getLocalWordList = () => {
     learnTime: 0,
     lastTime: 0,
     totalListLen: 0,
-    dayPlan: 1
+    dayPlan: 1,
+    myList: []
   })
   return JSON.parse(wordList)
 }
@@ -36,7 +37,7 @@ export default createStore({
     wordList: getLocalWordList() || {}
   },
   mutations: {
-    // 改变购物车产品的信息
+    // 改变单词列表的信息
     changeTotalList (state, payload) {
       const { totalList } = payload
       state.wordList.totalList = totalList
@@ -105,6 +106,12 @@ export default createStore({
     changeDayPlan (state, payload) {
       const { dayPlan } = payload
       state.wordList.dayPlan = dayPlan
+      setLocalWordList(state)
+    },
+    // 改变话题列表
+    changeMyList (state, payload) {
+      const { myList } = payload
+      state.wordList.myList = myList
       setLocalWordList(state)
     }
   },
