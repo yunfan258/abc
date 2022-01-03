@@ -3,6 +3,7 @@
   <div class="search">
     <span class="iconfont search__icon">&#xe650;</span>
     <input type="text"
+      autofocus="autofocus"
       class="search__text"
       placeholder="improve"
       v-model="inputVal"
@@ -41,6 +42,7 @@
 <script>
 import { reactive, ref, toRefs } from 'vue'
 import { useCommonRouterEffect, useCommonWordEffect } from '../../effects/commonEffect'
+import { useDataListEffect } from '../../effects/data5543.js'
 import SearchInfo from './SearchInfo'
 
 const inputVal = ref('')
@@ -91,6 +93,23 @@ const useSerchInfoEffect = () => {
         item.chinese = totalList[i].chinese
           .replace(inputVal, `<span class="otherColor">${inputVal}</span>`)
         itemList.searchInfoList.push(item)
+      }
+    }
+    // 如果今日计划中没有，则往5543中找
+    if (itemList.searchInfoList.length === 0) {
+      const { dataList } = useDataListEffect()
+      for (const i in dataList) {
+        if (dataList[i]?.english.startsWith(inputVal) ||
+        dataList[i]?.chinese.match(inputVal) !== null
+        ) {
+          const item = {}
+          item.english = dataList[i].english
+            .replace(inputVal, `<span class="otherColor">${inputVal}</span>`)
+          item.wordSex = dataList[i].wordSex
+          item.chinese = dataList[i].chinese
+            .replace(inputVal, `<span class="otherColor">${inputVal}</span>`)
+          itemList.searchInfoList.push(item)
+        }
       }
     }
   }

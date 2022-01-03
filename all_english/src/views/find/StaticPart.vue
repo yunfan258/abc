@@ -1,12 +1,14 @@
 <template>
-<div class="imgs">
-    <div class="imgs__item" v-for="(item,index) in imgsList" :key="index" @click="()=>showToast('暂未开放，点击附近店铺')">
+<!-- <div class="imgs">
+    <div class="imgs__item" v-for="(item,index) in imgsList" :key="index" @click="()=>showToast('暂未开放，I am sorry')">
         <img :src="`http://www.dell-lee.com/imgs/vue3/${item.name}.png`"
             alt="" class="imgs__item__img"
         >
         <p class="imgs__item__p">{{item.pText}}</p>
     </div>
-</div>
+</div> -->
+<IconsArea :iconsList="imgsList" />
+
 <IconsArea :iconsList="iconsList" />
 <div class="gap"></div>
 <Toast v-if="isShowToast" :message="toastMessage"/>
@@ -26,11 +28,11 @@ const useShowSearchEffect = () => {
   return { isShowSearch, showSearch }
 }
 const imgsList = [
-  { name: '超市', pText: '0元考研' },
-  { name: '菜市场', pText: '宝藏同学' },
-  { name: '水果店', pText: '打卡挑战' },
-  { name: '鲜花', pText: '同桌' },
-  { name: '医药健康', pText: '小组' }
+  { icon: '&#xe62f;', pText: '0元考研' },
+  { icon: '&#xe6d8;', pText: '宝藏同学' },
+  { icon: '&#xe66c;', pText: '打卡挑战' },
+  { icon: '&#xe61d;', pText: '同桌' },
+  { icon: '&#xe62e;', pText: '小组' }
 ]
 const iconsList = [
   { pText: '考研资讯', icon: '&#xe630;' },
