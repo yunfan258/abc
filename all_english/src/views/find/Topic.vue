@@ -161,6 +161,7 @@ export default {
   margin: 0 -.18rem;
   padding: .1rem .18rem;
   background-color: #fff;
+  box-shadow: 0 .02rem .2rem .01rem #d2d2d2;
   &__icon{
     flex: 1;
     text-align: center;
