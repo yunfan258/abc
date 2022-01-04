@@ -73,9 +73,6 @@ const useConfirmEffect = (showMask, delItem) => {
 const useSubmitEffect = (showToast) => {
   const store = useStore()
   const inputVal = ref('')
-  // const myList = reactive([])
-  // const { myList } = useMyListEffect()
-  // const myList = myList.value
   const addItem = (myList, nameVal, textVal) => {
     if (textVal !== '') {
       myList.unshift({ userName: nameVal, text: textVal })
@@ -156,16 +153,22 @@ export default {
   }
 }
 .submit{
+  position: sticky;
+  top:0;
   display: flex;
   align-items: center;
   // line-height: .4rem;
-  margin: .1rem 0;
-  background-color: $content-bgColor;
+  margin: 0 -.18rem;
+  padding: .1rem .18rem;
+  background-color: #fff;
   &__icon{
     flex: 1;
     text-align: center;
     color: rgb(243, 152, 4);
     font-size: .2rem;
+    height: .3rem;
+    line-height: .3rem;
+    background-color: $content-bgColor;
   }
   &__input{
     flex: 7;
@@ -184,6 +187,9 @@ export default {
     flex: 1;
     text-align: center;
     color: rgb(0, 119, 255);
+    height: .3rem;
+    line-height: .3rem;
+    background-color: $content-bgColor;
   }
 }
 
