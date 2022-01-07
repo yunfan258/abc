@@ -9,8 +9,10 @@
     <style>
         /* 炫酷的百叶窗动画 */
         .container {
-            width: 27vw;
-            min-width: 200px;
+            /* width: 27vw; */
+            /* min-width: 200px; */
+            /* 手机端宽度 */
+            width: 80%; 
             position: relative;
             margin: 30px auto;
         }
@@ -134,16 +136,18 @@
         /*---3d旋转的盒子---*/
 
         .cube {
-            width: 20px;
+            width: 40px;
             height: 40px;
             line-height: 40px;
-            font-size: 40px;
+            font-size: 30px;
+            text-align: center;
             font-family: ztxg3;
             position: fixed;
-            right: 5%;
-            bottom: 5%;
+            right: 40px;
+            bottom: 40px;
             transform-style: preserve-3d;
-            animation: xzxz 5s linear infinite alternate;
+            /* transform: rotate3d(0,0,1,45deg) rotate3d(1, 1, 0, 37deg); */
+            animation: xzxz 5s linear infinite;
             perspective: 50000px;
         }
 
@@ -153,7 +157,7 @@
             }
 
             to {
-                transform: rotate3d(1, 1, 1, 360deg);
+                transform: rotate3d(1, 1, 0, 360deg);
             }
         }
 
@@ -161,7 +165,7 @@
             width: 40px;
             height: 40px;
             font-size: 40px;
-            color: yellow;
+            color: #fc0e0e;
             position: absolute;
             top: 0;
             left: 0;
@@ -169,31 +173,31 @@
 
         .front {
             transform: translateZ(20px);
-            background-color: rgba(12, 11, 22, 1);
+            background-color: #ccc;
         }
 
         .back {
-            background-color: rgba(12, 11, 21, 1);
-            transform: translateZ(-20px);
+            background-color: #ccc;
+            transform: rotateY(180deg) translateZ(20px);
         }
 
         .left {
-            background-color: rgba(122, 114, 21, 1);
+            background-color: #ccc;
             transform: rotateY(-90deg) translateZ(20px);
         }
 
         .right {
-            background-color: rgba(122, 11, 22, 1);
+            background-color: #ccc;
             transform: rotateY(90deg) translateZ(20px);
         }
 
         .top {
-            background-color: rgba(12, 111, 221, 1);
+            background-color: #ccc;
             transform: rotateX(90deg) translatez(20px);
         }
 
         .bottom {
-            background-color: rgba(12, 11, 221, 1);
+            background-color: #ccc;
             transform: rotateX(-90deg) translatez(20px);
         }
 
@@ -233,6 +237,9 @@
         @media screen and (min-width:1000px) {
             li {
                 width: 60%;
+            }
+            .container{
+                width: 450px;
             }
         }
     </style>
