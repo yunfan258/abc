@@ -3,7 +3,7 @@
   <div class="search">
     <span class="iconfont search__icon">&#xe650;</span>
     <input type="text"
-      autofocus="autofocus"
+      ref="start"
       class="search__text"
       placeholder="improve"
       v-model="inputVal"
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { reactive, ref, toRefs } from 'vue'
+import { onMounted, reactive, ref, toRefs } from 'vue'
 import { useCommonRouterEffect, useCommonWordEffect } from '../../effects/commonEffect'
 import { useDataListEffect } from '../../effects/data5543.js'
 import SearchInfo from './SearchInfo'
@@ -119,13 +119,18 @@ const useSerchInfoEffect = () => {
 export default {
   name: 'Search',
   components: { SearchInfo },
-  props: [''],
+  props: [],
   setup (props, context) {
     const { handleBackClick } = useCommonRouterEffect()
     const { totalList } = useCommonWordEffect()
     const { hotItemList, historyList, handleClearClick } = useInfoListEffect()
     const { isShowSearch, searchInfoList, showSearchInfo } = useSerchInfoEffect()
-    return { inputVal, handleBackClick, totalList, hotItemList, historyList, handleClearClick, isShowSearch, searchInfoList, showSearchInfo }
+    const start = ref(null)
+    onMounted(() => {
+      start.value.focus()
+    })
+    // input.value.focus()
+    return { start, inputVal, handleBackClick, totalList, hotItemList, historyList, handleClearClick, isShowSearch, searchInfoList, showSearchInfo }
   }
 }
 </script>
@@ -142,7 +147,7 @@ export default {
   bottom: 0;
   background-color: $search-bgColor;
   overflow-y: auto;
-  padding: .18rem;
+  padding: .12rem .18rem;
 }
 .search{
   display: flex;
