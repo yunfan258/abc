@@ -24,7 +24,7 @@ module.exports = {
     proxy: {
       // 注意这个term6...要与请求接口的开头对应
       '/term6_vue_tp/': {
-        target: 'http://localhost:8080/',
+        target: 'http://localhost:8080/', //目标域名及端口
         changeOrigin: true
       }
       // '/Person/': {
