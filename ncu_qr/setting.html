@@ -54,6 +54,7 @@
             console.log(toBase64(oAvator.files[0]))
             toBase64(oAvator.files[0]).then((reader)=>{
                 localStorage.avator = reader.result
+                alert('上传成功')
             })
         }
         
