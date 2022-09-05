@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .item {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="./index.html">返回</a>
+        <div class="item">
+            <span>姓名：</span> <input id="name" type="text">
+        </div>
+        <div class="item">
+            <span>性别：</span> <input id="sex" type="text">
+        </div>
+        <div class="item">
+            <span>头像：</span> <input id="avator" accept="image/*" type="file">
+        </div>
+        <button onclick="submit()">提交</button>
+    <script>
+        const toBase64 = (file)=> {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = function () { // 图片转base64完成后返回reader对象
+                    resolve(reader)
+                }
+                reader.onerror = reject
+            })
+        }
+        const oName = document.querySelector('#name')
+        const oSex = document.querySelector('#sex')
+        const oAvator = document.querySelector('#avator')
+
+        oName.value = localStorage.name || ''
+        oSex.value = localStorage.sex || ''
+
+        const submit = () => {
+            localStorage.name = oName.value
+            localStorage.sex = oSex.value
+            console.log(toBase64(oAvator.files[0]))
+            toBase64(oAvator.files[0]).then((reader)=>{
+                localStorage.avator = reader.result
+            })
+        }
+        
+    </script>
+</body>
+
+</html>
