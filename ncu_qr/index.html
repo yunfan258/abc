@@ -121,19 +121,25 @@
 
         .avator {
             position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 20vw;
-            height: 20vw;
+            top: 20px;
+            right: 20px;
+            width: 24vw;
+            height: 24vw;
         }
 
         .main li {
-            margin: 10px 0;
+            margin: 24px 0;
+        }
+        .main li:first-of-type{
+            margin-top: 0;
+        }
+        .main li:last-of-type{
+            margin-bottom: 0;
         }
 
         .main,
         .detail {
-            background-color: #4e8c27;
+            background-color: #2665f2;
             border-radius: 10px;
             padding: 16px;
             margin-bottom: 16px;
@@ -149,7 +155,7 @@
         .tip {
             background-color: #f4f7fc;
             border-radius: 10px;
-            padding: 16px;
+            /* padding: 16px; */
         }
 
         .areaBox {
@@ -158,7 +164,7 @@
         }
 
         .areaBox>.area {
-            padding-bottom: 10px;
+            padding: 16px 0;
             border-bottom: 1px solid #fff;
             display: flex;
         }
@@ -169,25 +175,33 @@
 
         }
 
-        .qrBox>.qr {
+        /* .qrBox>.qr {
             width: 64%;
         }
 
         .qrBox {
             margin: 16px auto 4px;
-        }
+        } */
 
-        .renew {
+        /* .renew {
             color: #8f9fcd;
-        }
+        } */
 
-        .tip {
+        /* .tip {
             color: #f4b884;
-        }
-        .renewImg{
+        } */
+        /* .renewImg{
             width: 16px;
             height: 16px;
             transform: translateY(3px);
+        } */
+        #time {
+            /* font-family: Arial, Helvetica, sans-serif; */
+            font-size: 46px;
+            padding: 40px;
+            font-weight: 500;
+            /* margin-bottom: 10px; */
+            border-bottom: 10px solid #fff;
         }
     </style>
 </head>
@@ -200,7 +214,6 @@
     </div>
     <div class="title">
         <div class="title__item">南昌大学电子ID</div>
-        <div class="title__item" id="time">22:31:45</div>
     </div>
     <div class="container">
         <div class="main">
@@ -232,39 +245,41 @@
             </ul>
             <img id="avator" class="avator" src="./icons/avator.jpg" alt="">
         </div>
-        <div class="detail">
+        <!-- <div class="detail">
             <span>昌通码(获取成功)</span>
             <span>结果仅供参考</span>
             <img class="icon renewImg" src="./icons/刷新_白.png" alt="">
 
-        </div>
+        </div> -->
         <div class="areaBox">
+            <div class="title__item" id="time">22:31:45</div>
+
             <div class="area">
                 <span>前湖北</span>
                 <span>前湖南</span>
                 <span>青山湖</span>
                 <span>东湖</span>
             </div>
-            <div class="qrBox">
+            <!-- <div class="qrBox">
                 <img class="qr" src="./icons/qr.jpg" alt="">
             </div>
             <div>
                 <img class="icon renewImg" src="./icons/刷新_黑.png" alt="">
                 <span>二维码（</span><span id="second">49</span><span>s）</span>
                 <span class="renew">刷新</span>
-            </div>
+            </div> -->
 
         </div>
-        <div class="tip">
+        <!-- <div class="tip">
             红码不能代表您的健康情况，仅说明按照相关规定暂时不能入校
-        </div>
+        </div> -->
     </div>
     <script>
         const $ = (str) => {
             return document.querySelector(str)
         }
         const oTime = $('#time')
-        const oSecond = $('#second')
+        // const oSecond = $('#second')
         const addZero = (num) => {
             return num < 10 ? `0${num}` : num
         }
@@ -278,17 +293,20 @@
 
         let time = ''
         let s = 49
+        // console.log(oTime)
+        time = formatTime(':')
+        oTime.innerText = time
         setInterval(() => {
             s > 0 ? s-- : s = 60
             time = formatTime(':')
-            oSecond.innerText = s
+            // oSecond.innerText = s
             oTime.innerText = time
         }, 1000)
 
         $('#name').innerText = localStorage.name || '罗帆'
         $('#sex').innerText = localStorage.sex || '男'
         $('#avator').src = localStorage.avator || './icons/avator.jpg'
-        console.log(localStorage.avator)
+        // console.log(localStorage.avator)
     </script>
 </body>
 
