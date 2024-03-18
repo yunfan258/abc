@@ -35,6 +35,34 @@
                 s02.style.display = "";
             }
         }
+
+    // //输入: a=[b:[c:'1J,d:'2'}
+    // //输出:{c:'1',d:'2'}
+    var a={b:{c:'1'},d:'2'}
+    function flattenObject(obj) {   // 函数功能，取出对象最内层键值对
+        var flattened = {};
+        function flatten(obj){
+            for (var key in obj){
+                console.log('outkey:',key)
+                if (obj.hasOwnProperty(key)) {
+                console.log('inkey:',key)
+                    // var nestedKey = parentKey ? parentKey + '.' + key : key;
+                    if (typeof obj[key] ===  'object' && obj[key] !== null){
+                        flatten(obj[key]); // key对应的值是对象，就一直找子对象
+                    }else{
+                        flattened[key] = obj[key];  // key对应的值不是对象，直接赋值
+                    }
+                }
+            }
+        }
+        flatten(obj);
+        return flattened;
+    }
+    console.log(flattenObject(a))
+    // // 当key=b时，key[b]是对象，找下一层
+    // //     当key=c时,key[c]不是对象，flattened[c]='1'
+    // // 当key=d时，key[d]不是对象，flattened[d]='2'
+    // // 输出:{c:'1',d:'2'}
     </script>
 </head>
 

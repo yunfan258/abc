@@ -23,7 +23,7 @@
 <body>
     <!-- <script src="./main.js"></script> -->
     <div id="app"></div>
-    <script>
+    <!-- <script>
         // 模拟实现vue的响应式，数据改变，视图就更新
         // 模拟new操作符，这个只是补充，用原版的new也可以
         const New = (Fn, ...args) => {
@@ -74,6 +74,25 @@
         // 运行订阅者
         subscriber()
         setInterval(() => { vm.data = getTime() }, 1000)
+
+    </script> -->
+    <script>
+        const module = require('http');
+        var http = require('http');
+
+        http.createServer(function (request, response) {
+
+            // 发送 HTTP 头部 
+            // HTTP 状态值: 200 : OK
+            // 内容类型: text/plain
+            response.writeHead(200, {'Content-Type': 'text/plain'});
+
+            // 发送响应数据 "Hello World"
+            response.end('Hello World\n');
+        }).listen(8888);
+
+        // 终端打印如下信息
+        console.log('Server running at http://127.0.0.1:8888/');
     </script>
 </body>
 
