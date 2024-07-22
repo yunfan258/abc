@@ -23,9 +23,12 @@
             box-sizing: border-box;
         }
 
-        body {
+        .box {
             background-color: #4873c1;
             padding: 16px;
+            width: 400px;
+            margin: 0 auto;
+            position: relative;
         }
 
         li {
@@ -54,7 +57,7 @@
             display: flex;
         }
 
-        .top>a{
+        .top>a {
             margin-right: 16px;
         }
 
@@ -81,7 +84,9 @@
             position: relative;
             overflow: hidden;
         }
-        .main::after,.main::before{
+
+        .main::after,
+        .main::before {
             content: ' ';
             width: 120vw;
             height: 120vw;
@@ -92,28 +97,34 @@
             border-radius: 30%;
             background-color: #fff;
         }
+
         @keyframes myRotate1 {
-            from{
+            from {
                 transform: rotate(0deg);
             }
-            to{
+
+            to {
                 transform: rotate(360deg);
             }
         }
+
         @keyframes myRotate2 {
-            from{
+            from {
                 transform: rotate(40deg);
             }
-            to{
+
+            to {
                 transform: rotate(400deg);
             }
         }
-        .main::after{
+
+        .main::after {
             opacity: 0.1;
             animation: myRotate1 linear 5s infinite;
 
         }
-        .main::before{
+
+        .main::before {
             opacity: 0.3;
             animation: myRotate2 linear 5s infinite;
 
@@ -125,17 +136,19 @@
             right: 20px;
             /* width: 24vw;
             height: 24vw; */
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
         }
 
         .main li {
             margin: 24px 0;
         }
-        .main li:first-of-type{
+
+        .main li:first-of-type {
             margin-top: 0;
         }
-        .main li:last-of-type{
+
+        .main li:last-of-type {
             margin-bottom: 0;
         }
 
@@ -146,13 +159,16 @@
             padding: 16px;
             margin-bottom: 16px;
         }
-        .detail{
+
+        .detail {
             display: flex;
         }
-        .detail>span{
-            display:inline-block;
+
+        .detail>span {
+            display: inline-block;
             margin-right: auto;
         }
+
         .areaBox,
         .tip {
             background-color: #f4f7fc;
@@ -185,69 +201,65 @@
             /* margin-bottom: 10px; */
             border-bottom: 10px solid #fff;
         }
-        body{
-            width: 400px;
-            margin: 0 auto;
-            position: relative;
-        }
     </style>
 </head>
 
 <body>
-    <div class="top">
-        <a href="./setting.html"><img class="icon" src="./icons/错.png" alt=""></a>
-        <span>电子ID</span>
-        <img class="icon" src="./icons/44_点点点.png" alt="">
-    </div>
-    <div class="title">
-        <div class="title__item">南昌大学电子ID</div>
-    </div>
-    <div class="container">
-        <div class="main">
-            <ul>
-                <li>
-                    <span>姓名</span>
-                    <span id="name">罗帆</span>
-                </li>
-                <li>
-                    <span>性别</span>
-                    <span id="sex">男</span>
-                </li>
-                <li>
-                    <span>学号</span>
-                    <span>419100220070</span>
-                </li>
-                <li>
-                    <span>手机号</span>
-                    <span>13576815351</span>
-                </li>
-                <li>
-                    <span>身份证号</span>
-                    <span>360825********2410</span>
-                </li>
-                <li>
-                    <span>班级</span>
-                    <span>数学与计算机学院研究生</span>
-                </li>
-            </ul>
-            <img id="avator" class="avator" src="./icons/avator.jpg" alt="">
+    <div class="box">
+        <div class="top">
+            <a href="./setting.html"><img class="icon" src="./icons/错.png" alt=""></a>
+            <span>电子ID</span>
+            <img class="icon" src="./icons/44_点点点.png" alt="">
         </div>
-        <!-- <div class="detail">
+        <div class="title">
+            <div class="title__item">南昌大学电子ID</div>
+        </div>
+        <div class="container">
+            <div class="main">
+                <ul>
+                    <li>
+                        <span>姓名</span>
+                        <span id="name">罗帆</span>
+                    </li>
+                    <li>
+                        <span>性别</span>
+                        <span id="sex">男</span>
+                    </li>
+                    <li>
+                        <span>学号</span>
+                        <span>419100220070</span>
+                    </li>
+                    <li>
+                        <span>手机号</span>
+                        <span>13576815351</span>
+                    </li>
+                    <li>
+                        <span>身份证号</span>
+                        <span>360825********2410</span>
+                    </li>
+                    <li>
+                        <span>班级</span>
+                        <span>数学与计算机学院研究生</span>
+                    </li>
+                </ul>
+                <img id="avator" class="avator" src="./icons/avator.jpg" alt="">
+            </div>
+            <!-- <div class="detail">
             <span>昌通码(获取成功)</span>
             <span>结果仅供参考</span>
             <img class="icon renewImg" src="./icons/刷新_白.png" alt="">
 
         </div> -->
-        <div class="areaBox">
-            <div class="title__item" id="time">22:31:45</div>
+            <div class="areaBox">
+                <div class="title__item" id="time">22:31:45</div>
 
-            <div class="area">
-                <span>前湖北</span>
-                <span>前湖南</span>
-                <span>青山湖</span>
-                <span>东湖</span>
-            </div>
-            <!-- <div class="qrBox">
+                <div class="area">
+                    <span>前湖北</span>
+                    <span>前湖南</span>
+                    <span>青山湖</span>
+                    <span>东湖</span>
+                </div>
+                <!-- <div class="qrBox">
                 <img class="qr" src="./icons/qr.jpg" alt="">
             </div>
             <div>
@@ -256,10 +268,11 @@
                 <span class="renew">刷新</span>
             </div> -->
 
-        </div>
-        <!-- <div class="tip">
+            </div>
+            <!-- <div class="tip">
             红码不能代表您的健康情况，仅说明按照相关规定暂时不能入校
         </div> -->
+        </div>
     </div>
     <script>
         const $ = (str) => {
