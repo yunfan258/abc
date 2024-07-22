@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <style>
+        * {
+            text-decoration: none;
+        }
+        
+        #head {
+            text-align: center;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+
+        li {
+            margin: auto;
+            padding: 20px;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: transparent;
+            transition: all 2s ease;
+            background-image: linear-gradient(to right, green, blue, violet);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        a:hover {
+            background-position: -100vw;
+        }
+
+        @media screen and (min-width:1000px) {
+            li {
+                width: 60%;
+            }
+            .container{
+                width: 450px;
+            }
+        }
+    </style>
+
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/drew233/css/font.min.css" media="all">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/drew233/css/matery.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/drew233/cdn/js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+
+
+
+</head>
+
+<body>
+    <h4 id="head">游戏首页</h4>
+    <div id="as">
+        <ol>
+            <li><a href="./snakeGame/index.html">贪吃蛇游戏</a></li>
+            <li><a href="./fiveGame/index.html">五子棋游戏</a></li>
+            <li><a href="./gangQingGame/index.html">钢琴块游戏</a></li>
+            <li><a href="./aircraftBattle/index.html">飞机大战游戏</a></li>
+            <li><a href="./tanKeGame/index.html">坦克大战游戏</a></li>
+            <li><a href="./xiangQi/index.html">象棋大战游戏</a></li>
+            <li><a href="./JiangShi/index.html">植物大战僵尸游戏</a></li>
+            <li><a href="./zhaDanRen/index.html">炸弹人</a></li>
+
+
+
+
+        </ol>
+    </div>
+    <div id="waifu" style="bottom: 0px;">
+        <div id="waifu-tips" class="">哇，你终于回来了～</div>
+        <canvas id="live2d" width="800" height="800"></canvas>
+        <div id="waifu-tool">
+            <span class="fa fa-lg fa-comment"></span>
+            <span class="fa fa-lg fa-paper-plane"></span>
+            <span class="fa fa-lg fa-user-circle"></span>
+            <span class="fa fa-lg fa-street-view"></span>
+            <span class="fa fa-lg fa-camera-retro"></span>
+            <span class="fa fa-lg fa-info-circle"></span>
+            <span class="fa fa-lg fa-times"></span>
+        </div>
+    </div>
+</body>
+
+</html>

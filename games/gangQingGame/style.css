@@ -1,0 +1,65 @@
+#main {
+    margin: 0 auto;
+    width: 350px;
+    height: 500px;
+    background-color: white;
+    border: 1px solid black;
+    position: relative;
+}
+
+#main div {
+    box-sizing: border-box;
+    width: 70px;
+    height: 500px;
+    background-color: white;
+    border-right: 1px solid gray;
+    position: absolute;
+    overflow: hidden;
+}
+
+.div0 {
+    left: 0;
+    top: 0;
+}
+
+.div1 {
+    left: 70px;
+    top: 0;
+}
+
+.div2 {
+    left: 140px;
+    top: 0;
+}
+
+.div3 {
+    left: 210px;
+    top: 0;
+}
+
+.div4 {
+    left: 280px;
+    top: 0;
+}
+
+#main div div {
+    width: 70px;
+    height: 100px;
+    background-color: black;
+    position: absolute;
+    top: -100px;
+    left: 0;
+}
+
+.button {
+    text-align: center;
+}
+
+.button button {
+    width: 100px;
+    margin: auto;
+}
+
+#pause {
+    display: none;
+}

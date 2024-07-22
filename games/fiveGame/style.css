@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+.btn{
+    display: inline-block;
+}
+#board {
+    flex-flow: wrap;
+}
+
+#board div {
+    width: 20px;
+    height: 20px;
+    border: 0.5px black solid;
+}
+
+@media screen and(max-width:500){
+    #board div {
+    width: 20px;
+    height: 20px;
+    border: 0.5px black solid;
+}
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>五子棋小游戏</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="content">
+        <!-- <div class="btn huiQi"><button>规则</button></div> -->
+        <div class="btn" id="guiZeBtn">显示规则</div>
+        <div id="guiZe">
+            <div>隐藏规则</div>
+            <ol>
+                <li>红方先走。轮流下棋。</li>
+                <li>帅（将）被对方吃了就输了。</li>
+                <li>帅（将）可在大本营前后左右走。</li>
+                <li>仕（士）可在大本营中走一格斜线。</li>
+                <li>相（象）不可过河，可走田字格的对角。</li>
+                <li>马（馬）可走日的对角。是进攻的好棋子。</li>
+                <li>车（車）可走直线。可以说是最强进攻棋子。</li>
+                <li>炮（炮）走直线不能吃，隔一个棋子轰炸可以吃。</li>
+                <li>兵（卒）没过河只能向前，过河可向前左右三个方向。</li>
+            </ol>
+
+
+        </div>
+
+        <!-- <canvas id="myCanvas" width="500" height="550"></canvas> -->
+        <div id="board"></div>
+        <div id="as">
+            <a href="../index.html">首页 </a>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

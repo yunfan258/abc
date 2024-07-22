@@ -1,0 +1,119 @@
+#board {
+    /* background-color: green; */
+    /* border: 1px solid black; */
+    /* box-shadow: 0 0 1px 2px blue; */
+    width: 630px;
+    height: 450px;
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    overflow: hidden;
+    background-image: url(./imgs/background.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#board div {
+    width: 30px;
+    height: 30px;
+}
+
+#board div.normal {}
+
+#board div.person {
+    z-index: 2;
+    background-image: url('imgs/xiYangYang.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+#board div.stone {
+    background-color: darkgray;
+}
+
+#board div.wood {
+    z-index: 2;
+    background-color: burlywood;
+}
+
+#board div.bomb {
+    background-image: url('imgs/food.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+#board div.fireFlower {
+    /* background-image: url(); */
+    background-color: darkred;
+    opacity: 0.5;
+    position: absolute;
+}
+
+#board div.fireFlower::before {
+    content: "";
+    transform: rotateZ("90deg");
+}
+
+#board div.animal {
+    /* background-color: blue; */
+    background-image: url('./imgs/huiTaiLang.png');
+    /* opacity: 0.5; */
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+}
+
+#board div.door {
+    background-color: white;
+    position: absolute;
+}
+
+#controlOut {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    background-color: gray;
+    opacity: 0.5;
+}
+
+#controlIn {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    background-color: lightgray;
+    opacity: 0.5;
+    outline: none;
+    border: 1px solid black;
+    /* background-color: transparent; */
+}
+
+#fire {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-color: lightgray;
+    opacity: 0.5;
+    outline: none;
+    border: 1px solid black;
+}
+
+#start {
+    display: block;
+}
+
+#pause {
+    display: none;
+}
+
+@media screen and (min-width:700px) {
+    #control {
+        display: none;
+    }
+}
