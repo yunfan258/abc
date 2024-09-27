@@ -131,12 +131,18 @@
 
 
         /*---3d旋转的盒子---*/
+        html{
+            --cube-w-h-6: 60px;
+            --cube-w-h-3: 30px;
+            --cube-w-h-2: 20px;
+            --cube-w-h-1: 10px;
 
+        }
         .cube {
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            font-size: 30px;
+            width: var(--cube-w-h-6);
+            height: var(--cube-w-h-6);
+            /* line-height: 40px;
+            font-size: 30px; */
             text-align: center;
             font-family: ztxg3;
             position: fixed;
@@ -157,10 +163,10 @@
             }
         }
 
-        .cube * {
-            width: 40px;
-            height: 40px;
-            font-size: 40px;
+        .cube > div {
+            width: var(--cube-w-h-6);
+            height: var(--cube-w-h-6);
+            /* font-size: 40px; */
             color: #fc0e0e;
             position: absolute;
             top: 0;
@@ -168,35 +174,67 @@
         }
 
         .front {
-            transform: translateZ(20px);
-            background-color: #ccc;
+            transform: translateZ(var(--cube-w-h-3));
         }
 
         .back {
-            background-color: #ccc;
-            transform: rotateY(180deg) translateZ(20px);
+            transform: rotateY(180deg) translateZ(var(--cube-w-h-3));
         }
 
         .left {
-            background-color: #ccc;
-            transform: rotateY(-90deg) translateZ(20px);
+            transform: rotateY(-90deg) translateZ(var(--cube-w-h-3));
         }
 
         .right {
-            background-color: #ccc;
-            transform: rotateY(90deg) translateZ(20px);
+            transform: rotateY(90deg) translateZ(var(--cube-w-h-3));
         }
 
         .top {
-            background-color: #ccc;
-            transform: rotateX(90deg) translatez(20px);
+            transform: rotateX(90deg) translatez(var(--cube-w-h-3));
         }
 
         .bottom {
-            background-color: #ccc;
-            transform: rotateX(-90deg) translatez(20px);
+            transform: rotateX(-90deg) translatez(var(--cube-w-h-3));
         }
-
+        
+        .front,.back,.left,.right,.top,.bottom{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: #fefefe;
+            border-radius: 10px;
+            /* gap: 10px; */
+            /* border: #000 1px solid; */
+            box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+        }
+        .point{
+            width: var(--cube-w-h-1);
+            height: var(--cube-w-h-1);
+            background-color: #000;
+            border-radius: 50%;
+            margin: 5px;
+        }
+        .back{
+            justify-content: space-around;
+        }
+        .left .point:first-of-type{
+            align-self: flex-start
+        }
+        .left .point:last-of-type{
+            align-self: flex-end
+        }
+        .right{
+            gap: var(--cube-w-h-1);
+        }
+        .top .point:nth-of-type(3){
+            margin: 0 25px;
+        }
+        .top{
+            justify-content:space-between;
+        }
+    </style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -320,12 +358,39 @@
         </ul>
     </nav>
     <div class="cube">
-        <div class="front">1</div>
-        <div class="back">2</div>
-        <div class="left">3</div>
-        <div class="right">4</div>
-        <div class="top">5</div>
-        <div class="bottom">6</div>
+        <div class="front">
+            <div class="point"></div>
+        </div>
+        <div class="back">
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
+        <div class="left">
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
+        <div class="right">
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
+        <div class="top">
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
+        <div class="bottom">
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
     </div>
 </body>
 
